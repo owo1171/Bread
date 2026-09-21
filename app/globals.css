@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* tap targets and no iOS zoom on focus */
+  input,
+  button,
+  select {
+    @apply text-base;
+  }
+
+  /* visible keyboard focus everywhere */
+  :focus-visible {
+    @apply outline-none ring-2 ring-blue-600 ring-offset-2;
+  }
+
+  /* keep long paragraphs readable on wide screens */
+  .measure {
+    max-width: 68ch;
+  }
+
+  /* money columns line up */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white;
+  }
+
+  details {
+    @apply py-3;
+  }
+
+  details summary {
+    @apply cursor-pointer pr-6 font-semibold;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary::before {
+    content: "+";
+    @apply mr-2 font-bold text-blue-700;
+  }
+
+  details[open] summary::before {
+    content: "\2013";
+  }
+}
