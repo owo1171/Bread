@@ -88,7 +88,11 @@ export const usd = (n: number): string =>
   Number.isFinite(n) ? usdFmt.format(n) : "—";
 
 export function duration(months: number): string {
-  if (!Number.isFinite(months) || months <= 0) return "—";
+  if (!Number.isFinite(months)) return "—";
+  // A genuine zero (break-even of zero months, nothing saved) should read "0 mo";
+  // negative means "no result" and stays a dash.
+  if (months < 0) return "—";
+  if (months === 0) return "0 mo";
   const y = Math.floor(months / 12);
   const m = Math.round(months % 12);
   return [y ? `${y} yr` : "", m ? `${m} mo` : ""].filter(Boolean).join(" ") || "0 mo";

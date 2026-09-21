@@ -8,6 +8,33 @@ export const SITE_URL =
 export const SLUG = "mortgage-payoff-calculator";
 
 /**
+ * Content review date — the single source for every "Last updated" line on the
+ * site. Update it when page copy or a formula changes; do not backdate it.
+ */
+export const LAST_UPDATED = "2026-09-21";
+
+const longDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const monthYearDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  timeZone: "UTC",
+});
+const updatedAt = new Date(`${LAST_UPDATED}T00:00:00Z`);
+
+/** "September 21, 2026" */
+export const LAST_UPDATED_LABEL = longDate.format(updatedAt);
+/** "September 2026" — used by the legal pages */
+export const LAST_UPDATED_MONTH = monthYearDate.format(updatedAt);
+
+/** Contact address shown on /about. Swap when a real mailbox exists. */
+export const CONTACT_EMAIL = "hello@bread-nine-iota.vercel.app";
+
+/**
  * Shared social card. Real photo, 1200x630, Unsplash License (free to use,
  * attribution not required) — see public/og/CREDITS.md to swap or remove it.
  */

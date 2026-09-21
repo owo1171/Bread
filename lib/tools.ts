@@ -22,6 +22,13 @@ export interface ToolValues {
   [key: string]: number;
 }
 
+export interface ToolExample {
+  /** The inputs the worked example uses — match the defaults shown on load. */
+  inputs: string;
+  /** Result sentences, each one a figure the calculator itself produces. */
+  results: string[];
+}
+
 export interface ToolSpec {
   slug: string;
   name: string;
@@ -33,6 +40,10 @@ export interface ToolSpec {
   compute: (v: ToolValues) => Record<string, number>;
   invalid: (v: ToolValues) => boolean;
   faqs: Faq[];
+  /** Plain-English walkthrough of the maths, rendered below the calculator. */
+  howItWorks: string[];
+  /** Worked example, using the same defaults the calculator loads with. */
+  example: ToolExample;
   scheduleTitle?: string;
   schedule?: (v: ToolValues) => { period: string; interest: number; principal: number; balance: number }[];
 }
@@ -115,6 +126,20 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       }
       return rows;
     },
+    howItWorks: [
+      "First the scheduled payment comes from the standard amortizing formula: payment = B × r ÷ (1 − (1 + r)^−n), where B is the balance, r is the monthly rate (annual rate ÷ 12) and n is the number of payments left.",
+      "Then the loan is walked month by month. Interest for the month is balance × r; everything in the payment above that is principal; the balance falls by the principal part only. An extra payment is added to the principal line, so it never earns interest and the balance drops faster.",
+      "The table groups that loop by year. It assumes a fixed rate, payments applied on time, and no escrow, mortgage insurance or servicer fees — those sit outside the schedule.",
+    ],
+    example: {
+      inputs: "$320,000 balance · 6.5% rate · 25 years left · $200 extra a month",
+      results: [
+        "Scheduled payment: $2,161 a month.",
+        "First payment split: about $1,733 interest and $427 principal.",
+        "Payoff in 20 yr 5 mo instead of 25 yr.",
+        "Total interest $259,116, which is $69,083 less than staying on schedule.",
+      ],
+    },
     faqs: [
       {
         q: "What is an amortization schedule?",
@@ -135,6 +160,10 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       {
         q: "Why is my real amortization schedule a few dollars different?",
         a: "Servicers differ on interest accrual (30/360 versus actual/365), on payment posting dates, and on whether extra money sits in suspense before it hits principal. Match to the dollar only against your own servicer's method.",
+      },
+      {
+        q: "Is this schedule the same as the one on my statement?",
+        a: "Close, not identical. This one compounds monthly and applies every payment on time. Your servicer may accrue interest on an actual/365 basis, post payments on a different day, or hold partial payments in suspense — expect a few dollars of difference per month, not a different payoff year.",
       },
     ],
   },
@@ -158,7 +187,7 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       { key: "breakEvenMonths", label: "Break-even", format: "durationMonths", highlight: true },
       { key: "netFiveYears", label: "Net after 5 years", format: "usd" },
     ],
-    invalid: (v) => !(v.closingCosts > 0 && v.currentPayment > 0),
+    invalid: (v) => !(v.closingCosts >= 0 && v.currentPayment > 0 && v.newPayment >= 0),
     compute: (v) => {
       const saving = v.currentPayment - v.newPayment;
       const months = saving > 0 ? v.closingCosts / saving : Infinity;
@@ -168,6 +197,20 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         netFiveYears: saving * 60 - v.closingCosts,
         ok: saving > 0 ? 1 : 0,
       };
+    },
+    howItWorks: [
+      "Monthly saving = current payment − new payment. Break-even months = closing costs ÷ monthly saving. That is the whole calculation, deliberately undiscounted: a dollar saved in month 30 is treated the same as a dollar saved in month 3.",
+      "Net after 5 years = (monthly saving × 60) − closing costs. It answers the question break-even alone cannot: if you stay the full five years, is the deal actually worth it after the costs?",
+      "If the new payment is not lower, there is nothing to break even on and the calculator flags the inputs instead of dividing by zero. Costs paid later (a lender credit, or a higher balance) still belong in the closing-costs box, because they are still money you pay.",
+    ],
+    example: {
+      inputs: "$4,500 closing costs · payment falls from $2,160 to $1,890",
+      results: [
+        "Monthly saving: $270.",
+        "Break-even: 1 yr 5 mo (16.7 months).",
+        "Net after 5 years: +$11,700.",
+        "If you sell at 12 months instead, you are roughly $1,260 short of covering the costs.",
+      ],
     },
     faqs: [
       {
@@ -189,6 +232,10 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       {
         q: "Does dropping PMI count as savings?",
         a: "Yes — count it in the payment drop. If more equity removes $95 a month of mortgage insurance, that is $95 a month saved from month one, and it pulls your break-even closer.",
+      },
+      {
+        q: "What about a no-cost refinance?",
+        a: "A no-cost refinance does not remove the cost, it moves it — usually into a higher rate or a bigger balance. There is no up-front figure left to divide, so run the calculation with the lender credit added back to see what you really paid for the rate.",
       },
     ],
   },
@@ -227,6 +274,20 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         ok: newBalance > 0 ? 1 : 0,
       };
     },
+    howItWorks: [
+      "The calculator prices your current balance as one payment, then prices the balance-after-the-lump-sum with the same rate and the same number of months left. The difference is the payment drop.",
+      "Formula in both cases: payment = B × r ÷ (1 − (1 + r)^−n). Only B changes, so the end date moves not at all — that is the definition of a recast rather than a payoff strategy.",
+      "The lump-sum entry must sit between zero and the balance; a lump sum equal to the balance would retire the loan outright, which is a payoff, not a recast. Servicer recast fees (commonly $100 to $500) are not deducted here.",
+    ],
+    example: {
+      inputs: "$320,000 balance · 6.5% rate · 25 years left · $25,000 lump sum",
+      results: [
+        "Balance after the lump sum: $295,000.",
+        "New monthly payment: $1,992, down from $2,161.",
+        "Payment drops by $169 a month — and the payoff year stays the same.",
+        "Compare with the payoff calculator: putting that same $25,000 into extra payments instead cuts the term rather than the payment.",
+      ],
+    },
     faqs: [
       {
         q: "What is a mortgage recast?",
@@ -247,6 +308,10 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       {
         q: "Can I recast my mortgage more than once?",
         a: "Usually yes. Lenders commonly set a minimum lump sum, often $5,000, and some limit you to one recast a year. Ask for the recast fee and the minimum in writing before you send the money.",
+      },
+      {
+        q: "When does a recast actually make sense?",
+        a: "Right after a one-time inflow — a bonus, an inheritance, the sale of another asset — when monthly cash flow is the tight constraint and your existing rate is better than anything on offer today. If the goal is finishing the loan fastest, extra payments beat a recast.",
       },
     ],
   },
@@ -279,6 +344,20 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         ok: 1,
       };
     },
+    howItWorks: [
+      "Annual tax = assessed value × the rate as a decimal (so 1.1% is 0.011). Monthly = annual ÷ 12, which is the amount a servicer collects into escrow each month.",
+      "The ten-year figure holds today's rate and today's assessment flat, then multiplies by ten. It is a budgeting yardstick, not a forecast: reassessments and rate votes are what move it in real life.",
+      "This is the tax line only. Homeowners insurance, mortgage insurance and any escrow shortage are separate amounts on the same monthly payment.",
+    ],
+    example: {
+      inputs: "$420,000 assessed value · 1.1% annual rate",
+      results: [
+        "Annual property tax: $4,620.",
+        "Monthly escrow collection: $385.",
+        "Ten years at today's rate: $46,200.",
+        "A 0.1 percentage point difference on the same house is $420 a year, or $35 a month.",
+      ],
+    },
     faqs: [
       {
         q: "How is property tax calculated?",
@@ -299,6 +378,10 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       {
         q: "Do I still pay property tax after the mortgage is paid off?",
         a: "Yes, permanently. Only the escrow goes away. You then pay the county directly, usually once or twice a year, which is why a paid-off house is not a no-housing-cost house.",
+      },
+      {
+        q: "Does this calculator include homeowners insurance?",
+        a: "No — it covers the tax line only. Insurance and any mortgage insurance sit on top, so your real monthly escrow figure is higher than the number shown here. Add them before comparing two houses.",
       },
     ],
   },
@@ -337,6 +420,20 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         ok: loan > 0 ? 1 : 0,
       };
     },
+    howItWorks: [
+      "Step one turns income into a payment: monthly payment cap = (annual income ÷ 12) × your chosen percentage of gross income. The 28% default is the old front-end housing rule lenders still quote.",
+      "Step two asks what loan that payment supports — the present value of the payment stream: loan = payment × (1 − (1 + r)^−n) ÷ r. Step three grosses it up to a purchase price by dividing by (1 − down payment %).",
+      "The result covers principal and interest only. Property tax, homeowners insurance and mortgage insurance below 20% down all come out of the same monthly budget, so the realistic price is lower than the number shown.",
+    ],
+    example: {
+      inputs: "$95,000 income · 20% down · 6.5% rate · 25-year term · 28% of gross cap",
+      results: [
+        "Payment used: $2,217 a month.",
+        "Approximate home price: $410,368, with an $82,074 down payment.",
+        "Raise the cap to 36% of gross and the same income points at about $527,000 — which is roughly how lenders reach their approved maximum.",
+        "Add roughly $300 a month of tax and insurance and the realistic price drops by over $50,000.",
+      ],
+    },
     faqs: [
       {
         q: "How much house can I afford on a $95,000 salary?",
@@ -357,6 +454,10 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       {
         q: "Should I borrow the maximum I qualify for?",
         a: "Rarely. The approved maximum assumes nothing else in your spending changes. A payment nearer 25% of gross income survives a job change, a new roof and one car repair.",
+      },
+      {
+        q: "Does the calculator use gross or take-home income?",
+        a: "Gross. The cap is applied to annual income ÷ 12, which is what lenders quote. Take-home pay is lower after tax, insurance and retirement contributions, so check the resulting payment against your real budget before you trust it.",
       },
     ],
   },

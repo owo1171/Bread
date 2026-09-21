@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import SpecCalculator from "@/components/SpecCalculator";
+import { ContentMeta, ExampleBlock, HowItWorks } from "@/components/ToolSections";
 import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL, SLUG } from "@/lib/content";
 import { SIBLING_TOOLS, findTool } from "@/lib/tools";
 
@@ -116,9 +117,13 @@ export default function SiblingToolPage({ params }: { params: { slug: string } }
 
       <AdSlot id="ad-results" note="Ad slot — results area (300x250 / in-article)" minHeight={120} />
 
+      <HowItWorks items={tool.howItWorks} />
+
+      <ExampleBlock inputs={tool.example.inputs} results={tool.example.results} />
+
       <AdSlot id="ad-hero" note="Ad slot — below the fold (fluid / 336x280 mobile)" minHeight={140} />
 
-      <h2 id="faq" className="scroll-mt-16 text-2xl font-bold">
+      <h2 id="faq" className="scroll-mt-16 mt-8 text-2xl font-bold">
         {tool.name} FAQ
       </h2>
       <div className="mt-2 divide-y divide-slate-200">
@@ -130,9 +135,9 @@ export default function SiblingToolPage({ params }: { params: { slug: string } }
         ))}
       </div>
 
-      <AdSlot id="ad-faq" note="Ad slot — above FAQs (300x250)" minHeight={140} />
+      <AdSlot id="ad-faq" note="Ad slot — next to FAQs (300x250)" minHeight={140} />
 
-      <h2 className="text-2xl font-bold">Related tools</h2>
+      <h2 className="mt-8 text-2xl font-bold">Related calculators</h2>
       <ul className="mt-3 grid gap-3 sm:grid-cols-2">
         {related.map((t) => (
           <li key={t.href}>
@@ -147,7 +152,9 @@ export default function SiblingToolPage({ params }: { params: { slug: string } }
         ))}
       </ul>
 
-      <p className="mt-6 text-sm">
+      <ContentMeta className="mt-8" />
+
+      <p className="mt-3 text-sm">
         <Link href="/mortgage-calculators" className="text-blue-700 hover:underline">
           All mortgage calculators →
         </Link>

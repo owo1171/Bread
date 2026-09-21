@@ -18,15 +18,19 @@ app/
 │  ├─ [slug]/
 │  │  └─ page.tsx                      # 5 个兄弟工具页（generateStaticParams + 各自 FAQ + Schema）
 │  ├─ mortgage-calculators/page.tsx     # hub（ItemList Schema + "该用哪个"引导）
+│  ├─ about/page.tsx                    # About & Contact（谁在做 / 怎么变现 / 怎么联系）
+│  ├─ methodology/page.tsx              # 公式、假设、排除项、舍入与日期规则
 │  ├─ privacy/page.tsx
 │  ├─ terms/page.tsx
-│  └─ affiliate-disclosure/page.tsx
+│  ├─ affiliate-disclosure/page.tsx
+│  └─ not-found.tsx                     # 自定义 404（HTTP 404 + 六个工具入口）
 ├─ components/
 │  ├─ AdSlot.tsx                       # 广告位占位 div（固定 id + min-height 保 CLS）
 │  ├─ PayoffCalculator.tsx             # "use client"：主计算器（URL 状态 + localStorage + 场景表）
 │  ├─ SpecCalculator.tsx               # "use client"：spec 驱动的兄弟计算器（即时出结果）
 │  ├─ EmailCapture.tsx                 # "use client"：单字段邮件捕获（localStorage 记录）
-│  └─ LegalPage.tsx                    # 3 个法务页共用模板
+│  ├─ LegalPage.tsx                    # 法务 / About / Methodology 共用模板（含 Last updated）
+│  └─ ToolSections.tsx                 # 6 个工具页共用：How it works / Example / Last updated
 ├─ lib/
 │  ├─ payoff.ts                        # 主计算纯函数 + usd()/duration()/payoffLabel()
 │  ├─ tools.ts                         # 5 个兄弟工具的 spec：字段 + 计算 + 校验 + FAQ
@@ -36,7 +40,12 @@ app/
 ├─ docs/
 │  └─ adsense-setup.md                 # AdSense 接入说明（3 个 div 怎么贴 <ins>、加哪个 script）
 ├─ scripts/
-│  └─ make-og.mjs                      # 旧渐变占位图生成器（现在用真实照片，脚本仍可用）
+│  ├─ make-og.mjs                      # 旧渐变占位图生成器（现在用真实照片，脚本仍可用）
+│  ├─ cdp-check.mjs                    # 主页面 7 项真浏览器回归（点击/双周/邮箱/水合）
+│  ├─ edge-check.mjs                   # 6 个计算器 × 6 组边界输入 → 查 NaN/Infinity/undefined/坏日期
+│  ├─ site-audit.mjs                   # HTTP 状态 / canonical / OG / Schema↔可见FAQ / 死链 / 图alt
+│  ├─ mobile-check.mjs                 # 390×844 横向溢出 + 零成本再融资（0 mo）
+│  └─ rate-zero-check.mjs              # 0% 利率分支：应给出真实数字而不是 —
 ├─ next.config.mjs · postcss.config.mjs · tailwind.config.ts
 └─ package.json · tsconfig.json · .gitignore · README.md
 ```
@@ -52,6 +61,9 @@ app/
 | `/property-tax-calculator` | 年税 / 月 escrow / 10 年总额 | 同上结构，FAQPage 5 条 |
 | `/how-much-house-can-i-afford` | 收入 → 可负担房价（28/36 规则） | 同上结构，FAQPage 5 条 |
 | `/mortgage-calculators` | hub 页，6 个工具索引 | `ItemList` |
+| `/about` | About & Contact：谁在做、怎么变现、怎么联系 | `AboutPage` + `BreadcrumbList` |
+| `/methodology` | 公式 / 假设 / 排除项 / 舍入与日期规则 | `WebPage` + `BreadcrumbList` |
+| `/_not-found`（任意未知路径） | 自定义 404，列出 6 个工具 + 索引入口 | — |
 | `/` · `/privacy` · `/terms` · `/affiliate-disclosure` | 首页与法务页 | `WebSite`（仅首页） |
 
 ## Run / deploy
@@ -75,6 +87,10 @@ vercel --prod      # Framework preset = Next.js
 
 ```bash
 node scripts/cdp-check.mjs        # 7 项：加载报错 / Calculate / Biweekly / 邮箱 / 兄弟页 / Link 跳转 / query 水合
+node scripts/edge-check.mjs       # 6 计算器 × 6 组边界输入（默认/0/空/负数/极大/小数）+ 双周
+node scripts/site-audit.mjs       # 13 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
+node scripts/mobile-check.mjs     # 390×844 无横向溢出 + closing costs = 0 → "0 mo"
+node scripts/rate-zero-check.mjs  # rate = 0 分支输出真实数字（0% 是合法输入）
 ```
 
 域名唯一来源是 `SITE_URL`（`lib/content.ts`）：默认值 = 当前 Vercel 生产域名

@@ -13,9 +13,16 @@ export default function PrivacyPage() {
     <LegalPage title="Privacy Policy">
       <h2>Your numbers stay local</h2>
       <p>
-        The calculator runs in your browser. Loan balance, rate and payment are used to compute a
-        result and may be saved in your browser&rsquo;s local storage so a returning visit keeps your
-        figures. Clearing site data removes them.
+        The calculators run in your browser: balance, rate and payment are used to produce a result on
+        this device, and nothing is posted to a server just to calculate. No tool asks for an account,
+        and no tool files your figures away on its own.
+      </p>
+      <p>
+        Two things can persist, both only after you act. On the payoff page your figures also sit in
+        the page address, so reopening or sharing that link restores the same inputs; tapping{" "}
+        <strong>Save results</strong> keeps a copy in this browser&rsquo;s local storage, and the email
+        address you submit for the payoff plan is kept there too. Clearing site data removes them, and
+        we do not hold a server-side record of the values you typed.
       </p>
 
       <h2>Cookies and advertising</h2>

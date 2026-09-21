@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ContentMeta } from "@/components/ToolSections";
 import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL, SLUG } from "@/lib/content";
 import { SIBLING_TOOLS } from "@/lib/tools";
 
@@ -102,6 +103,18 @@ export default function MortgageCalculatorsHub() {
           term — the two calculators show the difference side by side.
         </li>
       </ul>
+
+      <ContentMeta className="mt-8" />
+
+      <p className="mt-3 text-sm">
+        <Link href="/about" className="text-blue-700 hover:underline">
+          About this site
+        </Link>{" "}
+        ·{" "}
+        <Link href="/methodology" className="text-blue-700 hover:underline">
+          Methodology
+        </Link>
+      </p>
     </>
   );
 }

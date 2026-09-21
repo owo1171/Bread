@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LAST_UPDATED_MONTH } from "@/lib/content";
 
 interface LegalPageProps {
   title: string;
@@ -6,7 +7,11 @@ interface LegalPageProps {
   children: React.ReactNode;
 }
 
-export default function LegalPage({ title, updated = "September 2026", children }: LegalPageProps) {
+export default function LegalPage({
+  title,
+  updated = LAST_UPDATED_MONTH,
+  children,
+}: LegalPageProps) {
   return (
     <article className="pt-6">
       <nav aria-label="Breadcrumb" className="text-xs text-slate-500">

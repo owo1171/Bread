@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL } from "@/lib/content";
+import { LAST_UPDATED_MONTH, OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL } from "@/lib/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -39,11 +39,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto max-w-content px-4 pb-16">{children}</main>
 
         <footer className="border-t border-slate-200 bg-slate-50 py-6 text-center text-xs text-slate-500">
-          <p>Estimates only — not financial advice.</p>
+          <p>Estimates only — not financial advice. Calculations run in your browser.</p>
           <p className="mt-1">
-            <a href="/privacy" className="underline">Privacy</a> · <a href="/terms" className="underline">Terms</a> ·{" "}
-            <a href="/affiliate-disclosure" className="underline">Affiliate disclosure</a>
+            <a href="/mortgage-calculators" className="underline">
+              Calculators
+            </a>{" "}
+            ·{" "}
+            <a href="/methodology" className="underline">
+              Methodology
+            </a>{" "}
+            ·{" "}
+            <a href="/about" className="underline">
+              About &amp; contact
+            </a>{" "}
+            ·{" "}
+            <a href="/privacy" className="underline">
+              Privacy
+            </a>{" "}
+            ·{" "}
+            <a href="/terms" className="underline">
+              Terms
+            </a>{" "}
+            ·{" "}
+            <a href="/affiliate-disclosure" className="underline">
+              Affiliate disclosure
+            </a>
           </p>
+          <p className="mt-1">Last updated {LAST_UPDATED_MONTH}</p>
         </footer>
       </body>
     </html>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import PayoffCalculator from "@/components/PayoffCalculator";
+import { ContentMeta, ExampleBlock, HowItWorks } from "@/components/ToolSections";
 import { AFFILIATES, FAQS, OG_IMAGE_ALT, OG_IMAGE_URL, RELATED_TOOLS, SITE_URL, SLUG, faqSchema } from "@/lib/content";
 
 const TITLE = "Mortgage Payoff Calculator: Extra Payments & Payoff Date";
@@ -91,6 +92,26 @@ export default function MortgagePayoffCalculatorPage() {
         ))}
       </ul>
 
+      <HowItWorks
+        items={[
+          "The scheduled payment comes from the standard amortizing formula: payment = B × r ÷ (1 − (1 + r)^−n), where B is the balance, r is the monthly rate (annual rate ÷ 12) and n is the number of months left.",
+          "The payoff date comes from inverting that formula — payments left = −ln(1 − r·B ÷ P) ÷ ln(1 + r) — where P is the regular payment plus anything extra. If the payment barely covers the interest there is no solution, and the calculator says so rather than printing a nonsense date.",
+          "Extra money is treated as principal. It never earns interest, so it cuts next month's interest charge as well as the balance — that is why the saving compounds over the term.",
+          "Biweekly mode pays half the monthly payment every two weeks: 26 payments a year, about 13 monthly equivalents, roughly 8% more paid each year. The periodic rate is the annual rate ÷ 26, which is an approximation — real servicers differ on accrual and posting dates.",
+          "Left out on purpose: property tax, homeowners insurance, mortgage insurance, escrow changes and servicer fees. Compare the result with the principal-and-interest line on your statement, not the total you pay.",
+        ]}
+      />
+
+      <ExampleBlock
+        inputs="$320,000 balance · 6.5% rate · 25 years left · $200 extra a month"
+        results={[
+          "Scheduled payment: $2,161 a month — $1,733 of the first one is interest, $427 principal.",
+          "Payoff date: February 2047, which is 4 yr 7 mo sooner than staying on schedule (dates count from the current month).",
+          "Total interest: $259,116 instead of $328,199 — a saving of $69,083.",
+          "Switch the same loan to biweekly with the same extra money and it ends February 2044, saving $112,837.",
+        ]}
+      />
+
       {/* Ad slot: below the fold (mobile "首屏下方") */}
       <AdSlot id="ad-hero" note="Ad slot — below the fold (fluid / 336x280 mobile)" minHeight={140} />
 
@@ -145,7 +166,7 @@ export default function MortgagePayoffCalculatorPage() {
       </div>
 
       {/* ---- Screen 5: internal links ---- */}
-      <h2 className="mt-8 text-2xl font-bold">Related tools</h2>
+      <h2 className="mt-8 text-2xl font-bold">Related calculators</h2>
       <ul className="mt-3 grid gap-3 sm:grid-cols-2">
         {RELATED_TOOLS.map((t) => (
           <li key={t.href}>
@@ -159,6 +180,8 @@ export default function MortgagePayoffCalculatorPage() {
           </li>
         ))}
       </ul>
+
+      <ContentMeta className="mt-8" />
     </>
   );
 }

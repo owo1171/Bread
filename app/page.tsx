@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { ContentMeta } from "@/components/ToolSections";
 import { SITE_URL, SLUG } from "@/lib/content";
 import { SIBLING_TOOLS } from "@/lib/tools";
+
+export const metadata: Metadata = {
+  title: "Free Mortgage Calculators — No Signup",
+  description:
+    "Six free mortgage calculators that run in your browser: payoff date, amortization schedule, refinance break-even, recast, property tax and how much house you can afford.",
+  alternates: { canonical: "/" },
+};
 
 const TOOLS = [
   {
@@ -37,6 +46,11 @@ export default function Home() {
         Type in your numbers and get an answer in about ten seconds. Everything runs in your browser,
         so nothing you enter leaves this device.
       </p>
+      <ul className="measure mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
+        <li>No account, no email required to see a result.</li>
+        <li>Fixed-rate loan maths, with the assumptions written down.</li>
+        <li>Built for a phone first — big inputs, readable results.</li>
+      </ul>
 
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {TOOLS.map((t) => (
@@ -55,6 +69,22 @@ export default function Home() {
       <p className="mt-6 text-sm">
         <Link href="/mortgage-calculators" className="text-blue-700 hover:underline">
           Browse all mortgage calculators →
+        </Link>
+      </p>
+
+      <ContentMeta className="mt-6" />
+
+      <p className="mt-3 text-sm">
+        <Link href="/about" className="text-blue-700 hover:underline">
+          About &amp; contact
+        </Link>{" "}
+        ·{" "}
+        <Link href="/privacy" className="text-blue-700 hover:underline">
+          Privacy
+        </Link>{" "}
+        ·{" "}
+        <Link href="/affiliate-disclosure" className="text-blue-700 hover:underline">
+          Affiliate disclosure
         </Link>
       </p>
     </>
