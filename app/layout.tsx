@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { OG_IMAGE_ALT, OG_IMAGE_URL } from "@/lib/content";
+import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL } from "@/lib/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Mortgage Payoff Calculator: Extra Payments & Payoff Date",
     template: "%s | Tool Site",

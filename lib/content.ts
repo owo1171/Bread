@@ -1,4 +1,10 @@
-export const SITE_URL = "https://example.com";
+/**
+ * Canonical absolute origin. Override per environment with
+ * NEXT_PUBLIC_SITE_URL (e.g. once a .com domain is attached); the default
+ * below is the current Vercel production alias.
+ */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://bread-nine-iota.vercel.app";
 export const SLUG = "mortgage-payoff-calculator";
 
 /**

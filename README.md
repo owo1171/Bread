@@ -10,7 +10,8 @@ app/
 │  ├─ globals.css                      # Tailwind + tap-target / focus-visible / measure / tnum
 │  ├─ layout.tsx                       # metadataBase、OG 默认值（含 OG 图）、header/footer
 │  ├─ page.tsx                         # 首页 = 6 个工具卡片 + WebSite Schema
-│  ├─ sitemap.ts                       # 主工具 + 5 兄弟页 + hub + 首页 + 3 法务页
+│  ├─ sitemap.ts                       # → /sitemap.xml：主工具 + 5 兄弟页 + hub + 首页 + 3 法务页
+│  ├─ robots.ts                        # → /robots.txt：Sitemap 行由 SITE_URL 生成，与 sitemap 同源
 │  ├─ icon.svg                         # 站点图标（Next 14 app/icon.svg）
 │  ├─ mortgage-payoff-calculator/
 │  │  └─ page.tsx                      # 主工具页（metadata + 10 FAQ + JSON-LD）
@@ -31,7 +32,6 @@ app/
 │  ├─ tools.ts                         # 5 个兄弟工具的 spec：字段 + 计算 + 校验 + FAQ
 │  └─ content.ts                       # SITE_URL / OG_IMAGE_URL / FAQ / 内链 / 联盟 / faqSchema()
 ├─ public/
-│  ├─ robots.txt
 │  └─ og/cover.jpg                     # 1200×630 真实图（见 og/CREDITS.md：Unsplash License）
 ├─ docs/
 │  └─ adsense-setup.md                 # AdSense 接入说明（3 个 div 怎么贴 <ins>、加哪个 script）
@@ -65,8 +65,8 @@ npm run lint       # ESLint = next/core-web-vitals（.eslintrc.json）
 vercel --prod      # Framework preset = Next.js
 ```
 
-仓库：**https://github.com/owo1171/Bread** ｜ 生产地址：**https://tool-site-six-fawn.vercel.app**
-已连接 Vercel Git 集成 —— push 到 `main` 会自动部署生产环境。
+仓库：**https://github.com/owo1171/Bread** ｜ 生产地址：**https://bread-nine-iota.vercel.app**
+已连接 Vercel Git 集成 —— push 到 `main` 会自动部署生产环境（不用再跑 `vercel --prod`）。
 
 > `npm run start` 需要先 `npm run build`：`.next` 被 dev 覆盖后没有 `BUILD_ID`，
 > 直接 start 会报 `Could not find a production build in the '.next' directory`。
@@ -77,8 +77,11 @@ vercel --prod      # Framework preset = Next.js
 node scripts/cdp-check.mjs        # 7 项：加载报错 / Calculate / Biweekly / 邮箱 / 兄弟页 / Link 跳转 / query 水合
 ```
 
-上线前把 `SITE_URL`（`lib/content.ts`）与 `metadataBase`（`app/layout.tsx`）里的
-`https://example.com` 换成真实域名。
+域名唯一来源是 `SITE_URL`（`lib/content.ts`）：默认值 = 当前 Vercel 生产域名
+`https://bread-nine-iota.vercel.app`，可用环境变量 `NEXT_PUBLIC_SITE_URL` 覆盖。
+`metadataBase`、`app/sitemap.ts`、`app/robots.ts` 全部引用它 → 以后换 .com 域名只需在
+Vercel 项目里加一个 `NEXT_PUBLIC_SITE_URL` 环境变量并重新部署，canonical / og:url /
+sitemap / robots 会一起跟上，不必改代码。
 
 ## AdSense
 
