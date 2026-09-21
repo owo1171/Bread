@@ -65,6 +65,9 @@ npm run lint       # ESLint = next/core-web-vitals（.eslintrc.json）
 vercel --prod      # Framework preset = Next.js
 ```
 
+仓库：**https://github.com/owo1171/Bread** ｜ 生产地址：**https://tool-site-six-fawn.vercel.app**
+已连接 Vercel Git 集成 —— push 到 `main` 会自动部署生产环境。
+
 > `npm run start` 需要先 `npm run build`：`.next` 被 dev 覆盖后没有 `BUILD_ID`，
 > 直接 start 会报 `Could not find a production build in the '.next' directory`。
 
