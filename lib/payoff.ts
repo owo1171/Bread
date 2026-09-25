@@ -89,10 +89,12 @@ export const usd = (n: number): string =>
 
 export function duration(months: number): string {
   if (!Number.isFinite(months)) return "—";
-  // A genuine zero (break-even of zero months, nothing saved) should read "0 mo";
-  // negative means "no result" and stays a dash.
+  // A genuine zero (break-even of zero months, nothing saved) should read "0 mo".
+  // The amortization loop can hand a zero a tiny float residue (baseline − paid),
+  // so anything inside a thousandth of a month counts as zero; clearly negative
+  // still means "no result" and stays a dash.
+  if (Math.abs(months) < 1e-3) return "0 mo";
   if (months < 0) return "—";
-  if (months === 0) return "0 mo";
   const y = Math.floor(months / 12);
   const m = Math.round(months % 12);
   return [y ? `${y} yr` : "", m ? `${m} mo` : ""].filter(Boolean).join(" ") || "0 mo";

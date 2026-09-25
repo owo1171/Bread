@@ -7,7 +7,7 @@ import { SIBLING_TOOLS } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "Free Mortgage Calculators — No Signup",
   description:
-    "Six free mortgage calculators that run in your browser: payoff date, amortization schedule, refinance break-even, recast, property tax and how much house you can afford.",
+    "Six free mortgage calculators that run in your browser: payoff date, amortization schedule, refinance break-even, recast, property tax and home affordability.",
   alternates: { canonical: "/" },
 };
 

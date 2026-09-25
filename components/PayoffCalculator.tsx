@@ -222,10 +222,36 @@ export default function PayoffCalculator() {
           </div>
 
           <p className="measure mt-4 text-slate-700">
-            Paying <strong>{usd(input.extraMonthly)}</strong> extra each month has you finished in{" "}
-            <strong>{payoffLabel(result.months)}</strong> — about{" "}
-            <strong>{duration(result.monthsSaved)}</strong> sooner — on{" "}
-            <strong>{usd(result.interestSaved)}</strong> less interest than the original schedule.
+            {input.extraMonthly === 0 ? (
+              <>
+                With no extra payment you stay on the original schedule: finished in{" "}
+                <strong>{payoffLabel(result.months)}</strong> with{" "}
+                <strong>{usd(result.totalInterest)}</strong> total interest.
+              </>
+            ) : (
+              <>
+                Paying <strong>{usd(input.extraMonthly)}</strong> extra each month has you finished
+                in <strong>{payoffLabel(result.months)}</strong>
+                {result.monthsSaved > 0 ? (
+                  <>
+                    {" "}
+                    — about <strong>{duration(result.monthsSaved)}</strong> sooner
+                  </>
+                ) : null}
+                {" — "}
+                {result.interestSaved > 0 ? (
+                  <>
+                    on <strong>{usd(result.interestSaved)}</strong> less interest than the original
+                    schedule.
+                  </>
+                ) : (
+                  <>
+                    at the <strong>same total interest</strong> (a 0% rate saves time, not
+                    interest).
+                  </>
+                )}
+              </>
+            )}
           </p>
 
           <div className="tnum -mx-4 mt-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">

@@ -31,8 +31,8 @@ export const LAST_UPDATED_LABEL = longDate.format(updatedAt);
 /** "September 2026" — used by the legal pages */
 export const LAST_UPDATED_MONTH = monthYearDate.format(updatedAt);
 
-/** Contact address shown on /about. Swap when a real mailbox exists. */
-export const CONTACT_EMAIL = "hello@bread-nine-iota.vercel.app";
+/** Contact address shown on /about. */
+export const CONTACT_EMAIL = "3501132113@qq.com";
 
 /**
  * Shared social card. Real photo, 1200x630, Unsplash License (free to use,

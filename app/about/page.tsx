@@ -19,6 +19,7 @@ export default function AboutPage() {
         "@id": `${SITE_URL}/about`,
         name: "About & Contact",
         url: `${SITE_URL}/about`,
+        email: CONTACT_EMAIL,
         isPartOf: { "@type": "WebSite", name: "Tool Site", url: SITE_URL },
       },
       {
