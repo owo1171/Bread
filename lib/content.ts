@@ -11,7 +11,7 @@ export const SLUG = "mortgage-payoff-calculator";
  * Content review date — the single source for every "Last updated" line on the
  * site. Update it when page copy or a formula changes; do not backdate it.
  */
-export const LAST_UPDATED = "2026-09-21";
+export const LAST_UPDATED = "2026-09-25";
 
 const longDate = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
