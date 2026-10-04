@@ -42,6 +42,25 @@ export const OG_IMAGE_URL = `${SITE_URL}/og/cover.jpg`;
 export const OG_IMAGE_ALT =
   "House with a front yard — mortgage payoff and amortization calculators";
 
+/** Brand name used in the header, footer, og:site_name and the WebSite schema. */
+export const SITE_NAME = "KiteCalc";
+
+/**
+ * Page-level openGraph block. Setting `openGraph.url` on a page replaces the
+ * layout's openGraph object (Next merges metadata shallowly per top-level key),
+ * so the shared card fields are restated here — that way a page can carry its
+ * own og:url without losing og:site_name or the social preview image.
+ */
+export function pageOpenGraph(url: string) {
+  return {
+    type: "website" as const,
+    url,
+    siteName: SITE_NAME,
+    locale: "en_US",
+    images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
+  };
+}
+
 export interface Faq {
   q: string;
   a: string;

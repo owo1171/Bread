@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { pageOpenGraph, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
   description:
     "Terms for using the mortgage calculators: estimates only, no warranty, and you own the numbers you enter.",
   alternates: { canonical: "/terms" },
+  openGraph: pageOpenGraph(`${SITE_URL}/terms`),
 };
 
 export default function TermsPage() {

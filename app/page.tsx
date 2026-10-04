@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentMeta } from "@/components/ToolSections";
-import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL, SLUG } from "@/lib/content";
+import { pageOpenGraph, SITE_URL, SLUG } from "@/lib/content";
 import { SIBLING_TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
@@ -11,15 +11,7 @@ export const metadata: Metadata = {
   description:
     "Free mortgage calculator, no signup: payoff date, amortization schedule, refinance break-even, recast, property tax and home affordability — in your browser.",
   alternates: { canonical: `${SITE_URL}/` },
-  // Declaring openGraph.url here replaces the layout's openGraph object
-  // (shallow merge), so the shared card fields are restated on this page.
-  openGraph: {
-    type: "website",
-    url: `${SITE_URL}/`,
-    siteName: "KiteCalc",
-    locale: "en_US",
-    images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
-  },
+  openGraph: pageOpenGraph(`${SITE_URL}/`),
 };
 
 const TOOLS = [

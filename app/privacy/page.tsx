@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { pageOpenGraph, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "What this mortgage calculator site stores: your inputs stay in your browser, and that is mostly it.",
   alternates: { canonical: "/privacy" },
+  openGraph: pageOpenGraph(`${SITE_URL}/privacy`),
 };
 
 export default function PrivacyPage() {

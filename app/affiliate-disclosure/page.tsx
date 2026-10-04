@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { pageOpenGraph, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Affiliate Disclosure",
   description:
     "Some outbound links on these calculators are affiliate links. If you apply through them, the site may earn a commission at no cost to you.",
   alternates: { canonical: "/affiliate-disclosure" },
+  openGraph: pageOpenGraph(`${SITE_URL}/affiliate-disclosure`),
 };
 
 export default function AffiliateDisclosurePage() {

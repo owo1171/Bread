@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
-import { SITE_URL } from "@/lib/content";
+import { pageOpenGraph, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Methodology: Formulas, Assumptions and Limits",
   description:
     "The exact formulas behind these mortgage calculators, what they assume, and what they leave out — so you know how far to trust a result.",
   alternates: { canonical: "/methodology" },
+  openGraph: pageOpenGraph(`${SITE_URL}/methodology`),
 };
 
 const FORMULAS: { name: string; body: string }[] = [

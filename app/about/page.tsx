@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
-import { CONTACT_EMAIL, SITE_URL } from "@/lib/content";
+import { CONTACT_EMAIL, pageOpenGraph, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About & Contact",
   description:
     "Who runs these mortgage calculators, how they are funded, and how to reach a human. Free tools, no account, no data collected to show a result.",
   alternates: { canonical: "/about" },
+  openGraph: pageOpenGraph(`${SITE_URL}/about`),
 };
 
 export default function AboutPage() {
