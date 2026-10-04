@@ -11,7 +11,7 @@ export const SLUG = "mortgage-payoff-calculator";
  * Content review date — the single source for every "Last updated" line on the
  * site. Update it when page copy or a formula changes; do not backdate it.
  */
-export const LAST_UPDATED = "2026-09-25";
+export const LAST_UPDATED = "2026-10-04";
 
 const longDate = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -26,9 +26,9 @@ const monthYearDate = new Intl.DateTimeFormat("en-US", {
 });
 const updatedAt = new Date(`${LAST_UPDATED}T00:00:00Z`);
 
-/** "September 21, 2026" */
+/** e.g. "October 4, 2026" — long form used on tool pages */
 export const LAST_UPDATED_LABEL = longDate.format(updatedAt);
-/** "September 2026" — used by the legal pages */
+/** e.g. "October 2026" — month form used by the footer and legal pages */
 export const LAST_UPDATED_MONTH = monthYearDate.format(updatedAt);
 
 /** Contact address shown on /about. */
