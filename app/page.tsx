@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentMeta } from "@/components/ToolSections";
-import { SITE_URL, SLUG } from "@/lib/content";
+import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL, SLUG } from "@/lib/content";
 import { SIBLING_TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
-  title: "Free Mortgage Calculators — No Signup",
+  // absolute: the layout's title template is not applied to this root-level
+  // page, so the brand suffix is written out here.
+  title: { absolute: "Free Mortgage Calculator - No Signup | KiteCalc" },
   description:
-    "Six free mortgage calculators that run in your browser: payoff date, amortization schedule, refinance break-even, recast, property tax and home affordability.",
-  alternates: { canonical: "/" },
+    "Free mortgage calculator, no signup: payoff date, amortization schedule, refinance break-even, recast, property tax and home affordability — in your browser.",
+  alternates: { canonical: `${SITE_URL}/` },
+  // Declaring openGraph.url here replaces the layout's openGraph object
+  // (shallow merge), so the shared card fields are restated on this page.
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/`,
+    siteName: "KiteCalc",
+    locale: "en_US",
+    images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
+  },
 };
 
 const TOOLS = [
@@ -28,7 +39,7 @@ export default function Home() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Tool Site",
+    name: "KiteCalc",
     url: SITE_URL,
   };
 
@@ -39,9 +50,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
-      <h1 className="mt-8 text-3xl font-bold leading-tight sm:text-4xl">
-        Free mortgage calculators, no signup
-      </h1>
+      <h1 className="mt-8 text-3xl font-bold leading-tight sm:text-4xl">Free Mortgage Calculators</h1>
       <p className="measure mt-3 text-slate-700">
         Type in your numbers and get an answer in about ten seconds. Everything runs in your browser,
         so nothing you enter leaves this device.

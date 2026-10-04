@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/${SLUG}`,
     title: TITLE,
     description: DESCRIPTION,
-    siteName: "Tool Site",
+    siteName: "KiteCalc",
     locale: "en_US",
     images: [
       {

@@ -20,7 +20,7 @@ export default function AboutPage() {
         name: "About & Contact",
         url: `${SITE_URL}/about`,
         email: CONTACT_EMAIL,
-        isPartOf: { "@type": "WebSite", name: "Tool Site", url: SITE_URL },
+        isPartOf: { "@type": "WebSite", name: "KiteCalc", url: SITE_URL },
       },
       {
         "@type": "BreadcrumbList",

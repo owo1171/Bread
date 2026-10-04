@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Mortgage Payoff Calculator: Extra Payments & Payoff Date",
-    template: "%s | Tool Site",
+    template: "%s | KiteCalc",
   },
   description:
     "Find your exact mortgage payoff date and the interest you save with extra payments. Free calculator — no signup, results in 10 seconds.",
   openGraph: {
     type: "website",
-    siteName: "Tool Site",
+    siteName: "KiteCalc",
     locale: "en_US",
     images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
   },
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
             <a href="/" className="text-sm font-bold text-slate-900">
-              Tool Site
+              KiteCalc
             </a>
             <nav className="text-sm text-slate-600">
               <a href="/mortgage-calculators" className="hover:underline">
@@ -39,7 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto max-w-content px-4 pb-16">{children}</main>
 
         <footer className="border-t border-slate-200 bg-slate-50 py-6 text-center text-xs text-slate-500">
-          <p>Estimates only — not financial advice. Calculations run in your browser.</p>
+          <p>
+            <strong className="text-slate-700">KiteCalc</strong> — estimates only, not financial
+            advice. Calculations run in your browser.
+          </p>
           <p className="mt-1">
             <a href="/mortgage-calculators" className="underline">
               Calculators

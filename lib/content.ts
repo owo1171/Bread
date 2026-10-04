@@ -4,7 +4,7 @@
  * below is the current Vercel production alias.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://bread-nine-iota.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://kitecalc.com";
 export const SLUG = "mortgage-payoff-calculator";
 
 /**

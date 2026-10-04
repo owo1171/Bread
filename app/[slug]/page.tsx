@@ -24,7 +24,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       url: `${SITE_URL}/${tool.slug}`,
       title: tool.title,
       description: tool.description,
-      siteName: "Tool Site",
+      siteName: "KiteCalc",
       locale: "en_US",
       images: [
         {

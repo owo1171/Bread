@@ -65,7 +65,7 @@ for (const route of ROUTES) {
   }
   if (!desc) problems.push(`${route}: missing meta description`);
   if (!canonical) problems.push(`${route}: missing canonical`);
-  if (canonical && !canonical.startsWith("https://bread-nine-iota.vercel.app")) {
+  if (canonical && !canonical.startsWith("https://kitecalc.com")) {
     problems.push(`${route}: canonical not on the production domain → ${canonical}`);
   }
   if (hasFaqPage && questions !== details) {

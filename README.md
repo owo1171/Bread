@@ -1,4 +1,4 @@
-# Tool Site — Mortgage calculators (Next.js 14 + Tailwind + TS)
+# KiteCalc — Mortgage calculators (Next.js 14 + Tailwind + TS)
 
 1 个主工具页 + 5 个兄弟工具页 + 1 个 hub + 3 个法务页，全部静态输出（SSG），只有一个客户端计算组件家族。
 
@@ -78,7 +78,7 @@ npm run lint       # ESLint = next/core-web-vitals（.eslintrc.json）
 vercel --prod      # Framework preset = Next.js
 ```
 
-仓库：**https://github.com/owo1171/Bread** ｜ 生产地址：**https://bread-nine-iota.vercel.app**
+仓库：**https://github.com/owo1171/Bread** ｜ 生产地址：**https://kitecalc.com**
 已连接 Vercel Git 集成 —— push 到 `main` 会自动部署生产环境（不用再跑 `vercel --prod`）。
 
 > `npm run start` 需要先 `npm run build`：`.next` 被 dev 覆盖后没有 `BUILD_ID`，
@@ -96,7 +96,7 @@ node scripts/copy-branch-check.mjs  # 主页面总结句三种写法：正常 / 
 ```
 
 域名唯一来源是 `SITE_URL`（`lib/content.ts`）：默认值 = 当前 Vercel 生产域名
-`https://bread-nine-iota.vercel.app`，可用环境变量 `NEXT_PUBLIC_SITE_URL` 覆盖。
+`https://kitecalc.com`，可用环境变量 `NEXT_PUBLIC_SITE_URL` 覆盖。
 `metadataBase`、`app/sitemap.ts`、`app/robots.ts` 全部引用它 → 以后换 .com 域名只需在
 Vercel 项目里加一个 `NEXT_PUBLIC_SITE_URL` 环境变量并重新部署，canonical / og:url /
 sitemap / robots 会一起跟上，不必改代码。

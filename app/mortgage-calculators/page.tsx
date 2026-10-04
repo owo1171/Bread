@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Six free mortgage calculators — payoff date, amortization schedule, refinance break-even, affordability, recast and property tax.",
     url: `${SITE_URL}/mortgage-calculators`,
     type: "website",
-    siteName: "Tool Site",
+    siteName: "KiteCalc",
     images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
   },
   twitter: {

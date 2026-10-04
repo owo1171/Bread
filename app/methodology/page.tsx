@@ -45,7 +45,7 @@ export default function MethodologyPage() {
         "@id": `${SITE_URL}/methodology`,
         name: "Methodology",
         url: `${SITE_URL}/methodology`,
-        isPartOf: { "@type": "WebSite", name: "Tool Site", url: SITE_URL },
+        isPartOf: { "@type": "WebSite", name: "KiteCalc", url: SITE_URL },
       },
       {
         "@type": "BreadcrumbList",
