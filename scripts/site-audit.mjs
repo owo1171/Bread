@@ -16,6 +16,8 @@ const ROUTES = [
   "/rent-vs-buy-calculator",
   "/pmi-calculator",
   "/mortgage-calculators",
+  "/blog",
+  "/blog/how-to-lower-your-mortgage-payment",
   "/about",
   "/methodology",
   "/privacy",

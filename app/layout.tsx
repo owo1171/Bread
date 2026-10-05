@@ -43,6 +43,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="text-sm text-slate-600">
               <a href="/mortgage-calculators" className="hover:underline">
                 Mortgage Calculators
+              </a>{" "}
+              ·{" "}
+              <a href="/blog" className="hover:underline">
+                Blog
               </a>
             </nav>
           </div>
@@ -56,6 +60,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             advice. Calculations run in your browser.
           </p>
           <p className="mt-1">
+            <a href="/blog" className="underline">
+              Blog
+            </a>{" "}
+            ·{" "}
             <a href="/mortgage-calculators" className="underline">
               Calculators
             </a>{" "}
