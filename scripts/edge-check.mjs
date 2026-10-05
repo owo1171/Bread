@@ -1,4 +1,4 @@
-// Edge/Chrome DevTools Protocol stress check for the eight calculators.
+// Edge/Chrome DevTools Protocol stress check for the ten calculators.
 //
 //   1. start a production server:  npm run build && npm run start
 //   2. start a browser:            msedge --headless=new --remote-debugging-port=9333
@@ -20,6 +20,8 @@ const PAGES = [
   { path: "/mortgage-recast-calculator", name: "Recast" },
   { path: "/property-tax-calculator", name: "Property tax" },
   { path: "/how-much-house-can-i-afford", name: "Afford" },
+  { path: "/rent-vs-buy-calculator", name: "Rent vs buy" },
+  { path: "/pmi-calculator", name: "PMI" },
 ];
 
 const CASES = [

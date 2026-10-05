@@ -43,7 +43,7 @@ export default function AboutPage() {
         <p>
           This is a small set of mortgage calculators built for one narrow purpose: answering a
           specific money question in about ten seconds, without making you create an account first.
-          Eight tools cover the questions people actually ask a mortgage — what a payment costs, how
+          Ten tools cover the questions people actually ask a mortgage — what a payment costs, how
           much cash to put down, when the loan ends, what each payment really pays for, whether a
           refinance clears its costs, what a lump sum does, what tax costs you monthly, and what
           price you can carry.
@@ -98,7 +98,7 @@ export default function AboutPage() {
             <Link href="/privacy">Privacy policy</Link> — what is stored, which is very little.
           </li>
           <li>
-            <Link href="/mortgage-calculators">All eight calculators</Link>.
+            <Link href="/mortgage-calculators">All ten calculators</Link>.
           </li>
         </ul>
       </LegalPage>

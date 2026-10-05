@@ -75,6 +75,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             ·{" "}
             <a href="/down-payment-calculator" className="underline">
               Down Payment Calculator
+            </a>{" "}
+            ·{" "}
+            <a href="/rent-vs-buy-calculator" className="underline">
+              Rent vs Buy
+            </a>{" "}
+            ·{" "}
+            <a href="/pmi-calculator" className="underline">
+              PMI
             </a>
           </p>
           <p className="mt-1">Last updated {LAST_UPDATED_MONTH}</p>

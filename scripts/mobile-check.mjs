@@ -14,6 +14,8 @@ const ROUTES = [
   "/mortgage-recast-calculator",
   "/property-tax-calculator",
   "/how-much-house-can-i-afford",
+  "/rent-vs-buy-calculator",
+  "/pmi-calculator",
   "/mortgage-calculators",
   "/about",
   "/methodology",

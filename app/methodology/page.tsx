@@ -36,6 +36,14 @@ const FORMULAS: { name: string; body: string }[] = [
     body: "annual = assessed value × rate; monthly = annual ÷ 12; the ten-year figure holds value and rate flat.",
   },
   {
+    name: "Rent vs buy (non-recoverable cost)",
+    body: "owning = interest + upkeep % + property tax % + (down payment × investment return) − price appreciation, all per month; renting = rent stepped monthly by its growth rate. Principal and the down payment itself are equity, so they are not counted as costs. Closing costs, selling costs, insurance and PMI are excluded.",
+  },
+  {
+    name: "PMI",
+    body: "monthly PMI = original loan × annual PMI rate ÷ 12, charged flat on the amount borrowed rather than the falling balance. Removal month is when the scheduled balance first reaches 80% of the purchase price (you may request cancellation) or 79% (automatic under the Homeowners Protection Act); above 90% LTV at origination plan on 79%. No PMI at 20% down or more.",
+  },
+  {
     name: "Biweekly mode",
     body: "Half the monthly payment every two weeks, 26 periods a year — about 13 monthly equivalents, so roughly 8% more paid per year. The periodic rate is the annual rate ÷ 26, an approximation.",
   },

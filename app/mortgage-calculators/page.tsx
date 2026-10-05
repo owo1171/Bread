@@ -7,12 +7,12 @@ import { SIBLING_TOOLS } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "Mortgage Calculators: Payoff, Amortization, Refinance and More",
   description:
-    "Eight free mortgage calculators — payoff date, amortization schedule, refinance break-even, affordability, recast and property tax. No signup.",
+    "Ten free mortgage calculators — payment, down payment, payoff, amortization, break-even, rent vs buy, PMI, recast, tax and affordability. No signup.",
   alternates: { canonical: "/mortgage-calculators" },
   openGraph: {
     title: "Mortgage Calculators: Payoff, Amortization, Refinance and More",
     description:
-      "Eight free mortgage calculators — payoff date, amortization schedule, refinance break-even, affordability, recast and property tax.",
+      "Ten free mortgage calculators — payment, down payment, payoff, amortization, break-even, rent vs buy, PMI, recast, tax and affordability.",
     url: `${SITE_URL}/mortgage-calculators`,
     type: "website",
     siteName: "KiteCalc",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mortgage Calculators: Payoff, Amortization, Refinance and More",
     description:
-      "Eight free mortgage calculators — payoff date, amortization schedule, refinance break-even, affordability, recast and property tax.",
+      "Ten free mortgage calculators — payment, down payment, payoff, amortization, break-even, rent vs buy, PMI, recast, tax and affordability.",
     images: [OG_IMAGE_URL],
   },
 };
@@ -69,9 +69,10 @@ export default function MortgageCalculatorsHub() {
 
       <h1 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Mortgage Calculators</h1>
       <p className="mt-3 measure text-slate-700">
-        Eight calculators for the questions people actually ask about a mortgage: what a payment
-        costs, how much cash to put down, when the loan ends, what each payment really pays for,
-        whether refinancing clears its costs, and what a house costs you every month after tax.
+        Ten calculators for the questions people actually ask about a mortgage: what a payment
+        costs, how much cash to put down, whether renting beats buying, what PMI costs below 20%
+        down, when the loan ends, what each payment really pays for, and whether a refinance clears
+        its closing costs.
       </p>
 
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">

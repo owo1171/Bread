@@ -20,6 +20,14 @@ const DEFAULTS: Record<string, string> = {
   lumpSum: "25000",
   homeValue: "420000",
   taxRatePct: "1.1",
+  downPct: "10",
+  pmiRatePct: "0.5",
+  monthlyRent: "2000",
+  rentGrowthPct: "3",
+  maintPct: "1",
+  apprPct: "3",
+  returnPct: "7",
+  holdYears: "7",
 };
 
 const num = (v: string): number => {

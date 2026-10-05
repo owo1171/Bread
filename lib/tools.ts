@@ -649,6 +649,250 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       },
     ],
   },
+  {
+    slug: "rent-vs-buy-calculator",
+    name: "Rent vs Buy Calculator",
+    title: "Rent vs Buy Calculator: Which Costs Less Over Time?",
+    description:
+      "A rent vs buy comparison from your own numbers: month-one cost and total cost across your stay, with rent growth, upkeep and investment return.",
+    intro: [
+      "Renting and buying are two different cost structures, so comparing a rent cheque with a mortgage payment is misleading. This page prices both sides from your numbers: what each costs in the first month, and what each costs across the years you expect to stay.",
+      "Only money you cannot get back is counted. The principal half of your payment and the down payment itself build equity rather than being spent, so they stay out. Interest, upkeep, property tax and the return your cash could earn elsewhere stay in, and price appreciation is netted off the buy side.",
+    ],
+    fields: [
+      { key: "homePrice", label: "Home price", prefix: "$", inputMode: "decimal" },
+      { key: "downPaymentPct", label: "Down payment", suffix: "%", inputMode: "decimal" },
+      { key: "ratePct", label: "Interest rate", suffix: "%", inputMode: "decimal" },
+      { key: "years", label: "Loan term", suffix: "yr", inputMode: "numeric" },
+      { key: "monthlyRent", label: "Current rent / month", prefix: "$", inputMode: "decimal" },
+      { key: "rentGrowthPct", label: "Rent growth / year", suffix: "%", inputMode: "decimal" },
+      { key: "maintPct", label: "Maintenance / year", suffix: "%", inputMode: "decimal" },
+      { key: "taxRatePct", label: "Property tax / year", suffix: "%", inputMode: "decimal" },
+      { key: "returnPct", label: "Investment return", suffix: "%", inputMode: "decimal" },
+      { key: "apprPct", label: "Price appreciation", suffix: "%", inputMode: "decimal" },
+      { key: "holdYears", label: "Years you plan to stay", suffix: "yr", inputMode: "numeric" },
+    ],
+    outputs: [
+      {
+        key: "buyMonthly",
+        label: "Owning, net cost (month 1)",
+        format: "usd",
+        highlight: true,
+        hint: "interest + upkeep + tax + opportunity cost − appreciation",
+      },
+      {
+        key: "monthlyGap",
+        label: "Gap vs renting (month 1)",
+        format: "usd",
+        hint: "positive = renting is cheaper now",
+      },
+      {
+        key: "netOverTerm",
+        label: "Gap across your stay",
+        format: "usd",
+        hint: "positive = buying costs more overall",
+      },
+    ],
+    invalid: (v) =>
+      !(v.homePrice > 0 && v.downPaymentPct >= 0 && v.downPaymentPct < 100 && v.years > 0 && v.years <= 50 && v.holdYears > 0 && v.holdYears <= 50 && v.monthlyRent >= 0),
+    compute: (v) => {
+      const price = v.homePrice;
+      const down = price * (v.downPaymentPct / 100);
+      const loan = price - down;
+      const r = v.ratePct / 100 / 12;
+      const payment = pmt(loan, r, v.years * 12);
+      const upkeep = (price * v.maintPct) / 100 / 12;
+      const tax = (price * v.taxRatePct) / 100 / 12;
+      const opportunity = (down * v.returnPct) / 100 / 12;
+      const appreciation = (price * v.apprPct) / 100 / 12;
+      const buyMonthly = loan * r + upkeep + tax + opportunity - appreciation;
+      // Ceil the horizon so a garbage "years to stay" cannot spin the loop: compute()
+      // runs before the invalid check in SpecCalculator. 1200 covers any valid input.
+      const months = Math.min(Math.max(0, Math.round(v.holdYears * 12) || 0), 1200);
+      let balance = loan;
+      let interestSum = 0;
+      let rentSum = 0;
+      let appreciationSum = 0;
+      for (let m = 0; m < months; m++) {
+        const interest = balance * r;
+        interestSum += interest;
+        const principal = Math.min(payment - interest, balance);
+        balance = Math.max(0, balance - principal);
+        rentSum += v.monthlyRent * Math.pow(1 + v.rentGrowthPct / 100, m / 12);
+        const priceAtM = price * Math.pow(1 + v.apprPct / 100, m / 12);
+        appreciationSum += (priceAtM * v.apprPct) / 100 / 12;
+      }
+      const buyTotal = interestSum + (upkeep + tax) * months + opportunity * months - appreciationSum;
+      return {
+        buyMonthly,
+        monthlyGap: buyMonthly - v.monthlyRent,
+        netOverTerm: buyTotal - rentSum,
+        loanAmount: loan,
+        ok: 1,
+      };
+    },
+    guide: {
+      heading: "Using this rent vs buy calculator",
+      intro: [
+        "Renting and buying are two different cost structures, so comparing a rent cheque with a mortgage payment misleads. This page prices both sides from your numbers: what each costs in the first month, and what each costs across the years you expect to stay.",
+        "Only money you cannot get back is counted. The principal half of your payment and the down payment itself build equity rather than being spent, so they stay out. Interest, upkeep, property tax and the return your cash could earn elsewhere stay in, and price appreciation is netted off the buy side.",
+      ],
+      steps: [
+        "Home price, down payment and interest rate are the buy side. The loan and the scheduled payment are worked out from them, so enter the price you are actually shopping and the rate you were quoted, not an optimistic pair.",
+        "Loan term is the amortisation period of that purchase loan — 15, 20, 25 or 30 years. It sets how much of every payment is interest, which is the largest single line in the whole comparison.",
+        "Current rent and rent growth are the rent side. Growth compounds every month, so it quietly decides the long-run answer: 3% a year lifts a $2,000 rent to about $2,388 after six years.",
+        "Maintenance and property tax are charged as yearly percentages of the purchase price, with 1% and 1.1% as the working defaults. They hit the owner only, and that is where the two sides genuinely diverge.",
+        "Investment return, price appreciation and your length of stay are the honest variables. Return is what the down payment could earn elsewhere, appreciation is what the house gains, and the stay is how long both get to compound — 7 years is the usual planning figure, and anything beyond 50 is out of range.",
+      ],
+      note: [
+        "That is why the owning figure can come out smaller than your real cheque. On the default inputs the payment is $2,161 in principal and interest, yet the modelled first-month cost of owning is $1,900, because $1,000 a month of assumed appreciation is subtracted and the principal part counts as equity rather than cost.",
+        "Expect the answer to turn on two variables. Set appreciation to 0% and these same defaults make renting about $47,779 cheaper; plan to stay 3 years instead of 7 and buying's advantage shrinks to roughly $9,946. Closing costs, selling costs, insurance and PMI sit outside the model, and all of them push the other way.",
+      ],
+    },
+    howItWorks: [
+      "Owning, month 1 = interest + maintenance + property tax + opportunity cost − appreciation. Interest is balance × annual rate ÷ 12; maintenance and tax are percentages of the purchase price ÷ 12; opportunity cost is your down payment × the investment return ÷ 12; appreciation is price × the appreciation rate ÷ 12.",
+      "Across your stay the loan is amortised month by month, so the interest line falls as the balance falls. Maintenance and tax stay flat on the purchase price, the opportunity cost stays flat on the down payment, rent is stepped each month by its growth rate, and appreciation compounds on the price.",
+      "Deliberately excluded: closing costs when you buy and the roughly 5–6% of the price it costs to sell, homeowners insurance, the mortgage-interest deduction, and PMI if you put down less than 20% (the PMI calculator prices that separately). Utilities and HOA dues on either side are outside it too.",
+    ],
+    example: {
+      inputs:
+        "$400,000 price · 20% down · 6.5% rate · 25-year loan · $2,000 rent · 3% rent growth · 1% upkeep · 1.1% tax · 7% return · 3% appreciation · 7-year stay",
+      results: [
+        "Loan $320,000, with a payment of $2,161 in principal and interest.",
+        "Owning, net cost in month 1: $1,900 — interest $1,733 plus $333 upkeep, $367 tax and $467 opportunity cost, minus $1,000 of appreciation.",
+        "Gap in month 1: −$100 in favour of buying. Across the 7-year stay: −$45,428 in favour of buying.",
+        "Set appreciation to 0% and the same inputs flip: buying costs about $47,779 more.",
+        "Stay only 3 years and buying's advantage falls to roughly $9,946, because interest is heaviest early and rent growth has had less time to compound.",
+      ],
+    },
+    faqs: [
+      {
+        q: "Is it cheaper to rent or to buy?",
+        a: "It depends mainly on price appreciation and how long you stay. On the defaults here — a $400,000 home against $2,000 rent with 3% appreciation — buying comes out about $45,428 cheaper across 7 years. Set appreciation to 0% and renting is about $47,779 cheaper instead.",
+      },
+      {
+        q: "Why is the cost of owning shown as less than my mortgage payment?",
+        a: "Because principal repayment and the down payment are equity, not cost. The model charges the interest, upkeep, tax and the return your cash could earn elsewhere, and nets appreciation off — which produces a smaller figure than the cheque you write.",
+      },
+      {
+        q: "How much does the length of stay matter?",
+        a: "It is the biggest lever after price. The example's advantage falls from $45,428 over 7 years to about $9,946 over 3 years, because interest is largest in the early years and rent growth has had less time to compound.",
+      },
+      {
+        q: "What is the investment return variable actually doing?",
+        a: "It prices the money tied up in the purchase. At a 7% return, an $80,000 down payment is charged to the buy side at $467 a month. A higher return assumption favours renting; a lower one favours buying.",
+      },
+      {
+        q: "What is not included in this comparison?",
+        a: "Closing costs when you buy, roughly 5–6% of the price to sell, homeowners insurance, the mortgage-interest deduction, and PMI when you put down less than 20%. Utilities and HOA dues on either side are also outside the model, so add them if they differ between your two options.",
+      },
+    ],
+  },
+  {
+    slug: "pmi-calculator",
+    name: "PMI Calculator",
+    title: "PMI Calculator: Monthly Cost and When It Ends",
+    description:
+      "Work out the monthly private mortgage insurance below 20% down, how long it runs and what it costs in total. Free PMI calculator, no signup.",
+    intro: [
+      "PMI — private mortgage insurance — is what a lender charges when your down payment leaves less than 20% equity in the home. It protects the lender against a loss if you default, not you, and it sits on top of your monthly payment.",
+      "The figure most buyers miss is the total. PMI is priced on the original loan amount and stays flat while the balance falls, so it does not shrink month by month; it switches off once the loan is small enough relative to what you paid for the house.",
+    ],
+    fields: [
+      { key: "homePrice", label: "Home price", prefix: "$", inputMode: "decimal" },
+      { key: "downPct", label: "Down payment", suffix: "%", inputMode: "decimal" },
+      { key: "ratePct", label: "Interest rate", suffix: "%", inputMode: "decimal" },
+      { key: "pmiRatePct", label: "PMI rate / year", suffix: "%", inputMode: "decimal" },
+      { key: "years", label: "Loan term", suffix: "yr", inputMode: "numeric" },
+    ],
+    outputs: [
+      { key: "monthlyPmi", label: "Monthly PMI", format: "usd", highlight: true, hint: "0 means no PMI at 20% down or more" },
+      { key: "cancelMonths", label: "PMI ends after", format: "durationMonths", hint: "80% LTV by request, 79% automatically" },
+      { key: "totalPmi", label: "Total PMI paid", format: "usd" },
+    ],
+    invalid: (v) => !(v.homePrice > 0 && v.downPct >= 0 && v.downPct < 100 && v.years > 0 && v.pmiRatePct >= 0),
+    compute: (v) => {
+      const price = v.homePrice;
+      const loan = price * (1 - v.downPct / 100);
+      const ltv = (loan / price) * 100;
+      const r = v.ratePct / 100 / 12;
+      const payment = pmt(loan, r, v.years * 12);
+      const charged = ltv > 80;
+      const monthly = charged ? (loan * (v.pmiRatePct / 100)) / 12 : 0;
+      const target = price * (ltv <= 90 ? 0.8 : 0.79);
+      let months = 0;
+      if (charged) {
+        months =
+          r === 0
+            ? payment > 0
+              ? (loan - target) / payment
+              : Infinity
+            : Math.log((payment - r * target) / (payment - r * loan)) / Math.log(1 + r);
+      }
+      return {
+        monthlyPmi: monthly,
+        cancelMonths: months,
+        totalPmi: monthly * months,
+        ltv,
+        ok: 1,
+      };
+    },
+    guide: {
+      heading: "Using this PMI calculator",
+      intro: [
+        "PMI — private mortgage insurance — is what a conventional lender requires when your down payment leaves less than 20% equity. It insures the lender, not you, and it is charged monthly on top of principal, interest, tax and insurance.",
+        "Two things make it worth modelling properly. First, the premium is calculated on the original loan amount, so it stays flat rather than shrinking with the balance. Second, it ends on a schedule you can predict, which is why this page shows both the removal date and the total you pay while it lasts.",
+      ],
+      steps: [
+        "Home price and down payment decide whether PMI applies at all. At 20% down or more the answer is zero. Below that, the loan is the remaining percentage of the price, and that loan is what the premium is priced on.",
+        "Interest rate and loan term do not change the monthly premium, but they decide how fast the balance falls and therefore how many months of PMI you actually pay. A longer term keeps you under 20% equity for longer.",
+        "PMI rate is the annual percentage the lender charges — commonly between 0.3% and 1.5% of the loan each year. Use 0.5% as a middle figure; your credit score and loan-to-value move it more than anything else does.",
+        "Read the monthly figure, then the removal date, then the total. On a $360,000 loan at 0.5% the premium is only $150 a month, but five and a half years of it is roughly $10,330 — the number that should decide whether a small down payment is worth it.",
+        "If your loan is FHA rather than conventional, treat this as an indication only. FHA charges an upfront premium plus annual MIP with its own, longer cancellation rules, and that is not PMI.",
+      ],
+      note: [
+        "Two rules set the removal date. At 80% loan-to-value you can normally request cancellation, provided the account is current and, in many cases, an appraisal supports the value. At 79% of the original value the Homeowners Protection Act requires the lender to terminate it automatically. Start above 90% loan-to-value and you should plan around the automatic date.",
+        "This model does not know your servicer's paperwork, your credit tier, or whether the county reassessed your home. Before sending a lump sum to force PMI off early, compare that lump sum against the remaining total the calculator shows you.",
+      ],
+    },
+    howItWorks: [
+      "Monthly PMI = original loan amount × annual PMI rate ÷ 12. Because it is priced on what you borrowed rather than the shrinking balance, the figure stays flat, and the total is simply that monthly premium multiplied by the number of months until removal.",
+      "The removal date comes from the amortisation schedule: the calculator finds the first month in which the balance falls to 80% of the purchase price, the usual point where you may request cancellation. If you started above 90% loan-to-value it targets 79% instead, which is where the Homeowners Protection Act terminates the insurance automatically.",
+      "At 20% down or more the result is zero, because conventional lending does not require mortgage insurance at 80% loan-to-value or below. FHA premiums work differently — an upfront charge plus annual MIP — so this page models conventional PMI only.",
+    ],
+    example: {
+      inputs: "$400,000 price · 10% down · 6.5% rate · 0.5% PMI rate · 25-year term",
+      results: [
+        "Loan: $360,000, which is 90% loan-to-value, so PMI applies.",
+        "Monthly PMI: $150, or $1,800 a year.",
+        "PMI ends after about 5 yr 9 mo, when the balance reaches 80% of the purchase price.",
+        "Total PMI while it lasts: $10,330.",
+        "Put 20% down instead and there is no PMI at all, and the payment is $2,161 rather than $2,431.",
+      ],
+    },
+    faqs: [
+      {
+        q: "When do I stop paying PMI?",
+        a: "At 80% loan-to-value you can usually request cancellation, and at 79% of the original value it must end automatically. On a $400,000 home with 10% down at 6.5% over 25 years, that is about 5 years and 9 months.",
+      },
+      {
+        q: "How much is PMI per month?",
+        a: "Typically 0.3% to 1.5% of the loan per year, priced on the original balance. At 0.5% a $360,000 loan costs $150 a month; at 1.0% the same loan costs $300.",
+      },
+      {
+        q: "Is PMI worth paying to buy with a smaller down payment?",
+        a: "Compare the whole picture: at 10% down on a $400,000 home the payment is $2,431 plus $150 of PMI, while at 20% down it is $2,161 with none — a $420 a month difference, of which the PMI portion totals about $10,330 before it ends.",
+      },
+      {
+        q: "Does PMI get cheaper as I pay the balance down?",
+        a: "No. It is set on the original loan amount and stays flat until it is removed, which is why the total matters more than the monthly figure and why a lump sum that reaches 80% loan-to-value can delete the whole line.",
+      },
+      {
+        q: "Is PMI the same as FHA mortgage insurance?",
+        a: "No. FHA charges an upfront premium plus an annual MIP, and on higher loan-to-value FHA coverage often runs for the life of the loan. This calculator models conventional PMI, so treat FHA figures as approximate.",
+      },
+    ],
+  },
 ];
 
 export function findTool(slug: string): ToolSpec | undefined {

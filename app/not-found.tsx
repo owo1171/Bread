@@ -14,7 +14,7 @@ export default function NotFound() {
       <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Error 404</p>
       <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">Page not found</h1>
       <p className="measure mt-3 text-slate-700">
-        That address does not match a calculator on this site. The eight tools below are the whole set —
+        That address does not match a calculator on this site. The ten tools below are the whole set —
         or start from the calculator index.
       </p>
 

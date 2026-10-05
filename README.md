@@ -58,15 +58,17 @@ app/
 | `/mortgage-payoff-calculator` | 主工具：月供/还清日期/省多少利息 + 场景表 + 邮件捕获 | `WebApplication` + `BreadcrumbList` + `FAQPage`（10 条） |
 | `/mortgage-payment-calculator` | 新增：贷款额/利率/期限 → 月供(P&I)、总利息、总付款 + 使用指南 | 同上结构，FAQPage 5 条 |
 | `/down-payment-calculator` | 新增：房价/首付% → 现金、贷款额、月供（LTV 见指南） | 同上结构，FAQPage 5 条 |
+| `/rent-vs-buy-calculator` | 新增：11 个变量对比买房 vs 租房（含机会成本、增值、持有年限） | 同上结构，FAQPage 5 条 |
+| `/pmi-calculator` | 新增：首付不足 20% 的月 PMI、取消时点、累计成本 | 同上结构，FAQPage 5 条 |
 | `/amortization-calculator` | 逐年利息/本金/余额表（前 10 年） | 同上结构，FAQPage 6 条 |
 | `/refinance-break-even-calculator` | 回本月份 + 5 年净省 | 同上结构，FAQPage 6 条 |
 | `/mortgage-recast-calculator` | 一次性还本后的新月供与降幅 | 同上结构，FAQPage 6 条 |
 | `/property-tax-calculator` | 年税 / 月 escrow / 10 年总额 | 同上结构，FAQPage 6 条 |
 | `/how-much-house-can-i-afford` | 收入 → 可负担房价（28/36 规则） | 同上结构，FAQPage 6 条 |
-| `/mortgage-calculators` | hub 页，8 个工具索引 | `ItemList` |
+| `/mortgage-calculators` | hub 页，10 个工具索引 | `ItemList` |
 | `/about` | About & Contact：谁在做、怎么变现、怎么联系 | `AboutPage` + `BreadcrumbList` |
 | `/methodology` | 公式 / 假设 / 排除项 / 舍入与日期规则 | `WebPage` + `BreadcrumbList` |
-| `/_not-found`（任意未知路径） | 自定义 404，列出 8 个工具 + 索引入口 | — |
+| `/_not-found`（任意未知路径） | 自定义 404，列出 10 个工具 + 索引入口 | — |
 | `/` · `/privacy` · `/terms` · `/affiliate-disclosure` | 首页与法务页 | `WebSite`（仅首页） |
 
 ## Run / deploy
@@ -74,7 +76,7 @@ app/
 ```bash
 npm install
 npm run dev        # http://localhost:3000/mortgage-payoff-calculator
-npm run build      # SSG：21 个静态页（15 个内容页 + 404 + 元数据路由）
+npm run build      # SSG：23 个静态页（17 个内容页 + 404 + 元数据路由）
 npm run start
 npm run lint       # ESLint = next/core-web-vitals（.eslintrc.json）
 vercel --prod      # Framework preset = Next.js
@@ -91,7 +93,7 @@ vercel --prod      # Framework preset = Next.js
 ```bash
 node scripts/cdp-check.mjs        # 7 项：加载报错 / Calculate / Biweekly / 邮箱 / 兄弟页 / Link 跳转 / query 水合
 node scripts/edge-check.mjs       # 6 计算器 × 6 组边界输入（默认/0/空/负数/极大/小数）+ 双周
-node scripts/site-audit.mjs       # 15 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
+node scripts/site-audit.mjs       # 17 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
 node scripts/mobile-check.mjs     # 390×844 无横向溢出 + closing costs = 0 → "0 mo"
 node scripts/rate-zero-check.mjs  # rate = 0 分支输出真实数字（0% 是合法输入）
 node scripts/copy-branch-check.mjs  # 主页面总结句三种写法：正常 / 额外还款=0 / 利率=0%

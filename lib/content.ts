@@ -123,6 +123,8 @@ export const RELATED_TOOLS: RelatedTool[] = [
   { label: "How Much House Can I Afford?", href: "/how-much-house-can-i-afford", note: "Work the other direction, from income to budget." },
   { label: "Mortgage Recast Calculator", href: "/mortgage-recast-calculator", note: "Lump sum in, lower monthly payment out." },
   { label: "Property Tax Calculator", href: "/property-tax-calculator", note: "Turn an assessed value into a monthly number." },
+  { label: "Rent vs Buy Calculator", href: "/rent-vs-buy-calculator", note: "What owning really costs against staying a renter." },
+  { label: "PMI Calculator", href: "/pmi-calculator", note: "What mortgage insurance costs below 20% down." },
 ];
 
 export interface Affiliate {
