@@ -68,6 +68,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Affiliate disclosure
             </a>
           </p>
+          <p className="mt-1">
+            <a href="/mortgage-payment-calculator" className="underline">
+              Mortgage Payment Calculator
+            </a>{" "}
+            ·{" "}
+            <a href="/down-payment-calculator" className="underline">
+              Down Payment Calculator
+            </a>
+          </p>
           <p className="mt-1">Last updated {LAST_UPDATED_MONTH}</p>
         </footer>
       </body>

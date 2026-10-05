@@ -6,6 +6,8 @@ import { findTool } from "@/lib/tools";
 
 const DEFAULTS: Record<string, string> = {
   balance: "320000",
+  loanAmount: "320000",
+  homePrice: "400000",
   ratePct: "6.5",
   years: "25",
   extraMonthly: "200",

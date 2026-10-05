@@ -7,6 +7,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const ROUTES = [
   "/",
   "/mortgage-payoff-calculator",
+  "/mortgage-payment-calculator",
+  "/down-payment-calculator",
   "/amortization-calculator",
   "/refinance-break-even-calculator",
   "/mortgage-recast-calculator",

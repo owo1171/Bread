@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const FORMULAS: { name: string; body: string }[] = [
   {
-    name: "Scheduled payment (payoff, amortization, recast)",
+    name: "Scheduled payment (payment, down payment, payoff, amortization, recast)",
     body: "payment = B × r ÷ (1 − (1 + r)^−n). B is the balance, r is the monthly rate (annual rate ÷ 12), n is the number of monthly payments left.",
   },
   {
@@ -26,6 +26,10 @@ const FORMULAS: { name: string; body: string }[] = [
   {
     name: "Affordable price",
     body: "payment cap = (annual gross income ÷ 12) × your chosen percentage; loan = payment × (1 − (1 + r)^−n) ÷ r; price = loan ÷ (1 − down payment %).",
+  },
+  {
+    name: "Down payment and loan-to-value",
+    body: "down = price × % ÷ 100; loan = price − down; LTV = loan ÷ price. The payment column then prices that loan with the formula above. Closing costs, mortgage insurance, taxes and HOA dues are outside the model.",
   },
   {
     name: "Property tax",

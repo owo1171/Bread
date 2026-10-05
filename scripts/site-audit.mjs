@@ -6,6 +6,8 @@ const BASE = process.argv[2] ?? "http://127.0.0.1:3000";
 const ROUTES = [
   "/",
   "/mortgage-payoff-calculator",
+  "/mortgage-payment-calculator",
+  "/down-payment-calculator",
   "/amortization-calculator",
   "/refinance-break-even-calculator",
   "/mortgage-recast-calculator",

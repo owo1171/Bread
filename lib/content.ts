@@ -116,6 +116,8 @@ export interface RelatedTool {
 }
 
 export const RELATED_TOOLS: RelatedTool[] = [
+  { label: "Mortgage Payment Calculator", href: "/mortgage-payment-calculator", note: "Price a monthly payment from loan, rate and term." },
+  { label: "Down Payment Calculator", href: "/down-payment-calculator", note: "Turn a home price into cash down, loan size and payment." },
   { label: "Amortization Calculator", href: "/amortization-calculator", note: "See every payment split between interest and principal." },
   { label: "Refinance Break-Even Calculator", href: "/refinance-break-even-calculator", note: "How many months until a new rate pays off?" },
   { label: "How Much House Can I Afford?", href: "/how-much-house-can-i-afford", note: "Work the other direction, from income to budget." },

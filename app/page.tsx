@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   // page, so the brand suffix is written out here.
   title: { absolute: "Free Mortgage Calculator - No Signup | KiteCalc" },
   description:
-    "Free mortgage calculator, no signup: payoff date, amortization schedule, refinance break-even, recast, property tax and home affordability — in your browser.",
+    "Free mortgage calculator, no signup: monthly payment, down payment, payoff date, amortization, refinance break-even, recast, property tax and affordability.",
   alternates: { canonical: `${SITE_URL}/` },
   openGraph: pageOpenGraph(`${SITE_URL}/`),
 };

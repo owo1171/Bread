@@ -29,6 +29,18 @@ export interface ToolExample {
   results: string[];
 }
 
+/**
+ * A "how to use it" guide: what the tool does, a numbered walkthrough of the
+ * input boxes, then the caveats. Optional so older pages keep their current
+ * length while newer pages carry a fuller guide.
+ */
+export interface GuideSpec {
+  heading: string;
+  intro: string[];
+  steps: string[];
+  note: string[];
+}
+
 export interface ToolSpec {
   slug: string;
   name: string;
@@ -44,6 +56,8 @@ export interface ToolSpec {
   howItWorks: string[];
   /** Worked example, using the same defaults the calculator loads with. */
   example: ToolExample;
+  /** Optional longer usage guide with per-field filling instructions. */
+  guide?: GuideSpec;
   scheduleTitle?: string;
   schedule?: (v: ToolValues) => { period: string; interest: number; principal: number; balance: number }[];
 }
@@ -63,6 +77,180 @@ const presentValue = (payment: number, r: number, n: number): number =>
   r === 0 ? payment * n : (payment * (1 - Math.pow(1 + r, -n))) / r;
 
 export const SIBLING_TOOLS: ToolSpec[] = [
+  {
+    slug: "mortgage-payment-calculator",
+    name: "Mortgage Payment Calculator",
+    title: "Mortgage Payment Calculator: What Is My Monthly Payment?",
+    description:
+      "Enter a loan amount, interest rate and term to get the monthly payment, total interest and full cost. Free mortgage payment calculator, no signup.",
+    intro: [
+      "A mortgage payment calculator answers the most basic question first: what leaves your bank account every month. Enter the amount you are borrowing, the interest rate and the length of the loan, and it returns the principal-and-interest payment along with what the loan costs in total.",
+      "It is the starting point for the other tools on this site. The payoff calculator takes this payment and asks when the loan ends; the refinance calculator asks whether a new payment ever clears its closing costs.",
+    ],
+    fields: [
+      { key: "loanAmount", label: "Loan amount", prefix: "$", inputMode: "decimal" },
+      { key: "ratePct", label: "Interest rate", suffix: "%", inputMode: "decimal" },
+      { key: "years", label: "Loan term", suffix: "yr", inputMode: "numeric" },
+    ],
+    outputs: [
+      { key: "monthlyPayment", label: "Monthly payment (P&I)", format: "usd", highlight: true },
+      { key: "totalInterest", label: "Total interest", format: "usd" },
+      { key: "totalPaid", label: "Total of payments", format: "usd" },
+    ],
+    invalid: (v) => !(v.loanAmount > 0 && v.years > 0 && v.ratePct >= 0),
+    compute: (v) => {
+      const r = v.ratePct / 100 / 12;
+      const n = v.years * 12;
+      const payment = pmt(v.loanAmount, r, n);
+      const total = payment * n;
+      return {
+        monthlyPayment: payment,
+        totalInterest: total - v.loanAmount,
+        totalPaid: total,
+        ok: 1,
+      };
+    },
+    guide: {
+      heading: "Using this mortgage payment calculator",
+      intro: [
+        "Enter three numbers and the calculator returns the payment a fixed-rate loan actually requires each month, plus two figures people forget to ask for: the total interest over the whole term, and the total of every payment combined. Those last two are where a long term quietly charges you.",
+        "The payment shown is principal and interest only — the P&I line on your statement. Property taxes, homeowners insurance, mortgage insurance and HOA dues sit outside it, which is why your real monthly outlay is usually higher than the number on this page.",
+      ],
+      steps: [
+        "Loan amount is the money you are borrowing, not the price of the house. Take the purchase price and subtract your down payment — $400,000 less $80,000 is a $320,000 loan. If you already own the home, enter the balance you are refinancing. Type digits; the box ignores commas.",
+        "Interest rate is the annual rate written as a percentage, so 6.5 means 6.5% rather than 0.065. The calculator divides it by twelve itself. Shopping two offers? Run it twice and compare the monthly payment and the total interest column, not the rate alone.",
+        "Loan term is the number of years until the balance reaches zero: 15, 20, 25 and 30 are the usual US options. A shorter term raises the payment and cuts the total interest, which is exactly the trade the third result box makes visible.",
+      ],
+      note: [
+        "Two assumptions are baked in: the rate never changes, and every payment is made on schedule with nothing skipped. That makes the answer clean arithmetic rather than a forecast — an ARM, a forbearance or one missed month all move the real total.",
+        "If your question is what happens when you put extra money at the balance each month, take the payment this page produces into the mortgage payoff calculator. If you are still deciding how much cash to put down, the down payment calculator turns a purchase price into the loan you are pricing here.",
+      ],
+    },
+    howItWorks: [
+      "Payment = B × r ÷ (1 − (1 + r)^−n). B is the loan amount, r is the monthly rate (your annual rate ÷ 12) and n is the number of monthly payments (years × 12). At a 0% rate that formula divides by zero, so the calculator falls back to the simple case: loan ÷ months.",
+      "Total of payments is the payment multiplied by the number of payments, and total interest is that figure minus the amount borrowed. Both are arithmetic, not a forecast: they assume no missed payments, no refinancing and no extra money applied to principal.",
+      "The result is principal and interest only. Taxes, homeowners insurance, mortgage insurance and HOA dues are excluded on purpose — they move on their own schedule, and mixing them in hides what the loan itself costs.",
+    ],
+    example: {
+      inputs: "$320,000 loan · 6.5% rate · 25-year term",
+      results: [
+        "Monthly payment: $2,161 in principal and interest.",
+        "First payment split: about $1,733 interest and $427 principal.",
+        "Total of payments across 300 months: $648,199.",
+        "Total interest: $328,199. Stretch the same loan to 30 years and the payment falls to $2,023 while the interest climbs to about $408,000.",
+      ],
+    },
+    faqs: [
+      {
+        q: "What is the monthly payment on a $320,000 mortgage?",
+        a: "At 6.5% over 25 years it is $2,161 a month in principal and interest. About $1,733 of that first payment is interest and only $427 goes to principal — the split flips later in the term.",
+      },
+      {
+        q: "What is included in the payment this calculator shows?",
+        a: "Principal and interest only. Property tax, homeowners insurance, mortgage insurance below 20% down, HOA dues and servicer fees all sit outside it, which is why the payment on your statement is usually larger.",
+      },
+      {
+        q: "Does the loan term change the total cost much?",
+        a: "It dominates it. A $320,000 loan at 6.5% costs $328,199 in interest over 25 years at $2,161 a month. Stretch it to 30 years and the payment drops to $2,023 while interest rises to roughly $408,000.",
+      },
+      {
+        q: "What is the difference between this and a mortgage payoff calculator?",
+        a: "This page prices the payment for a loan you are taking out or refinancing. The payoff calculator starts from a payment and answers when the loan ends and what an extra payment each month saves — they are meant to be used in that order.",
+      },
+      {
+        q: "Why is my real mortgage payment higher than this number?",
+        a: "Escrow. Taxes and insurance are collected monthly alongside the P&I, and a loan above 80% of the value usually carries mortgage insurance too. On a $400,000 home those extras commonly add a few hundred dollars a month.",
+      },
+    ],
+  },
+  {
+    slug: "down-payment-calculator",
+    name: "Down Payment Calculator",
+    title: "Down Payment Calculator: How Much Should You Put Down?",
+    description:
+      "See the cash you need at closing, the loan it leaves behind and the payment that follows. Free down payment calculator for US buyers. No signup.",
+    intro: [
+      "A down payment is three decisions at once: the cash you hand over at closing, the loan you leave behind, and the payment that loan carries for the next twenty or thirty years. This calculator shows all three from the same inputs, so you can see the trade before you commit.",
+      "Enter the price of the home and the size of your down payment as a percentage. Add a rate and term and it prices the loan that remains, so the payment shown is the one a lender would underwrite — not a rough guess.",
+    ],
+    fields: [
+      { key: "homePrice", label: "Home price", prefix: "$", inputMode: "decimal" },
+      { key: "downPaymentPct", label: "Down payment", suffix: "%", inputMode: "decimal" },
+      { key: "ratePct", label: "Interest rate", suffix: "%", inputMode: "decimal" },
+      { key: "years", label: "Loan term", suffix: "yr", inputMode: "numeric" },
+    ],
+    outputs: [
+      { key: "downPayment", label: "Down payment", format: "usd", highlight: true },
+      { key: "loanAmount", label: "Loan amount", format: "usd" },
+      { key: "monthlyPayment", label: "Monthly payment (P&I)", format: "usd" },
+    ],
+    invalid: (v) => !(v.homePrice > 0 && v.downPaymentPct >= 0 && v.downPaymentPct < 100 && v.years > 0),
+    compute: (v) => {
+      const down = v.homePrice * (v.downPaymentPct / 100);
+      const loan = v.homePrice - down;
+      const r = v.ratePct / 100 / 12;
+      return {
+        downPayment: down,
+        loanAmount: loan,
+        monthlyPayment: pmt(loan, r, v.years * 12),
+        ltv: (loan / v.homePrice) * 100,
+        ok: 1,
+      };
+    },
+    guide: {
+      heading: "Using this down payment calculator",
+      intro: [
+        "Enter a home price and a down payment percentage and you get the three numbers that actually decide the purchase: the cash required, the loan that remains, and the monthly payment attached to it. Change the percentage and all three move together, which is the fastest way to see what a bigger down payment buys you.",
+        "Adding a rate and a term is what turns a loan figure into a payment. Keep them at the figures you have been quoted, and the payment shown here lines up with the figures on a Loan Estimate.",
+      ],
+      steps: [
+        "Home price is the purchase price, not an estimate you saw months ago. If you are refinancing rather than buying, use the appraised value the lender used.",
+        "Down payment is entered as a percentage, not dollars. Twenty is the working benchmark because at 20% equity most lenders stop charging monthly mortgage insurance, while US programmes go as low as 3.5% for FHA and 0% for VA and USDA.",
+        "Interest rate is the annual rate as a percentage, and loan term is the years over which the remaining balance amortises. Move the term and you can see how much of the payment is a rate decision rather than a down-payment decision.",
+      ],
+      note: [
+        "Two figures deserve more attention than the headline number. Loan-to-value — the loan divided by the price — is what lenders price, and 80% is the usual cut-off where better pricing begins. Cash left in reserve matters just as much: a bigger down payment that empties your emergency fund tends to come back as a credit-card balance within a year.",
+        "Closing costs are not included. They are separate from the down payment and commonly run a few percent of the price on top of it. The property tax calculator covers the tax line, and the mortgage payment calculator prices any loan figure you land on.",
+      ],
+    },
+    howItWorks: [
+      "Down payment = home price × percentage ÷ 100. The loan is simply what is left: price minus down payment. Loan-to-value is that loan divided by the price, so a 20% down payment is an 80% loan-to-value.",
+      "The payment line re-uses the standard amortising formula, payment = B × r ÷ (1 − (1 + r)^−n), where B is the loan you are left with, r is the annual rate ÷ 12 and n is years × 12. Nothing about the down payment changes the formula — it only changes B.",
+      "A down payment of 100% leaves no loan to price, so the calculator asks for a figure below 100. Mortgage insurance, closing costs, taxes and HOA dues sit outside this model, which is why the payment is a P&I figure rather than your total monthly housing cost.",
+    ],
+    example: {
+      inputs: "$400,000 home price · 20% down · 6.5% rate · 25-year term",
+      results: [
+        "Down payment: $80,000 in cash at closing.",
+        "Loan amount: $320,000, which is 80% loan-to-value.",
+        "Payment on that loan: $2,161 a month in principal and interest.",
+        "Put down 15% instead and it is $60,000 cash, a $340,000 loan and $2,296 a month — before any mortgage insurance.",
+        "Each extra 1% down on this price is $4,000 less borrowed, worth about $27 a month.",
+      ],
+    },
+    faqs: [
+      {
+        q: "How much down payment do I need?",
+        a: "Conventional loans start around 3% to 5% for qualifying buyers, FHA takes 3.5%, and VA and USDA can reach zero. Twenty percent is the working benchmark because it is where monthly mortgage insurance usually disappears.",
+      },
+      {
+        q: "What does putting down less than 20% cost me?",
+        a: "On a $400,000 home at 6.5% over 25 years, 20% down means $80,000 cash and a $2,161 payment. At 15% down it is $60,000 cash, a $340,000 loan and $2,296 a month — plus mortgage insurance on top while your equity is under 20%.",
+      },
+      {
+        q: "What is loan-to-value?",
+        a: "The loan divided by the property value. A $320,000 loan on a $400,000 home is 80% loan-to-value, which is where most lenders stop adding risk premiums to your rate.",
+      },
+      {
+        q: "Is every extra point of down payment worth it?",
+        a: "Each point on a $400,000 home is $4,000 less borrowed, worth roughly $27 a month at 6.5% over 25 years. It is only worth it if the cash you keep in reserve still covers a job loss or a new roof.",
+      },
+      {
+        q: "Are closing costs part of the down payment?",
+        a: "No, they are separate money. The down payment is equity you put into the purchase, while closing costs pay the lender, title and local recording, and commonly run a few percent of the price on top of it.",
+      },
+    ],
+  },
   {
     slug: "amortization-calculator",
     name: "Amortization Calculator",

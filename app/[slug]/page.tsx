@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import SpecCalculator from "@/components/SpecCalculator";
-import { ContentMeta, ExampleBlock, HowItWorks } from "@/components/ToolSections";
+import { ContentMeta, ExampleBlock, Guide, HowItWorks } from "@/components/ToolSections";
 import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL, SLUG } from "@/lib/content";
 import { SIBLING_TOOLS, findTool } from "@/lib/tools";
 
@@ -116,6 +116,15 @@ export default function SiblingToolPage({ params }: { params: { slug: string } }
       </div>
 
       <AdSlot id="ad-results" note="Ad slot — results area (300x250 / in-article)" minHeight={120} />
+
+      {tool.guide && (
+        <Guide
+          heading={tool.guide.heading}
+          intro={tool.guide.intro}
+          steps={tool.guide.steps}
+          note={tool.guide.note}
+        />
+      )}
 
       <HowItWorks items={tool.howItWorks} />
 

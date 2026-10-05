@@ -2,10 +2,47 @@ import Link from "next/link";
 import { LAST_UPDATED_LABEL } from "@/lib/content";
 
 /**
- * Shared content sections for the six calculator pages, so every page carries
- * the same ⑤ How it works / ⑥ Example / last-updated structure. Server
+ * Shared content sections for the calculator pages, so every page carries the
+ * same ⑤ How it works / ⑥ Example / last-updated structure. Server
  * components — no client JS.
  */
+
+/** A fuller usage guide for pages that declare one (see ToolSpec.guide). */
+export function Guide({
+  heading,
+  intro,
+  steps,
+  note,
+}: {
+  heading: string;
+  intro: string[];
+  steps: string[];
+  note: string[];
+}) {
+  return (
+    <>
+      <h2 id="how-to-use" className="scroll-mt-16 mt-8 text-2xl font-bold">
+        {heading}
+      </h2>
+      {intro.map((p) => (
+        <p key={p.slice(0, 24)} className="measure mt-3 text-slate-700">
+          {p}
+        </p>
+      ))}
+      <h3 className="mt-5 text-base font-semibold">Filling it in</h3>
+      <ol className="measure mt-2 list-decimal space-y-2 pl-5 text-slate-700">
+        {steps.map((s) => (
+          <li key={s.slice(0, 24)}>{s}</li>
+        ))}
+      </ol>
+      {note.map((p) => (
+        <p key={p.slice(0, 24)} className="measure mt-3 text-slate-700">
+          {p}
+        </p>
+      ))}
+    </>
+  );
+}
 
 export function HowItWorks({ items, title = "How it works" }: { items: string[]; title?: string }) {
   return (
