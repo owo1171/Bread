@@ -37,7 +37,7 @@ export const BLOG_POSTS: BlogPost[] = [
     published: "2026-10-05",
     updated: "2026-10-05",
     readingMinutes: 4,
-    wordCount: 780,
+    wordCount: 781,
     links: [
       { href: "/pmi-calculator", label: "PMI Calculator" },
       { href: "/property-tax-calculator", label: "Property Tax Calculator" },
