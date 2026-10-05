@@ -18,6 +18,7 @@ const ROUTES = [
   "/mortgage-calculators",
   "/blog",
   "/blog/how-to-lower-your-mortgage-payment",
+  "/blog/15-year-vs-30-year-mortgage",
   "/about",
   "/methodology",
   "/privacy",

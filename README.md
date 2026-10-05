@@ -69,7 +69,8 @@ app/
 | `/about` | About & Contact：谁在做、怎么变现、怎么联系 | `AboutPage` + `BreadcrumbList` |
 | `/methodology` | 公式 / 假设 / 排除项 / 舍入与日期规则 | `WebPage` + `BreadcrumbList` |
 | `/blog` | 博客区索引（文章卡片 + ItemList） | `WebPage` + `BreadcrumbList` + `ItemList` |
-| `/blog/how-to-lower-your-mortgage-payment` | 第一篇：降低月供的 6 个杠杆（正文 771 词、5 条 FAQ、段内 8 个计算器内链） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
+| `/blog/how-to-lower-your-mortgage-payment` | 博客 1：降低月供的 6 个杠杆（正文 781 词、5 条 FAQ、段内 8 个计算器内链） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
+| `/blog/15-year-vs-30-year-mortgage` | 博客 2：15 年 vs 30 年期成本对照（正文 706 词、5 条 FAQ、段内 5 个计算器内链） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/_not-found`（任意未知路径） | 自定义 404，列出 10 个工具 + 索引入口 | — |
 | `/` · `/privacy` · `/terms` · `/affiliate-disclosure` | 首页与法务页 | `WebSite`（仅首页） |
 
@@ -78,7 +79,7 @@ app/
 ```bash
 npm install
 npm run dev        # http://localhost:3000/mortgage-payoff-calculator
-npm run build      # SSG：25 个静态页（19 个内容页 + 404 + 元数据路由）
+npm run build      # SSG：26 个静态页（20 个内容页 + 404 + 元数据路由）
 npm run start
 npm run lint       # ESLint = next/core-web-vitals（.eslintrc.json）
 vercel --prod      # Framework preset = Next.js
@@ -95,7 +96,7 @@ vercel --prod      # Framework preset = Next.js
 ```bash
 node scripts/cdp-check.mjs        # 7 项：加载报错 / Calculate / Biweekly / 邮箱 / 兄弟页 / Link 跳转 / query 水合
 node scripts/edge-check.mjs       # 6 计算器 × 6 组边界输入（默认/0/空/负数/极大/小数）+ 双周
-node scripts/site-audit.mjs       # 19 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
+node scripts/site-audit.mjs       # 20 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
 node scripts/mobile-check.mjs     # 390×844 无横向溢出 + closing costs = 0 → "0 mo"
 node scripts/rate-zero-check.mjs  # rate = 0 分支输出真实数字（0% 是合法输入）
 node scripts/copy-branch-check.mjs  # 主页面总结句三种写法：正常 / 额外还款=0 / 利率=0%
