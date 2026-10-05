@@ -107,8 +107,11 @@ sitemap / robots 会一起跟上，不必改代码。
 
 ## AdSense
 
-3 个占位 div 已在每页就位（`#ad-results` / `#ad-hero` / `#ad-faq`），**目前不加载任何 Google 脚本**。
-接入步骤、`<ins>` 代码、script 参数、`ads.txt` 和验收清单见 **`docs/adsense-setup.md`**。
+3 个占位 div 已在每页就位（`#ad-results` / `#ad-hero` / `#ad-faq`）。AdSense 验证代码已接入：
+`app/layout.tsx` 的 `<head>` 里在**生产构建**下输出
+`adsbygoogle.js?client=ca-pub-7506515899588468`（async + crossorigin，`next dev` 不加载），
+`public/ads.txt` 为 `google.com, pub-7506515899588468, DIRECT, f08c47fec0942fa0`。
+`<ins>` 仍未插入，所以页面上还是占位框。接入步骤、`<ins>` 代码、script 参数和验收清单见 **`docs/adsense-setup.md`**。
 
 ## Notes
 
