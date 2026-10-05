@@ -19,9 +19,21 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/** AdSense loads in production builds only; `next dev` skips it so local work stays clean. */
+const isProduction = process.env.NODE_ENV === "production";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {isProduction && (
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7506515899588468"
+            crossOrigin="anonymous"
+          ></script>
+        )}
+      </head>
       <body className="min-h-screen">
         <header className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto flex max-w-content items-center justify-between px-4 py-3">
