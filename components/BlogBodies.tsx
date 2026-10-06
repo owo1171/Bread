@@ -252,7 +252,8 @@ export function FirstTimeBuyerMistakesGuide() {
         they own end up owning a house they cannot afford to run. The{" "}
         <A href="/down-payment-calculator">Down Payment Calculator</A> prices that tradeoff directly: on a
         $400,000 purchase, each percentage point you move out of the down payment is about $27 a month for
-        the life of the loan.
+        the life of the loan. What the whole table costs, line by line, is{" "}
+        <A href="/blog/how-much-cash-to-buy-a-house">worked out here</A>.
       </P>
 
       <H2 id="true-cost">3. Assuming the mortgage payment is the cost of owning</H2>
@@ -302,9 +303,97 @@ export function FirstTimeBuyerMistakesGuide() {
   );
 }
 
+/** /blog/how-much-cash-to-buy-a-house */
+export function CashToBuyAHouseGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        Ask a first-time buyer what they need to buy a house and they will name one number: the down
+        payment. Ask them a month after closing and they will tell you the truth — the down payment was
+        the largest cheque, but it was nowhere near the only one.
+      </p>
+      <P>
+        Cash comes at you in five places: the down payment, closing costs, prepaid and escrow items, the
+        earnest money you put down weeks earlier, and whatever cushion the lender wants to see left over
+        when you sign. Here is each one on the same purchase — a <strong className="text-slate-900">$400,000
+        home</strong> at 6.5% over 30 years — so the total stops being a surprise.
+      </P>
+
+      <H2 id="down-payment">1. The down payment: the biggest line, and the most flexible</H2>
+      <P>
+        On a $400,000 purchase the arithmetic is simple and the decision is not: 20% is <strong
+        className="text-slate-900">$80,000</strong>, 10% is $40,000, 5% is $20,000 and 3% is $12,000. The{" "}
+        <A href="/down-payment-calculator">Down Payment Calculator</A> prices each of those against the
+        loan it leaves behind, and the tradeoff is steady — every percentage point you shift out of the
+        down payment adds about $27 a month for the life of the loan. Below 20% you also take on private
+        mortgage insurance: $150 a month at 10% down on this purchase, $158 at 5% (
+        <A href="/pmi-calculator">PMI Calculator</A>). The payment itself moves from $2,023 at 20% down to
+        $2,275 at 10% and $2,402 at 5% (<A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A>).
+      </P>
+
+      <H2 id="closing-costs">2. Closing costs: 2–5% that buys you no equity</H2>
+      <P>
+        Closing costs run roughly 2–5% of the loan, so on a $320,000 mortgage that is about{" "}
+        <strong className="text-slate-900">$6,400 to $16,000</strong> handed over at the table. Inside that
+        figure sit the lender&apos;s origination charge, title and escrow fees, the appraisal, recording fees
+        and a few days of prepaid interest. Note what none of it is: equity. The{" "}
+        <A href="/refinance-break-even-calculator">Refinance Break-Even Calculator</A> is the one place on
+        this site where fees are modelled, because a refinance has to earn them back — and the same
+        logic is worth applying to a purchase if you plan to move soon.
+      </P>
+
+      <H2 id="prepaids">3. Prepaids and escrow: the boring half</H2>
+      <P>
+        Your lender will want the escrow account funded before it lends, which usually means the first
+        year of homeowners insurance up front plus a cushion of roughly two months of property tax — about
+        $733 at a 1.1% rate on this house (<A href="/property-tax-calculator">Property Tax Calculator</A>).
+        If the seller has already paid the year&apos;s tax bill, you reimburse them for the days after closing.
+        None of this appears in a monthly payment comparison, which is exactly why it surprises people.
+      </P>
+
+      <H2 id="earnest">4. Earnest money: cash that leaves before the house is yours</H2>
+      <P>
+        Your offer comes with earnest money, typically 1–2% of the price — $4,000 to $8,000 here. It is
+        credited toward your purchase rather than added on top, but it has to be in your account days after
+        the offer is accepted, and it is at risk if you walk away outside a contractual contingency.
+      </P>
+
+      <H2 id="reserves">5. Reserves: the cushion the lender asks about</H2>
+      <P>
+        Most lenders want to see a couple of months of payments left after closing; two to six months is
+        the common ask, and it is good advice even when nobody requires it. Six months of a $2,023 payment
+        is about $12,100, and tax and insurance push the honest figure higher. This is also the quiet
+        reason the price you can afford usually sits below the price you were approved for — the{" "}
+        <A href="/how-much-house-can-i-afford">affordability calculator</A> stops at income and payment, not
+        at what a leaking water heater costs in month three.
+      </P>
+
+      <H2 id="totals">What it adds up to</H2>
+      <P>
+        At 20% down on this $400,000 home you need roughly <strong className="text-slate-900">$86,400 to
+        $96,000</strong> in cash before reserves, call it $99,000 to $108,000 with six months behind you. At
+        5% down the same house needs $27,600 to $39,000 to get through the table — and then $2,560 a month
+        including PMI, against $2,023 for the buyer who saved longer. That is the whole trade: cash you have
+        today versus cost you carry for thirty years, and only you know which one is scarce.
+      </P>
+
+      <H2 id="rule">A rule of thumb worth stealing</H2>
+      <P>
+        Save the down payment, then add about 4% of the loan, then two months of payments, and you will not
+        be caught short. The <A href="/down-payment-calculator">Down Payment Calculator</A> gives you the
+        first number in seconds; the rest is a conversation with your lender about the Loan Estimate, which
+        itemises the fees long before you sign anything. If you are early enough to still be planning, the{" "}
+        <A href="/blog/first-time-homebuyer-mistakes">five first-time buyer mistakes</A> are worth pricing
+        before you shop, because the down payment is mistake number two.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
   "15-year-vs-30-year-mortgage": FifteenVsThirtyGuide,
   "first-time-homebuyer-mistakes": FirstTimeBuyerMistakesGuide,
+  "how-much-cash-to-buy-a-house": CashToBuyAHouseGuide,
 };

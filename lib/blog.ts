@@ -125,7 +125,7 @@ export const BLOG_POSTS: BlogPost[] = [
     published: "2026-10-06",
     updated: "2026-10-06",
     readingMinutes: 4,
-    wordCount: 693,
+    wordCount: 705,
     links: [
       { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
       { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
@@ -156,6 +156,49 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         q: "Should a first-time buyer take a 15-year or a 30-year loan?",
         a: "Most people are better off starting from the payment they can carry in a bad month, which usually means 30 years, and buying the option to accelerate with a regular extra payment. What each term does to interest and to equity in the first five years is worked through in our 15-year versus 30-year mortgage guide.",
+      },
+    ],
+  },
+  {
+    slug: "how-much-cash-to-buy-a-house",
+    title: "How Much Cash Do You Need to Buy a House? Closing Costs Too",
+    h1: "How Much Cash Do You Need to Buy a House?",
+    description:
+      "Down payment is only half the cash. On a $400,000 purchase, closing costs add $6,400 to $16,000, plus prepaids, earnest money and reserves — line by line.",
+    excerpt:
+      "Buyers budget the down payment and get surprised at the closing table. What you actually need in cash, line by line, on a $400,000 purchase.",
+    published: "2026-10-06",
+    updated: "2026-10-06",
+    readingMinutes: 4,
+    wordCount: 772,
+    links: [
+      { href: "/down-payment-calculator", label: "Down Payment Calculator" },
+      { href: "/pmi-calculator", label: "PMI Calculator" },
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+      { href: "/refinance-break-even-calculator", label: "Refinance Break-Even Calculator" },
+      { href: "/property-tax-calculator", label: "Property Tax Calculator" },
+      { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
+    ],
+    faqs: [
+      {
+        q: "How much cash do I need to buy a $400,000 house?",
+        a: "With 20% down, about $86,400 to $96,000 before reserves: an $80,000 down payment plus closing costs of 2–5% on the $320,000 loan. Add six months of payments and the honest target is nearer $99,000 to $108,000. With 5% down the same house takes $27,600 to $39,000 to close.",
+      },
+      {
+        q: "Do I really need 20% down?",
+        a: "No. Conventional loans start around 3% and FHA around 3.5%, and the price of getting there is private mortgage insurance — $150 a month at 10% down on a $400,000 purchase, $158 at 5% — which falls away once the loan reaches 80% loan-to-value. The PMI Calculator shows how long that takes on your numbers.",
+      },
+      {
+        q: "What is the difference between closing costs and the down payment?",
+        a: "The down payment buys equity; closing costs do not. Closing costs are lender, title, appraisal and recording fees plus prepaid interest and escrow funding, typically 2–5% of the loan. They are separate from the figures a payment calculator produces, which is why the bill at the table is larger than the estimate you brought with you.",
+      },
+      {
+        q: "What is earnest money and do I get it back?",
+        a: "Earnest money is a deposit with your offer, usually 1–2% of the price — $4,000 to $8,000 on a $400,000 home. It is credited toward the purchase rather than added on top, so it is not an extra cost, but it must be available days after acceptance and it is at risk if you walk away outside a contingency.",
+      },
+      {
+        q: "How much should I keep in reserves after closing?",
+        a: "Two to six months of the total payment is the common range, and lenders increasingly ask for it in writing. Six months of a $2,023 principal-and-interest payment is about $12,100 before tax and insurance are added, which is one reason the price you can comfortably afford sits below the price a lender will approve.",
       },
     ],
   },
