@@ -35,9 +35,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The payment is the biggest fixed bill most households have and the least examined. Six levers actually move it, and the first two cost nothing to check.",
     published: "2026-10-05",
-    updated: "2026-10-05",
+    updated: "2026-10-06",
     readingMinutes: 4,
-    wordCount: 781,
+    wordCount: 790,
     links: [
       { href: "/pmi-calculator", label: "PMI Calculator" },
       { href: "/property-tax-calculator", label: "Property Tax Calculator" },
@@ -111,6 +111,51 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         q: "Which term do most American buyers choose?",
         a: "The 30-year fixed remains the default for most purchases because it is the version a first-time budget qualifies for. Fifteen-year loans are chosen mainly by buyers with larger down payments or higher incomes, and refinancing can move you between the two later.",
+      },
+    ],
+  },
+  {
+    slug: "first-time-homebuyer-mistakes",
+    title: "5 First-Time Homebuyer Mistakes to Avoid (With the Numbers)",
+    h1: "5 First-Time Homebuyer Mistakes to Avoid",
+    description:
+      "Five mistakes first-time US homebuyers make — shopping by price instead of payment, spending every dollar on the down payment, and more — priced out.",
+    excerpt:
+      "The failures are rarely the big decision. They are five small ones with no number attached, so each one is priced here against a calculator you can run.",
+    published: "2026-10-06",
+    updated: "2026-10-06",
+    readingMinutes: 4,
+    wordCount: 693,
+    links: [
+      { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+      { href: "/down-payment-calculator", label: "Down Payment Calculator" },
+      { href: "/property-tax-calculator", label: "Property Tax Calculator" },
+      { href: "/rent-vs-buy-calculator", label: "Rent vs Buy Calculator" },
+      { href: "/pmi-calculator", label: "PMI Calculator" },
+      { href: "/refinance-break-even-calculator", label: "Refinance Break-Even Calculator" },
+      { href: "/amortization-calculator", label: "Amortization Calculator" },
+    ],
+    faqs: [
+      {
+        q: "How much should a first-time buyer put down?",
+        a: "Twenty per cent keeps private mortgage insurance off your payment and is the assumption most quoted rates are built on. Lower down payments work — 3% to 5% is common — but expect PMI and a closer look at your debt-to-income ratio. Whatever you choose, do not spend the whole reserve getting there: on a $400,000 purchase each percentage point is about $27 a month of payment, which is cheap next to a repair you cannot cover.",
+      },
+      {
+        q: "How much house can I afford on a $95,000 salary?",
+        a: "At the old 28% housing rule the ceiling is a $2,217 monthly payment, which supports roughly a $410,000 home at 6.5% over 25 years with 20% down — before tax and insurance. Loosen the cap to 36% of gross and the same income points at about $527,000, which is nearer the maximum a lender will approve than the number you should spend to.",
+      },
+      {
+        q: "What is the difference between pre-qualification and pre-approval?",
+        a: "Pre-qualification is an estimate built on figures you state. Pre-approval verifies income, assets and credit and commits the lender to a number, which is why sellers take it seriously and mostly ignore the first. Getting it before you shop stops you offering on a house the arithmetic cannot carry.",
+      },
+      {
+        q: "What costs do first-time buyers forget?",
+        a: "Closing costs of 2–5% of the loan on top of the down payment, then the ongoing trio: property tax, insurance and maintenance — on a $400,000 home about $367 and $333 a month respectively at 1.1% tax and 1% maintenance. When you eventually sell, 5–6% of the price goes back out as commission and closing costs.",
+      },
+      {
+        q: "Should a first-time buyer take a 15-year or a 30-year loan?",
+        a: "Most people are better off starting from the payment they can carry in a bad month, which usually means 30 years, and buying the option to accelerate with a regular extra payment. What each term does to interest and to equity in the first five years is worked through in our 15-year versus 30-year mortgage guide.",
       },
     ],
   },

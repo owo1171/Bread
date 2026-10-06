@@ -57,7 +57,7 @@ export function LowerPaymentGuide() {
         When the payment rises and the interest rate did not move, the culprit is usually escrow: the
         twelfth of your property tax and homeowners insurance that the lender collects with each
         payment. County reassessments push the tax line up after a sale or a district revaluation, and
-        insurance premiums have climbed sharply in the past few years. A shortfall is then spread across
+        insurance premiums have climbed sharply. A shortfall is then spread across
         the following twelve months, so the payment can step up twice (<A href="/property-tax-calculator">Property Tax Calculator</A>).
       </P>
 
@@ -110,7 +110,8 @@ export function LowerPaymentGuide() {
         whether the payment beats renting at all in your city, which is what the{" "}
         <A href="/rent-vs-buy-calculator">Rent vs Buy Calculator</A> answers — on its default figures a
         $400,000 home against $2,000 rent favours owning by about $45,428 over seven years, yet with zero
-        appreciation the same inputs side with the renter.
+        appreciation the same inputs side with the renter. If this is your first purchase, start with the{" "}
+        <A href="/blog/first-time-homebuyer-mistakes">five mistakes worth pricing first</A>.
       </P>
 
       <H2 id="order">The order to try them in</H2>
@@ -216,8 +217,94 @@ export function FifteenVsThirtyGuide() {
   );
 }
 
+/** /blog/first-time-homebuyer-mistakes */
+export function FirstTimeBuyerMistakesGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        First-time buyers almost never fail on the big question. They fail on five small ones, each of
+        which looked obvious at the time and none of which had a number attached to it when the decision
+        was made.
+      </p>
+      <P>
+        Here are the five, in the order they tend to happen, with the arithmetic that makes each one
+        concrete — because a mistake you can price is a mistake you can avoid.
+      </P>
+
+      <H2 id="price-vs-payment">1. Shopping by house price instead of monthly payment</H2>
+      <P>
+        Listings are sorted by price, so buyers browse by price and then discover the bill arrives
+        monthly. A $400,000 home is not one number: with 20% down at 6.5% over 25 years it is a{" "}
+        <strong className="text-slate-900">$2,161</strong> principal-and-interest payment (
+        <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A>) before tax, insurance and
+        any mortgage insurance. Working the other way round is usually wiser: the{" "}
+        <A href="/how-much-house-can-i-afford">How Much House Can I Afford Calculator</A> starts at your
+        income, turns it into a payment you can carry, and only then into a price — on $95,000 of income at
+        the 28% housing cap it points at a $2,217 payment and a home around $410,000, and that estimate is
+        before tax and insurance, which is precisely why the realistic figure lands lower.
+      </P>
+
+      <H2 id="all-cash-down">2. Spending the entire savings on the down payment</H2>
+      <P>
+        The down payment is not the cash requirement — it is the visible half of it. Closing costs run
+        another 2–5% of the loan, which on a $400,000 purchase is roughly $8,000 to $20,000 paid at the
+        table, and the first water heater fails without an appointment. Buyers who put down every dollar
+        they own end up owning a house they cannot afford to run. The{" "}
+        <A href="/down-payment-calculator">Down Payment Calculator</A> prices that tradeoff directly: on a
+        $400,000 purchase, each percentage point you move out of the down payment is about $27 a month for
+        the life of the loan.
+      </P>
+
+      <H2 id="true-cost">3. Assuming the mortgage payment is the cost of owning</H2>
+      <P>
+        On that same $400,000 home, property tax at 1.1% adds roughly{" "}
+        <strong className="text-slate-900">$367 a month</strong> and maintenance at 1% of the price another
+        $333 (<A href="/property-tax-calculator">Property Tax Calculator</A>), with homeowners insurance on
+        top. None of it builds equity or comes back when you sell, and that is exactly the distinction the{" "}
+        <A href="/rent-vs-buy-calculator">Rent vs Buy Calculator</A> is built around: it counts only what
+        you cannot recover.
+      </P>
+
+      <H2 id="first-quote">4. Taking the first loan offer as the market</H2>
+      <P>
+        Many first-time buyers accept the quote from the bank where they have held a checking account since
+        college. Half a point is not a rounding error: on a $320,000 loan over 30 years, 6.0% instead of
+        6.5% is $1,919 rather than $2,023 a month and about $37,500 less interest across the term. If you
+        are below 20% down, ask the same questions about mortgage insurance — at 10% down on a $400,000
+        home it is $150 a month until you reach 80% loan-to-value (
+        <A href="/pmi-calculator">PMI Calculator</A>). That is a five-figure decision sitting inside a line
+        item, and the <A href="/refinance-break-even-calculator">Refinance Break-Even Calculator</A> is what
+        keeps a later fix honest.
+      </P>
+
+      <H2 id="horizon">5. Buying for the wrong time horizon</H2>
+      <P>
+        Nobody plans to move, and yet first homes change hands sooner than owners expect. Selling costs
+        about 5–6% of the price — $20,000 to $24,000 on a $400,000 house — and in the early years most of
+        each payment is interest rather than equity: five years into a 30-year loan at 6.5%, roughly
+        $20,000 of a $320,000 principal has been retired (
+        <A href="/amortization-calculator">Amortization Calculator</A>, and the full story in{" "}
+        <A href="/blog/15-year-vs-30-year-mortgage">our 15-year versus 30-year guide</A>). If your honest
+        plan is shorter than five years, renting is a legitimate answer rather than a consolation prize.
+      </P>
+
+      <H2 id="checklist">Before you sign</H2>
+      <P>
+        Price the payment, not the house. Keep two months of salary in reserve after closing, because the
+        down payment is only half the cash requirement. Budget tax, insurance and maintenance as their own
+        line rather than a surprise. Collect two loan quotes and read the PMI line. And be honest about how
+        long you will stay, because that answer changes which of the above matters most. Once you are in the
+        house, the six levers in{" "}
+        <A href="/blog/how-to-lower-your-mortgage-payment">how to lower your monthly mortgage payment</A> are
+        what you will want next.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
   "15-year-vs-30-year-mortgage": FifteenVsThirtyGuide,
+  "first-time-homebuyer-mistakes": FirstTimeBuyerMistakesGuide,
 };

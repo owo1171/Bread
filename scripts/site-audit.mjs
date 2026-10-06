@@ -19,6 +19,7 @@ const ROUTES = [
   "/blog",
   "/blog/how-to-lower-your-mortgage-payment",
   "/blog/15-year-vs-30-year-mortgage",
+  "/blog/first-time-homebuyer-mistakes",
   "/about",
   "/methodology",
   "/privacy",
