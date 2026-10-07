@@ -123,7 +123,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The failures are rarely the big decision. They are five small ones with no number attached, so each one is priced here against a calculator you can run.",
     published: "2026-10-06",
-    updated: "2026-10-06",
+    updated: "2026-10-07",
     readingMinutes: 4,
     wordCount: 724,
     links: [
@@ -210,8 +210,8 @@ export const BLOG_POSTS: BlogPost[] = [
       "Your credit score rarely decides whether a lender says yes — it decides the cost. On a $320,000 loan, half a point is $106 a month and $38,300 over term.",
     excerpt:
       "The one mortgage input you can still change this month. What the score measures, where lenders cut pricing, and what each cut costs per month.",
-    published: "2026-10-06",
-    updated: "2026-10-06",
+    published: "2026-10-07",
+    updated: "2026-10-07",
     readingMinutes: 4,
     wordCount: 747,
     links: [
