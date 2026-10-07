@@ -80,9 +80,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The interest saving is real and so is the payment shock. What the two terms cost on the same $320,000 loan, and the $765 trick that gets you both.",
     published: "2026-10-05",
-    updated: "2026-10-05",
+    updated: "2026-10-07",
     readingMinutes: 5,
-    wordCount: 706,
+    wordCount: 717,
     links: [
       { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
       { href: "/amortization-calculator", label: "Amortization Calculator" },
@@ -241,6 +241,49 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         q: "Should I wait to lock until my score improves?",
         a: "Compare the two payments rather than guessing. If one band is worth $100 or more a month and you can reach it in sixty to ninety days, waiting usually pays; if the gap is small, the market can move further against you in the same period than the tier is worth.",
+      },
+    ],
+  },
+  {
+    slug: "amortization-schedule-explained",
+    title: "What Is an Amortization Schedule and How to Read It?",
+    h1: "What Is an Amortization Schedule and How to Read It?",
+    description:
+      "The payment never changes; what it buys does. On a $320,000 loan at 6.5%, 86% of the first payment is interest — how to read the table row by row.",
+    excerpt:
+      "The ledger behind a fixed monthly payment: why interest dominates early, when the split finally flips, and the three lines that matter.",
+    published: "2026-10-07",
+    updated: "2026-10-07",
+    readingMinutes: 4,
+    wordCount: 703,
+    links: [
+      { href: "/amortization-calculator", label: "Amortization Calculator" },
+      { href: "/mortgage-payoff-calculator", label: "Mortgage Payoff Calculator" },
+      { href: "/property-tax-calculator", label: "Property Tax Calculator" },
+      { href: "/pmi-calculator", label: "PMI Calculator" },
+      { href: "/mortgage-recast-calculator", label: "Mortgage Recast Calculator" },
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+    ],
+    faqs: [
+      {
+        q: "What is an amortization schedule?",
+        a: "A month-by-month table of a loan: the balance at the start of each payment, the payment itself, how much of it is interest, how much reduces principal, and the balance left after. Fixed-rate mortgages have a schedule that can be printed in advance because nothing in it depends on the future.",
+      },
+      {
+        q: "Why is most of my early payment interest?",
+        a: "Because interest is charged on the balance, and the balance is largest at the start. On a $320,000 loan at 6.5% over 30 years, the first month costs $1,733 of interest against a $2,023 payment — 86% — so only $289 goes to principal. The following months are nearly the same, which is why progress feels slow.",
+      },
+      {
+        q: "When does the principal part overtake the interest part?",
+        a: "On that same loan, at month 233 — year 19 of 30. Extra payments pull that crossover forward sharply: $200 a month more ends the loan in 280 months and saves $105,430 of interest, which also means the flip arrives far earlier than it would otherwise.",
+      },
+      {
+        q: "Does the schedule include property tax and insurance?",
+        a: "No. An amortization table covers principal and interest only. Property tax, homeowners insurance and, above 80% loan-to-value, private mortgage insurance all sit outside the table even though they appear on your monthly statement.",
+      },
+      {
+        q: "Will my real amortization match the table exactly?",
+        a: "Close, not to the penny. Payment timing, rounding to cents and the annual escrow analysis all nudge the figures. The principal-and-interest split is arithmetic, so the shape of the curve holds; treat the table as a map rather than a receipt.",
       },
     ],
   },

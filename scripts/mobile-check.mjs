@@ -23,6 +23,7 @@ const ROUTES = [
   "/blog/first-time-homebuyer-mistakes",
   "/blog/how-much-cash-to-buy-a-house",
   "/blog/credit-score-and-mortgage-rates",
+  "/blog/amortization-schedule-explained",
   "/about",
   "/methodology",
   "/privacy",

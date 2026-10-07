@@ -158,7 +158,8 @@ export function FifteenVsThirtyGuide() {
         borrower has retired only about $20,400 of principal while the 15-year borrower has retired about
         $74,500, and after ten years the figures are $48,700 against $177,500. An{" "}
         <A href="/amortization-calculator">amortization schedule</A> shows this month by month, and it is
-        why people who move early feel cheated by a 30-year loan when nothing actually went wrong.
+        why people who move early feel cheated by a 30-year loan when nothing actually went wrong —
+        <A href="/blog/amortization-schedule-explained">how to read that table</A> is a guide of its own.
       </P>
 
       <H2 id="rate">Do not assume the 15-year rate</H2>
@@ -481,6 +482,93 @@ export function CreditScoreRatesGuide() {
   );
 }
 
+/** /blog/amortization-schedule-explained */
+export function AmortizationScheduleGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        A mortgage payment is the rare bill that never changes. The catch is that what the payment buys
+        changes every single month, and the record of those changes is the amortization schedule.
+      </p>
+      <P>
+        It is one of the few documents in a home purchase that is pure arithmetic — no underwriting, no
+        negotiation — so once you can read it, several arguments about mortgages simply stop being
+        confusing. Everything below is on one loan: a <strong className="text-slate-900">$320,000 balance at
+        6.5% over 30 years</strong>, which the <A href="/amortization-calculator">Amortization Calculator</A>
+        on this site prices in a few seconds.
+      </P>
+
+      <H2 id="contains">What the table actually contains</H2>
+      <P>
+        Each row is one payment: the balance you began the month with, the payment itself, how much of it
+        was interest, how much went to principal, and the balance you ended with. Only the size of the
+        payment is fixed by contract; the split inside it is decided by arithmetic, month by month, for
+        thirty years. The calculator shows the yearly version of this table along with the payoff date,
+        which is easier to read than 360 individual rows.
+      </P>
+
+      <H2 id="early-years">Why interest dominates the early years</H2>
+      <P>
+        Interest is nothing mysterious: it is the balance multiplied by the monthly rate. On this loan that
+        is <strong className="text-slate-900">$1,733 in the first month</strong> out of a $2,023 payment —{" "}
+        <strong className="text-slate-900">86% of it</strong> — leaving just $289 for principal. Because the
+        balance has barely moved, next month&apos;s interest is nearly the same. The first year pays about
+        $20,700 of interest and retires roughly $3,600 of the debt. Compare that with the final twelve
+        months, which pay $833 of interest in total.
+      </P>
+
+      <H2 id="crossover">The crossover, and how far away it is</H2>
+      <P>
+        Follow the two columns and you eventually reach the month when the principal part overtakes the
+        interest part. On this loan that is month 233 — <strong className="text-slate-900">year
+        19</strong>. Until then, most of every payment is the cost of borrowing money you already used. It is
+        why the balance barely budges early on: five years in, $320,000 has become $299,555, and after ten
+        years it is still $271,284. Buyers who move in year four often feel cheated; the loan did not
+        misbehave, it was simply early. The same mechanic is what makes a shorter term so much cheaper, which
+        is the subject of <A href="/blog/15-year-vs-30-year-mortgage">15-year versus 30-year mortgage</A>.
+      </P>
+
+      <H2 id="three-lines">The three lines worth reading</H2>
+      <P>
+        First, the closing balance on the date you actually expect to sell. That is what you will owe, not
+        the price on the listing. Second, the total-interest figure, which is the real price of the borrowing:{" "}
+        <strong className="text-slate-900">$408,142</strong> here, against a $320,000 loan. Third, what the
+        table becomes once you add an extra payment. Send an additional $200 a month and the loan ends in 280
+        months instead of 360, with interest falling to $302,713 — <strong className="text-slate-900">$105,430
+        saved</strong> (<A href="/mortgage-payoff-calculator">Mortgage Payoff Calculator</A> frames the same
+        arithmetic as a payoff date).
+      </P>
+
+      <H2 id="not-included">What the schedule leaves out</H2>
+      <P>
+        The table is principal and interest only. Your statement is bigger: property tax and homeowners
+        insurance ride along in escrow (<A href="/property-tax-calculator">Property Tax Calculator</A>), and
+        above 80% loan-to-value, private mortgage insurance sits on every row until it can be cancelled (
+        <A href="/pmi-calculator">PMI Calculator</A>). The table also assumes nobody touches the loan. Make a
+        lump-sum payment and a recast rewrites the entire schedule, because a smaller balance is re-spread
+        across the same remaining years (<A href="/mortgage-recast-calculator">Recast Calculator</A>).
+      </P>
+
+      <H2 id="drift">Why your real numbers drift a little</H2>
+      <P>
+        Expect a few dollars of difference between the printed table and your statement. Payments land a day
+        early or late, servicers round to cents, and escrow is reanalysed once a year. The
+        principal-and-interest split itself is arithmetic, so the shape holds even where the pennies do not.
+      </P>
+
+      <H2 id="use-it">How to use it before you sign</H2>
+      <P>
+        Run the table and look at the balance on your expected move date rather than only at the payment. Run
+        it again with an extra payment and decide whether the interest saved is worth that cash every month.
+        Then run it at the rate your credit score actually gets you, because a half-point difference rewrites
+        every row — the <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A> and the{" "}
+        <A href="/blog/how-to-lower-your-mortgage-payment">six levers for reducing a payment</A> are the
+        natural next clicks once the schedule stops being a mystery.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
@@ -488,4 +576,5 @@ export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "first-time-homebuyer-mistakes": FirstTimeBuyerMistakesGuide,
   "how-much-cash-to-buy-a-house": CashToBuyAHouseGuide,
   "credit-score-and-mortgage-rates": CreditScoreRatesGuide,
+  "amortization-schedule-explained": AmortizationScheduleGuide,
 };
