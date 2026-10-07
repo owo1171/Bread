@@ -125,7 +125,7 @@ export const BLOG_POSTS: BlogPost[] = [
     published: "2026-10-06",
     updated: "2026-10-06",
     readingMinutes: 4,
-    wordCount: 705,
+    wordCount: 724,
     links: [
       { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
       { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
@@ -199,6 +199,48 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         q: "How much should I keep in reserves after closing?",
         a: "Two to six months of the total payment is the common range, and lenders increasingly ask for it in writing. Six months of a $2,023 principal-and-interest payment is about $12,100 before tax and insurance are added, which is one reason the price you can comfortably afford sits below the price a lender will approve.",
+      },
+    ],
+  },
+  {
+    slug: "credit-score-and-mortgage-rates",
+    title: "Understanding Your Credit Score and Its Impact on Mortgage Rates",
+    h1: "Your Credit Score and Its Impact on Mortgage Rates",
+    description:
+      "Your credit score rarely decides whether a lender says yes — it decides the cost. On a $320,000 loan, half a point is $106 a month and $38,300 over term.",
+    excerpt:
+      "The one mortgage input you can still change this month. What the score measures, where lenders cut pricing, and what each cut costs per month.",
+    published: "2026-10-06",
+    updated: "2026-10-06",
+    readingMinutes: 4,
+    wordCount: 747,
+    links: [
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+      { href: "/pmi-calculator", label: "PMI Calculator" },
+      { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
+      { href: "/refinance-break-even-calculator", label: "Refinance Break-Even Calculator" },
+      { href: "/mortgage-payoff-calculator", label: "Mortgage Payoff Calculator" },
+    ],
+    faqs: [
+      {
+        q: "What credit score do I need to get a mortgage?",
+        a: "Conventional loans generally stop around 620, FHA accepts 580 with 3.5% down at many lenders, and the low-down conventional programmes usually want 680 or better. Best pricing typically starts around 760. The bands move by lender and investor, which is why the pricing matrix matters more than the single number quoted to you.",
+      },
+      {
+        q: "How much is half a percentage point worth?",
+        a: "On a $320,000 loan over 30 years, moving from 6.5% to 7.0% costs $106 a month and roughly $38,300 of extra interest across the term. That is why a tier improvement you can reach in two months is often worth more than the rate movement you are waiting for — price both figures in the Mortgage Payment Calculator before deciding.",
+      },
+      {
+        q: "Can I raise my score quickly enough to matter?",
+        a: "Utilisation is the fast lever: most models read the balance your issuer reports, so paying cards down mid-cycle can show up within weeks. Derogatory history is the slow one — a missed payment stays on the report for years and no amount of rearranging fixes it before closing.",
+      },
+      {
+        q: "Will shopping for a mortgage hurt my score?",
+        a: "Each application triggers an inquiry worth a few points, but mortgage rate shopping inside a short window is generally scored as a single inquiry rather than several. The bigger risk to the file is new debt — the store credit opened after approval, not the second lender you called.",
+      },
+      {
+        q: "Should I wait to lock until my score improves?",
+        a: "Compare the two payments rather than guessing. If one band is worth $100 or more a month and you can reach it in sixty to ninety days, waiting usually pays; if the gap is small, the market can move further against you in the same period than the tier is worth.",
       },
     ],
   },

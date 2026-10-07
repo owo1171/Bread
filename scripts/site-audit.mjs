@@ -21,6 +21,7 @@ const ROUTES = [
   "/blog/15-year-vs-30-year-mortgage",
   "/blog/first-time-homebuyer-mistakes",
   "/blog/how-much-cash-to-buy-a-house",
+  "/blog/credit-score-and-mortgage-rates",
   "/about",
   "/methodology",
   "/privacy",

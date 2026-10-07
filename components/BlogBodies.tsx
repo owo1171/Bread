@@ -275,7 +275,8 @@ export function FirstTimeBuyerMistakesGuide() {
         home it is $150 a month until you reach 80% loan-to-value (
         <A href="/pmi-calculator">PMI Calculator</A>). That is a five-figure decision sitting inside a line
         item, and the <A href="/refinance-break-even-calculator">Refinance Break-Even Calculator</A> is what
-        keeps a later fix honest.
+        keeps a later fix honest. Which quote you are even offered is largely a credit story — see{" "}
+        <A href="/blog/credit-score-and-mortgage-rates">how your credit score moves your rate</A>.
       </P>
 
       <H2 id="horizon">5. Buying for the wrong time horizon</H2>
@@ -390,10 +391,101 @@ export function CashToBuyAHouseGuide() {
   );
 }
 
+/** /blog/credit-score-and-mortgage-rates */
+export function CreditScoreRatesGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        A credit score is the only number in a mortgage application the borrower can still change this
+        month. It rarely decides whether a lender says yes. It decides what the yes costs, and that cost is
+        charged monthly for thirty years.
+      </p>
+      <P>
+        So the useful questions are not what is a good score, but what the score measures, where lenders
+        cut their pricing, what each cut is worth in dollars — and what not to do while a loan is in flight.
+      </P>
+
+      <H2 id="measures">What the score is actually measuring</H2>
+      <P>
+        Under the FICO model the weights are published: payment history 35%, amounts owed 30%, length of
+        credit history 15%, new credit 10% and credit mix 10%. Two thirds of the score therefore comes from
+        two habits — paying on time, and not running out of available credit. The last two categories are
+        where people obsess; the first two are where the money is.
+      </P>
+
+      <H2 id="tiers">Where the pricing tiers cut</H2>
+      <P>
+        Lenders price by bands rather than by the exact number. Best execution usually sits around 760 and
+        above, with step-downs at roughly 740, 720, 700, 680, 660 and 640 until the conventional floor near
+        620. FHA accepts 580 with 3.5% down at many lenders, and the low-down conventional programmes usually
+        want 680 or better. The exact matrix moves by lender and by investor, so ask for the pricing matrix
+        rather than one quote for one house.
+      </P>
+
+      <H2 id="dollars">What the tiers cost in dollars</H2>
+      <P>
+        On a $320,000 loan over 30 years, the{" "}
+        <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A> prices 5.5% at{" "}
+        <strong className="text-slate-900">$1,817</strong> a month, 6.5% at $2,023 and 7.5% at{" "}
+        <strong className="text-slate-900">$2,237</strong>. That full spread is $421 a month and about
+        $151,400 of extra interest across the term. The step most buyers actually face is smaller than a
+        whole point: half a percentage point, 6.5% against 7.0%, is <strong className="text-slate-900">$106 a
+        month</strong> and roughly $38,300 over thirty years. Find out which rate your score qualifies for
+        and put it through the calculator before you fall in love with a house, not after.
+      </P>
+
+      <H2 id="double-hit">The double hit: rate and mortgage insurance</H2>
+      <P>
+        A weaker score is charged twice. Once as rate, through a pricing add-on measured in basis points. And
+        again through private mortgage insurance, which is credit-priced too — typical rates run from about
+        0.3% to 1.5% of the loan each year depending on score and loan-to-value, so on a $360,000 loan that
+        is $90 a month at the top of the range against $150 at the mid-point most quotes use (
+        <A href="/pmi-calculator">PMI Calculator</A>). Below 20% down, the score moves both halves of the
+        payment.
+      </P>
+
+      <H2 id="movement">What moves a score, and how fast</H2>
+      <P>
+        Utilisation moves fastest, because most models read the balance your issuer reports rather than the
+        balance on the day you apply — paying a card down mid-cycle can show up within weeks. A missed
+        payment works the other way and lingers for years. New applications cost a few points each, although
+        mortgage rate shopping inside a short window is generally treated as a single inquiry. Closing an old
+        card tends to hurt: it shortens average age and removes available credit at the same time.
+      </P>
+
+      <H2 id="traps">The traps between application and closing</H2>
+      <P>
+        Most lenders re-pull the report before funding. Furniture-store credit opened to furnish the living
+        room, a switch to a commission income, or paying off and closing an old card can all change the file
+        you were approved on — and it is the file, with its debt-to-income ratio, that sets what you could
+        borrow in the first place (<A href="/how-much-house-can-i-afford">affordability calculator</A>). If
+        the score improves after you are in the house, the payoff is a refinance decision, and that one is
+        settled by the <A href="/refinance-break-even-calculator">Refinance Break-Even Calculator</A> rather
+        than by optimism.
+      </P>
+
+      <H2 id="rule">The rule worth following</H2>
+      <P>
+        If two months of dull behaviour — cards paid down, nothing new opened — lifts you a band, and that
+        band is worth $100 or more a month, waiting is usually cheap. Price both rates in the{" "}
+        <A href="/mortgage-payment-calculator">payment calculator</A>, compare the monthly gap with the risk
+        that market rates drift against you in the same period, and decide once instead of hoping. The term
+        you choose interacts with this too, since a shorter term amplifies every rate change; that
+        comparison is in <A href="/blog/15-year-vs-30-year-mortgage">15-year versus 30-year mortgage</A>. Once
+        the loan exists your score stops mattering and the balance starts to, which is what the{" "}
+        <A href="/mortgage-payoff-calculator">Mortgage Payoff Calculator</A> is for — and if you are still
+        gathering the cash itself, <A href="/blog/how-much-cash-to-buy-a-house">what you need at the
+        table</A> is a separate list.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
   "15-year-vs-30-year-mortgage": FifteenVsThirtyGuide,
   "first-time-homebuyer-mistakes": FirstTimeBuyerMistakesGuide,
   "how-much-cash-to-buy-a-house": CashToBuyAHouseGuide,
+  "credit-score-and-mortgage-rates": CreditScoreRatesGuide,
 };
