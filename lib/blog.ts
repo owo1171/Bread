@@ -168,9 +168,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "Buyers budget the down payment and get surprised at the closing table. What you actually need in cash, line by line, on a $400,000 purchase.",
     published: "2026-10-06",
-    updated: "2026-10-06",
+    updated: "2026-10-08",
     readingMinutes: 4,
-    wordCount: 772,
+    wordCount: 791,
     links: [
       { href: "/down-payment-calculator", label: "Down Payment Calculator" },
       { href: "/pmi-calculator", label: "PMI Calculator" },
@@ -284,6 +284,50 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         q: "Will my real amortization match the table exactly?",
         a: "Close, not to the penny. Payment timing, rounding to cents and the annual escrow analysis all nudge the figures. The principal-and-interest split is arithmetic, so the shape of the curve holds; treat the table as a map rather than a receipt.",
+      },
+    ],
+  },
+  {
+    slug: "pros-cons-larger-down-payment",
+    title: "The Pros and Cons of a Larger Down Payment",
+    h1: "The Pros and Cons of a Larger Down Payment",
+    description:
+      "More down means a smaller payment and no PMI, but it costs liquidity: 20% versus 5% on a $400,000 home is $537 a month and $76,500 of interest.",
+    excerpt:
+      "What extra cash in the deal buys — payment, insurance, interest — and what it costs you in liquidity and returns you give up.",
+    published: "2026-10-08",
+    updated: "2026-10-08",
+    readingMinutes: 4,
+    wordCount: 761,
+    links: [
+      { href: "/down-payment-calculator", label: "Down Payment Calculator" },
+      { href: "/pmi-calculator", label: "PMI Calculator" },
+      { href: "/amortization-calculator", label: "Amortization Calculator" },
+      { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
+      { href: "/refinance-break-even-calculator", label: "Refinance Break-Even Calculator" },
+      { href: "/rent-vs-buy-calculator", label: "Rent Versus Buy Calculator" },
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+    ],
+    faqs: [
+      {
+        q: "Is 20% down still the right target?",
+        a: "Not as a condition of approval — low-down programmes exist — but as a pricing threshold it still matters, because that is where private mortgage insurance disappears. On a $400,000 purchase at 6.5%, moving from 5% to 20% down removes $158 a month of insurance and $379 a month of principal and interest.",
+      },
+      {
+        q: "How much does each extra 1% of down payment save?",
+        a: "About $25 a month for every $4,000 you add, in principal and interest, plus whatever PMI that removes while you are still below 20%. The steps are not evenly spaced once insurance is in the picture, which is why the Down Payment Calculator prices each tier on its own.",
+      },
+      {
+        q: "Is it better to put more down or invest the cash?",
+        a: "A dollar applied to the down payment earns exactly your note rate — 6.5% in this example — guaranteed and untaxed. Investing beats that only if you clear 6.5% after tax and can leave the money alone. If you might need the cash within a few years, liquidity usually outweighs the return argument.",
+      },
+      {
+        q: "How long do I pay PMI if I put 5% down?",
+        a: "On this example the PMI Calculator runs it for 124 months and about $19,600 in total, since insurance ends at 80% loan-to-value measured against the price you paid. Putting 10% down shortens it to 95 months, and appreciation can shorten it further if you request removal with an appraisal.",
+      },
+      {
+        q: "Does a larger down payment make my offer stronger?",
+        a: "Often, mostly because a smaller loan is less likely to stumble on appraisal or income limits. It is worth less than buyers assume against a competing cash offer, though, since sellers price financing risk and closing dates more highly than the size of the deposit.",
       },
     ],
   },

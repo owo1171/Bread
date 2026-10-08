@@ -327,10 +327,12 @@ export function CashToBuyAHouseGuide() {
         className="text-slate-900">$80,000</strong>, 10% is $40,000, 5% is $20,000 and 3% is $12,000. The{" "}
         <A href="/down-payment-calculator">Down Payment Calculator</A> prices each of those against the
         loan it leaves behind, and the tradeoff is steady — every percentage point you shift out of the
-        down payment adds about $27 a month for the life of the loan. Below 20% you also take on private
+        down payment adds about $25 a month for the life of the loan. Below 20% you also take on private
         mortgage insurance: $150 a month at 10% down on this purchase, $158 at 5% (
         <A href="/pmi-calculator">PMI Calculator</A>). The payment itself moves from $2,023 at 20% down to
-        $2,275 at 10% and $2,402 at 5% (<A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A>).
+        $2,275 at 10% and $2,402 at 5% (<A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A>),
+        and whether that trade is worth it is its own call (
+        <A href="/blog/pros-cons-larger-down-payment">pros and cons of a larger down payment</A>).
       </P>
 
       <H2 id="closing-costs">2. Closing costs: 2–5% that buys you no equity</H2>
@@ -569,6 +571,94 @@ export function AmortizationScheduleGuide() {
   );
 }
 
+/** /blog/pros-cons-larger-down-payment */
+export function LargerDownPaymentGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        The down payment is the part of a mortgage you bring rather than borrow, which is why it reads as a
+        measure of seriousness. Sometimes that is true. Sometimes the same cash earns more outside the deal
+        than inside it.
+      </p>
+      <P>
+        Both sides, on one purchase: a <strong className="text-slate-900">$400,000 home at 6.5% over 30
+        years</strong>, with private mortgage insurance at the flat 0.5% a year the{" "}
+        <A href="/pmi-calculator">PMI Calculator</A> uses as its default. Enter those numbers and every
+        figure below appears on the page.
+      </P>
+
+      <H2 id="what-it-buys">What a larger down payment buys</H2>
+      <P>
+        At 20% down the loan is $320,000 and the payment is <strong className="text-slate-900">$2,023</strong>
+        , with no mortgage insurance at all. At 5% down the loan is $380,000, the payment is $2,402 and
+        insurance adds $158, so the month costs <strong className="text-slate-900">$2,560</strong>. That gap
+        of $537 is bought with $60,000 of extra cash — roughly $9 a month for every thousand you leave in the
+        deal. Across the term the same $60,000 removes about $76,500 of interest, since total interest falls
+        from $484,669 to $408,142; you can watch that difference row by row in the{" "}
+        <A href="/amortization-calculator">amortization table</A>. Work the tiers in the{" "}
+        <A href="/down-payment-calculator">Down Payment Calculator</A> for your own price. Smaller loans are
+        cheaper at the table too: closing costs are quoted against the loan amount, and the income you need
+        to qualify is set by the payment rather than by the price on the listing (
+        <A href="/how-much-house-can-i-afford">Home Affordability Calculator</A>).
+      </P>
+
+      <H2 id="what-it-costs">The cost is the cash itself</H2>
+      <P>
+        The other side of the ledger is the money. Sixty thousand dollars inside the walls does not cover a
+        roof, a repair bill or a layoff, and equity is slow to withdraw. The financial comparison is narrow
+        and worth stating plainly: a dollar applied to the down payment earns exactly your mortgage rate —
+        guaranteed and untaxed — which here is 6.5%. So the question is not whether the house pays well but
+        whether you can clear 6.5% after tax on money you are willing to lock away. The same $60,000 at 4%
+        returns about $200 a month and at 8% about $350, both before tax and neither of them promised. One
+        boundary matters: that argument prices the loan, not the insurance, which is why the step from 5% to
+        20% down is worth far more than the step from 20% to 30%.
+      </P>
+
+      <H2 id="pmi-step">PMI is the steepest step on the ladder</H2>
+      <P>
+        Mortgage insurance protects the lender rather than you, and it is priced on the original loan, so it
+        stays flat while the balance falls (<A href="/pmi-calculator">PMI Calculator</A>). On 5% down it runs
+        <strong className="text-slate-900"> 124 months</strong> — ten and a half years — and totals about
+        $19,600 that buys nothing but the loan. At 10% down it is 95 months and about $14,250; at 15%, 56
+        months and about $7,900. Removal can be requested at 80% loan-to-value and happens automatically at
+        79%, both measured against the price you paid. A rising market can justify asking sooner, something
+        the calculator cannot price for you.
+      </P>
+
+      <H2 id="middle">The practical middle</H2>
+      <P>
+        Buyers torn between these choices are usually deciding how much reserve to keep rather than how much
+        to sacrifice. Fifteen percent down costs $2,291 a month here and ends the insurance in under five
+        years. Ten percent costs $2,425 and leaves $20,000 more of your cash free. Either way, what you keep
+        should cover two to six months of payments — the range is set out line by line in{" "}
+        <A href="/blog/how-much-cash-to-buy-a-house">what cash you need to buy a house</A>.
+      </P>
+
+      <H2 id="wrong-call">When a bigger down payment is the wrong call</H2>
+      <P>
+        Three cases argue the other way. If you may move inside five years, resale costs can consume the
+        interest saving before it arrives, which is the same break-even logic the{" "}
+        <A href="/refinance-break-even-calculator">Refinance Break-Even Calculator</A> applies to a new loan.
+        If reaching 20% means two more years of renting, that rent is a real cost the saving has to beat (
+        <A href="/rent-vs-buy-calculator">Rent Versus Buy Calculator</A>). And if the down payment empties
+        the account, you have bought a discount on your interest rate using your emergency fund as
+        collateral.
+      </P>
+
+      <H2 id="decide">How to decide</H2>
+      <P>
+        Answer three questions in order: how long you will stay, how much cash stays liquid afterwards, and
+        whether your money can earn more than the note rate after tax. A long horizon, comfortable reserves
+        and a modest safe return elsewhere all favour paying more down. A short horizon, thin reserves or a
+        genuinely better use of capital favour paying less. Price both positions in the{" "}
+        <A href="/down-payment-calculator">Down Payment Calculator</A>, then read the months they leave you
+        in the <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A> before you commit to
+        either.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
@@ -577,4 +667,5 @@ export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-much-cash-to-buy-a-house": CashToBuyAHouseGuide,
   "credit-score-and-mortgage-rates": CreditScoreRatesGuide,
   "amortization-schedule-explained": AmortizationScheduleGuide,
+  "pros-cons-larger-down-payment": LargerDownPaymentGuide,
 };

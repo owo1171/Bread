@@ -24,6 +24,7 @@ const ROUTES = [
   "/blog/how-much-cash-to-buy-a-house",
   "/blog/credit-score-and-mortgage-rates",
   "/blog/amortization-schedule-explained",
+  "/blog/pros-cons-larger-down-payment",
   "/about",
   "/methodology",
   "/privacy",
