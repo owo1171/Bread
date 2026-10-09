@@ -242,7 +242,9 @@ export function FirstTimeBuyerMistakesGuide() {
         <A href="/how-much-house-can-i-afford">How Much House Can I Afford Calculator</A> starts at your
         income, turns it into a payment you can carry, and only then into a price — on $95,000 of income at
         the 28% housing cap it points at a $2,217 payment and a home around $410,000, and that estimate is
-        before tax and insurance, which is precisely why the realistic figure lands lower.
+        before tax and insurance, which is precisely why the realistic figure lands lower. Getting that
+        number verified on paper is what{" "}
+        <A href="/blog/how-to-get-pre-approved">how to get pre-approved</A> is for.
       </P>
 
       <H2 id="all-cash-down">2. Spending the entire savings on the down payment</H2>
@@ -659,6 +661,94 @@ export function LargerDownPaymentGuide() {
   );
 }
 
+/** /blog/how-to-get-pre-approved */
+export function PreApprovalGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        A pre-approval is the document that turns someone who likes houses into a buyer who can make an
+        offer. It is also where wishful arithmetic meets a file, so the surprises in a purchase get found
+        early — or, if you skip it, late.
+      </p>
+      <P>
+        What it actually is, what a lender verifies, how long the paper survives, and the one number that
+        sets your ceiling before you walk through a single front door.
+      </P>
+
+      <H2 id="guess-versus-file">Pre-qualification is a guess; pre-approval is a file</H2>
+      <P>
+        Pre-qualification means a lender took your word for it: income, debts, roughly your score, and an
+        estimate came back. Pre-approval means those claims were verified — pay stubs against W-2 forms, two
+        years of returns if you are self-employed, two or three months of bank statements — and a credit
+        report was pulled rather than guessed at. What arrives is a conditional commitment: a loan amount,
+        subject to appraisal, to your circumstances holding, and to verification still standing at closing.
+        Read those conditions, because they are the product.
+      </P>
+
+      <H2 id="ceiling">The number that sets the ceiling</H2>
+      <P>
+        The ceiling is not the price you like; it is the payment you can carry. Lenders still quote the old
+        ratios of 28% of gross income for housing and 36% for all debt together, while many approval systems
+        stretch the combined figure to 43–50%. The{" "}
+        <A href="/how-much-house-can-i-afford">How Much House Can I Afford calculator</A> uses that logic
+        openly: $95,000 of income at the 28% housing cap gives a payment of{" "}
+        <strong className="text-slate-900">$2,217</strong>, which at 6.5% over 25 years with 20% down points
+        at roughly <strong className="text-slate-900">$410,368</strong>. Raise the cap to 36% and the
+        identical income points at about $527,600 — a $117,000 swing produced by a policy choice rather than
+        by anything about you. Two cautions the calculator states on its own: the figure covers principal and
+        interest only, and reserving roughly $300 a month for tax and insurance pulls that same $410,000 down
+        to about $354,900. A useful shorthand at 6.5% over 30 years is that every $100 of monthly capacity
+        buys about $15,800 of loan.
+      </P>
+
+      <H2 id="file">What the file has to show</H2>
+      <P>
+        Three things, verified. Income: pay stubs that reconcile with your W-2 forms, or two years of returns
+        if your pay arrives through a business. Assets: money that has sat where it is for about 60 days, so
+        moving the down payment between banks the week you apply invites a letter of explanation. Credit: a
+        hard inquiry, worth a few points and generally treated as one shopping event if you apply to several
+        lenders inside a short window (see{" "}
+        <A href="/blog/credit-score-and-mortgage-rates">how your credit score moves your rate</A>). And if
+        you are putting less than 20% down, the insurance premium is part of the payment being underwritten,
+        not an afterthought (<A href="/pmi-calculator">PMI Calculator</A>).
+      </P>
+
+      <H2 id="expiry">How long it lasts, and what breaks it</H2>
+      <P>
+        Sixty to ninety days, after which the file is stale and gets rechecked, including a fresh look at
+        balances and credit. Even inside that window the approval is not final: most lenders re-underwrite
+        shortly before closing. The familiar ways a deal dies after approval are new debt — the car
+        delivered after the offer was accepted — a change of job, particularly to commission pay, a large
+        deposit nobody can source, and an appraisal below the agreed price. The cash side weighs as heavily
+        as the payment side, since the file must show the deposit, the closing costs and a couple of months
+        of reserves, all itemised in{" "}
+        <A href="/blog/how-much-cash-to-buy-a-house">what cash you need to buy a house</A>.
+      </P>
+
+      <H2 id="quotes">Take two or three, inside one window</H2>
+      <P>
+        Rates are not the only difference between offers. Below the best credit tiers lenders add pricing
+        measured in basis points, and origination fees vary more than borrowers expect. Compare the note
+        rate, the add-on and the fee line together, then put each quote through the{" "}
+        <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A> so you are comparing months
+        rather than marketing. The <A href="/down-payment-calculator">Down Payment Calculator</A> shows how
+        each lender&apos;s assumption about your deposit changes the same picture, and the{" "}
+        <A href="/amortization-calculator">Amortization Calculator</A> makes the long-run shape visible once
+        you have chosen.
+      </P>
+
+      <H2 id="order">Order of operations</H2>
+      <P>
+        Fix the file, size the payment, then get the paper. Check your score, work out your own ceiling in
+        the <A href="/how-much-house-can-i-afford">affordability calculator</A> before a lender does it for
+        you, take documents to two or three lenders within two weeks, and only then start opening doors. In
+        that order, pre-approval stops being a formality obtained after the fact and becomes what it should
+        be: a ceiling you chose rather than one you discovered.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
@@ -668,4 +758,5 @@ export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "credit-score-and-mortgage-rates": CreditScoreRatesGuide,
   "amortization-schedule-explained": AmortizationScheduleGuide,
   "pros-cons-larger-down-payment": LargerDownPaymentGuide,
+  "how-to-get-pre-approved": PreApprovalGuide,
 };

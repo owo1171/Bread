@@ -123,9 +123,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The failures are rarely the big decision. They are five small ones with no number attached, so each one is priced here against a calculator you can run.",
     published: "2026-10-06",
-    updated: "2026-10-07",
+    updated: "2026-10-09",
     readingMinutes: 4,
-    wordCount: 724,
+    wordCount: 738,
     links: [
       { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
       { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
@@ -328,6 +328,48 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         q: "Does a larger down payment make my offer stronger?",
         a: "Often, mostly because a smaller loan is less likely to stumble on appraisal or income limits. It is worth less than buyers assume against a competing cash offer, though, since sellers price financing risk and closing dates more highly than the size of the deposit.",
+      },
+    ],
+  },
+  {
+    slug: "how-to-get-pre-approved",
+    title: "How to Get Pre-Approved for a Mortgage",
+    h1: "How to Get Pre-Approved for a Mortgage",
+    description:
+      "What pre-approval verifies, how long it lasts and the payment that sets your ceiling: $95,000 of income at the 28% rule is $2,217 a month and a $410,368 home.",
+    excerpt:
+      "Pre-qualification is a guess and pre-approval is a verified file. What to bring, what breaks it, and how the lender's maths sets your ceiling.",
+    published: "2026-10-09",
+    updated: "2026-10-09",
+    readingMinutes: 4,
+    wordCount: 754,
+    links: [
+      { href: "/how-much-house-can-i-afford", label: "Home Affordability Calculator" },
+      { href: "/pmi-calculator", label: "PMI Calculator" },
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+      { href: "/down-payment-calculator", label: "Down Payment Calculator" },
+      { href: "/amortization-calculator", label: "Amortization Calculator" },
+    ],
+    faqs: [
+      {
+        q: "What is the difference between pre-qualification and pre-approval?",
+        a: "Pre-qualification is an estimate built from figures you stated. Pre-approval is built from a verified file: income documents reconciled, assets evidenced, and a credit report pulled. The second is what sellers and estate agents treat as meaningful, because it is a conditional commitment rather than an opinion.",
+      },
+      {
+        q: "How long does a mortgage pre-approval last?",
+        a: "Usually sixty to ninety days, after which the file is stale and gets rechecked. Even inside that window most lenders re-underwrite shortly before closing, so an approval is a snapshot of your finances at a moment, not a guarantee that lasts until the keys change hands.",
+      },
+      {
+        q: "Does getting pre-approved hurt my credit score?",
+        a: "It takes a hard inquiry, which costs a few points. Applying to several lenders inside a short shopping window is generally scored as one inquiry rather than several, which is why the advice is to gather your quotes in two weeks rather than spread them over a season.",
+      },
+      {
+        q: "What income do I need for a $400,000 house?",
+        a: "With 20% down at 6.5% over 30 years, the principal-and-interest payment is $2,023, which sits at 28% of gross income for a household earning roughly $86,700. Add about $300 a month of tax and insurance and the same rule wants closer to $99,500 — and other debts then come out of the remaining budget.",
+      },
+      {
+        q: "Can I be pre-approved if I am self-employed?",
+        a: "Yes. Expect two years of returns and possibly a profit-and-loss statement, since the lender is averaging income you cannot evidence with pay stubs. Some lenders run bank-statement programmes instead, which accept deposits in place of returns, usually with stricter pricing.",
       },
     ],
   },
