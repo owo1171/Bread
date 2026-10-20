@@ -4,6 +4,7 @@ import AdSlot from "@/components/AdSlot";
 import PayoffCalculator from "@/components/PayoffCalculator";
 import { ContentMeta, ExampleBlock, HowItWorks } from "@/components/ToolSections";
 import { AFFILIATES, FAQS, OG_IMAGE_ALT, OG_IMAGE_URL, RELATED_TOOLS, SITE_URL, SLUG, faqSchema } from "@/lib/content";
+import { RELATED_BY_SLUG } from "@/lib/tools";
 
 const TITLE = "Mortgage Payoff Calculator: Extra Payments & Payoff Date";
 const DESCRIPTION =
@@ -73,15 +74,14 @@ export default function MortgagePayoffCalculatorPage() {
       {/* Ad slot: directly under the results area */}
       <AdSlot id="ad-results" note="Ad slot — results area (300x250 / in-article)" minHeight={120} />
 
-      {/* Affiliate block: href stays clean in HTML, params are added client-side */}
+      {/* Outbound links to lenders. No compensation is received for these, so
+          they are marked nofollow rather than sponsored — see /affiliate-disclosure. */}
       <ul className="space-y-2 text-sm">
         {AFFILIATES.map((a) => (
           <li key={a.id}>
             <a
               href={a.href}
-              data-affiliate
-              data-base={a.href}
-              rel="sponsored nofollow noopener"
+              rel="nofollow noopener"
               target="_blank"
               className="font-medium text-blue-700 hover:underline"
             >
@@ -168,7 +168,9 @@ export default function MortgagePayoffCalculatorPage() {
       {/* ---- Screen 5: internal links ---- */}
       <h2 className="mt-8 text-2xl font-bold">Related calculators</h2>
       <ul className="mt-3 grid gap-3 sm:grid-cols-2">
-        {RELATED_TOOLS.map((t) => (
+        {RELATED_TOOLS.filter((t) =>
+          (RELATED_BY_SLUG["mortgage-payoff-calculator"] ?? []).includes(t.href.slice(1)),
+        ).map((t) => (
           <li key={t.href}>
             <Link
               href={t.href}

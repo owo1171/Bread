@@ -11,7 +11,7 @@ export const SLUG = "mortgage-payoff-calculator";
  * Content review date — the single source for every "Last updated" line on the
  * site. Update it when page copy or a formula changes; do not backdate it.
  */
-export const LAST_UPDATED = "2026-10-09";
+export const LAST_UPDATED = "2026-10-20";
 
 const longDate = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -134,6 +134,13 @@ export interface Affiliate {
   note: string;
 }
 
+/**
+ * Outbound lender links shown on the payoff page. No commission is currently
+ * received for any of them, so they render with rel="nofollow" and the
+ * affiliate disclosure says exactly that. If a paid arrangement is added, mark
+ * the link rel="sponsored", name the partner on /affiliate-disclosure, and
+ * update that page's wording in the same commit.
+ */
 export const AFFILIATES: Affiliate[] = [
   {
     id: "refi-rates",

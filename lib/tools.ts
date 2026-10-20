@@ -314,6 +314,23 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       }
       return rows;
     },
+    guide: {
+      heading: "Using this amortization calculator",
+      intro: [
+        "A payoff calculator answers when the loan ends. This one answers what each payment is made of, month after month, and why that split keeps changing while the payment itself never does.",
+        "Enter the balance you owe today rather than the original loan, and the table runs forward from there: the same arithmetic a servicer amortises with, without the escrow.",
+      ],
+      steps: [
+        "Current balance is principal only — the principal line on your statement, not the payoff quote, which also includes interest accrued since the last payment. Start from $320,000 at 6.5% with 25 years left and the first $2,161 payment splits into $1,733 of interest and $427 of principal.",
+        "Interest rate is the annual rate as a percentage, and it moves every row rather than only the first. That same $320,000 over 25 years costs $2,062 a month at 6% and $2,365 at 7.5%, so a point of rate is $204 a month on this balance before any other decision.",
+        "Years remaining counts what is left on the contract, not how long you have owned the house. A 30-year loan taken out five years ago goes in as 25; a loan where you have paid nothing extra goes in with the extra-payment box at zero.",
+        "Extra payment per month is applied to principal after each scheduled payment. At zero the table shows the loan as written; at $200 the interest total falls from $328,199 to $259,116 and the crossover arrives years sooner.",
+      ],
+      note: [
+        "The table groups months into years for the first ten, which is where the shape is visible: interest dominating early, principal taking over later. The remaining years follow the same curve, so nothing is hidden by stopping at ten.",
+        "Expect a few dollars of drift against a real statement. Servicers differ on accrual (30/360 versus actual/365) and on the day a payment posts, and money held in suspense hits principal later than it hits your account. The mortgage payoff calculator prices the end date; the PMI calculator prices insurance, which is not part of this schedule.",
+      ],
+    },
     howItWorks: [
       "First the scheduled payment comes from the standard amortizing formula: payment = B × r ÷ (1 − (1 + r)^−n), where B is the balance, r is the monthly rate (annual rate ÷ 12) and n is the number of payments left.",
       "Then the loan is walked month by month. Interest for the month is balance × r; everything in the payment above that is principal; the balance falls by the principal part only. An extra payment is added to the principal line, so it never earns interest and the balance drops faster.",
@@ -334,8 +351,8 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         a: "A table that splits every payment between interest and principal and shows the balance left afterwards. On a $320,000 loan at 6.5% over 25 years, the first $2,161 payment pays $1,733 of interest and only $427 of principal.",
       },
       {
-        q: "When do most of my payment go to principal?",
-        a: "Once the balance falls below roughly half the original, the split flips. On that $320,000 loan at 6.5% with 25 years left it happens around month 173 — year 14. Any extra principal you pay moves that month earlier.",
+        q: "When does more of my payment go to principal than to interest?",
+        a: "On a $320,000 balance at 6.5% with 25 years left and no extra payments, month 173 — year 14 — is where the principal part first exceeds the interest part. Add $200 a month and it arrives around month 119 instead, because the balance falls faster.",
       },
       {
         q: "Does an extra payment change the amortization schedule?",
@@ -350,8 +367,8 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         a: "Servicers differ on interest accrual (30/360 versus actual/365), on payment posting dates, and on whether extra money sits in suspense before it hits principal. Match to the dollar only against your own servicer's method.",
       },
       {
-        q: "Is this schedule the same as the one on my statement?",
-        a: "Close, not identical. This one compounds monthly and applies every payment on time. Your servicer may accrue interest on an actual/365 basis, post payments on a different day, or hold partial payments in suspense — expect a few dollars of difference per month, not a different payoff year.",
+        q: "How do I read the yearly table on this page?",
+        a: "Each row is one year, not one payment: the interest and principal columns are totals for those twelve payments, and the balance is what remains at the end of the year. On the page defaults — $320,000 at 6.5% over 25 years with $200 extra — year one pays $20,572 of interest and retires $7,756 of principal.",
       },
     ],
   },
@@ -385,6 +402,23 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         netFiveYears: saving * 60 - v.closingCosts,
         ok: saving > 0 ? 1 : 0,
       };
+    },
+    guide: {
+      heading: "Using this refinance break-even calculator",
+      intro: [
+        "Break-even is the number that decides whether a refinance was worth doing, and it has nothing to do with how attractive the new rate looks. It is closing costs divided by the monthly saving.",
+        "Three inputs, one comparison: what the new loan costs up front, what you pay now, and what you would pay after. The output says how long you must stay for the refinance to pay for itself.",
+      ],
+      steps: [
+        "Closing costs are everything the new loan costs you: origination, appraisal, title, recording and any points paid to buy the rate down. A no-cost refinance is not free — the cost moved into the rate or the balance — so enter the lender credit as a smaller cost rather than zero.",
+        "Current monthly payment is the principal-and-interest figure you pay today, not the total on your statement. Keep tax and insurance out of both boxes: they do not change with a refinance, so including them inflates the saving and flatters the deal.",
+        "New monthly payment comes from the Loan Estimate, again principal and interest only. Half a point on a $320,000 balance over 25 years is $99 a month, so $4,500 of closing costs breaks even in about 45 months — the same arithmetic with a worse rate can never break even.",
+        "Read the break-even month against your honest horizon rather than a hoped-for one. Under 24 months is comfortable if you expect to stay five years; past 36 months you are betting you will not move, which is the assumption sellers and new jobs break most often.",
+      ],
+      note: [
+        "The calculation is deliberately undiscounted: no present value, no tax deduction, no inflation. It asks whether the cash comes back, not whether it would have earned more elsewhere, and it treats a dollar saved in month 30 the same as one saved in month 3.",
+        "If the new payment is not lower there is nothing to break even on, and the tool says so rather than dividing by zero. Savings that arrive another way — dropping PMI once equity passes 20%, or shortening the term — belong in the payment comparison, since they are real money but not the point this page measures.",
+      ],
     },
     howItWorks: [
       "Monthly saving = current payment − new payment. Break-even months = closing costs ÷ monthly saving. That is the whole calculation, deliberately undiscounted: a dollar saved in month 30 is treated the same as a dollar saved in month 3.",
@@ -462,6 +496,23 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         ok: newBalance > 0 ? 1 : 0,
       };
     },
+    guide: {
+      heading: "Using this mortgage recast calculator",
+      intro: [
+        "A recast is a paperwork change rather than a new loan: you hand the servicer a lump sum, it applies the money to principal and re-spreads what is left across the same remaining months at the same rate. The end date does not move; the payment does.",
+        "That is the opposite trade from paying extra, which keeps the payment and pulls the end date forward. Pricing the recast side is what makes the two comparable instead of a guess.",
+      ],
+      steps: [
+        "Current balance is principal owed before the lump sum. On $320,000 at 6.5% with 25 years left the scheduled payment is $2,161, and that is the figure the recast is trying to reduce.",
+        "Interest rate stays your existing rate. A recast does not reprice the loan, which is exactly why it is the cheaper option when today's rates are higher than the one you already hold — a refinance would hand back the rate you like.",
+        "Years remaining is what the servicer re-amortises over: the original term minus the years already paid. Twenty-five years left means twenty-five years after the recast, not a fresh thirty.",
+        "Lump sum payment has to be smaller than the balance. On this loan $25,000 takes the payment to $1,992, a drop of $169 with the payoff year unchanged. Allow for the servicer fee, commonly $100 to $500: $500 of it turns the same recast into a $166 drop.",
+      ],
+      note: [
+        "The recast buys a permanently lower required payment, and that is its whole value. It does not cut total interest as much as sending the same money as extra principal, because the balance stays outstanding for the full term either way.",
+        "If the payment is not your constraint and finishing sooner is, put the lump sum through the payoff calculator instead. If what you want is a lower rate rather than a lower payment, that is a refinance, and the break-even calculator is what decides it.",
+      ],
+    },
     howItWorks: [
       "The calculator prices your current balance as one payment, then prices the balance-after-the-lump-sum with the same rate and the same number of months left. The difference is the payment drop.",
       "Formula in both cases: payment = B × r ÷ (1 − (1 + r)^−n). Only B changes, so the end date moves not at all — that is the definition of a recast rather than a payoff strategy.",
@@ -531,6 +582,22 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         tenYearTotal: annual * 10,
         ok: 1,
       };
+    },
+    guide: {
+      heading: "Using this property tax calculator",
+      intro: [
+        "Property tax is quoted annually as a rate on assessed value, but it is collected monthly inside escrow and it moves your payment without your rate changing at all. This page converts one form into the other.",
+        "It is also the line that varies most between two houses a few miles apart, which is why it belongs in a comparison before the offer rather than in the first escrow analysis after it.",
+      ],
+      steps: [
+        "Assessed home value is the assessor's figure, not the listing price. The two are often different: many jurisdictions lag the market or apply an assessment ratio, so start from the county number if you can find it and from the purchase price if you cannot.",
+        "Annual tax rate is the effective rate for that address as a percentage — 1.1 means 1.1%, not 0.011. US effective rates run from roughly 0.3% to 2.2% of value, so a county figure beats a state average every time.",
+        "Read the monthly line as escrow, because that is how it reaches you: $420,000 at 1.1% is $4,620 a year, collected as $385 a month. Move the rate a tenth of a point and it is $35 a month, which is how two similar houses end up $70 apart on the same street.",
+      ],
+      note: [
+        "The ten-year figure holds today's assessment and today's rate flat. Reassessments and rate votes move both, and both tend to move upward, so treat the total as a budgeting floor rather than a forecast.",
+        "This is the tax line only. Homeowners insurance, mortgage insurance and any escrow shortage sit on the same statement: the PMI calculator prices the insurance below 20% down, and the mortgage payment calculator prices the loan itself.",
+      ],
     },
     howItWorks: [
       "Annual tax = assessed value × the rate as a decimal (so 1.1% is 0.011). Monthly = annual ÷ 12, which is the amount a servicer collects into escrow each month.",
@@ -607,6 +674,23 @@ export const SIBLING_TOOLS: ToolSpec[] = [
         downPayment: (price * v.downPaymentPct) / 100,
         ok: loan > 0 ? 1 : 0,
       };
+    },
+    guide: {
+      heading: "Using this affordability calculator",
+      intro: [
+        "Every other page here starts with a loan. This one starts with your income and works backwards: income becomes a monthly payment cap, the cap becomes a loan, and the loan becomes a price once the down payment is added back.",
+        "That is the direction a lender underwrites you in, and it is the honest way to shop — a payment you can actually carry, expressed as a price you can actually look at.",
+      ],
+      steps: [
+        "Annual income is gross household income before tax, counting only income that will keep arriving. Lenders average bonus and commission over two years rather than taking the best year, so use the figure you would defend on paper.",
+        "Down payment percentage changes the price rather than the payment. The same $2,217 carries a larger purchase when more of it is your own equity, and from 20% upward it also removes mortgage insurance from the payment being underwritten.",
+        "Interest rate and loan term decide how much loan that payment buys. At 6.5% over 25 years, $2,217 supports a loan of about $328,300; take the same payment over 30 years and it supports roughly $350,700 — more house, more years, and more total interest.",
+        "Max housing payment is your own ceiling. The 28% default is the old front-end rule, 36% is where many lenders stretch, and automated underwriting often allows 43–50% of gross for all debts combined. A higher ceiling buys more house and less margin, and the tool does not pretend otherwise.",
+      ],
+      note: [
+        "The result is principal and interest only. Reserve room for tax, insurance and mortgage insurance below 20% down: about $300 a month of those extras pulls a $410,368 price down to roughly $354,900, which is the more honest number to take shopping.",
+        "Other debts come out of the same band. A household carrying $600 a month of car and student-loan payments should treat its housing cap as lower than this formula suggests, because the 36–50% ceiling counts every debt, not just the mortgage.",
+      ],
     },
     howItWorks: [
       "Step one turns income into a payment: monthly payment cap = (annual income ÷ 12) × your chosen percentage of gross income. The 28% default is the old front-end housing rule lenders still quote.",
@@ -894,6 +978,101 @@ export const SIBLING_TOOLS: ToolSpec[] = [
     ],
   },
 ];
+
+/**
+ * The calculators each page actually points at: four, chosen for the question
+ * the reader is likely to have next. Rendering the same nine links on every
+ * page is boilerplate — it tells a visitor nothing and makes ten pages read
+ * alike. Keys are slugs; "mortgage-payoff-calculator" is listed here too even
+ * though its spec lives outside SIBLING_TOOLS.
+ */
+export const RELATED_BY_SLUG: Record<string, string[]> = {
+  "mortgage-payment-calculator": [
+    "down-payment-calculator",
+    "amortization-calculator",
+    "mortgage-payoff-calculator",
+    "how-much-house-can-i-afford",
+  ],
+  "down-payment-calculator": [
+    "mortgage-payment-calculator",
+    "pmi-calculator",
+    "how-much-house-can-i-afford",
+    "amortization-calculator",
+  ],
+  "amortization-calculator": [
+    "mortgage-payment-calculator",
+    "mortgage-payoff-calculator",
+    "mortgage-recast-calculator",
+    "refinance-break-even-calculator",
+  ],
+  "refinance-break-even-calculator": [
+    "mortgage-payment-calculator",
+    "mortgage-payoff-calculator",
+    "amortization-calculator",
+    "mortgage-recast-calculator",
+  ],
+  "mortgage-recast-calculator": [
+    "mortgage-payoff-calculator",
+    "amortization-calculator",
+    "refinance-break-even-calculator",
+    "mortgage-payment-calculator",
+  ],
+  "property-tax-calculator": [
+    "mortgage-payment-calculator",
+    "how-much-house-can-i-afford",
+    "pmi-calculator",
+    "rent-vs-buy-calculator",
+  ],
+  "how-much-house-can-i-afford": [
+    "mortgage-payment-calculator",
+    "down-payment-calculator",
+    "pmi-calculator",
+    "property-tax-calculator",
+  ],
+  "rent-vs-buy-calculator": [
+    "how-much-house-can-i-afford",
+    "property-tax-calculator",
+    "mortgage-payment-calculator",
+    "pmi-calculator",
+  ],
+  "pmi-calculator": [
+    "down-payment-calculator",
+    "mortgage-payment-calculator",
+    "how-much-house-can-i-afford",
+    "amortization-calculator",
+  ],
+  "mortgage-payoff-calculator": [
+    "mortgage-payment-calculator",
+    "amortization-calculator",
+    "mortgage-recast-calculator",
+    "refinance-break-even-calculator",
+  ],
+};
+
+export interface RelatedCard {
+  name: string;
+  href: string;
+  note: string;
+}
+
+const PAYOFF_CARD: RelatedCard = {
+  name: "Mortgage Payoff Calculator",
+  href: "/mortgage-payoff-calculator",
+  note: "Payoff date, total interest, and what an extra payment saves.",
+};
+
+/** Cards for one page, resolved against the existing specs. Unknown slugs drop out. */
+export function relatedCards(slug: string): RelatedCard[] {
+  return (RELATED_BY_SLUG[slug] ?? [])
+    .map((target): RelatedCard | null => {
+      if (target === "mortgage-payoff-calculator") return PAYOFF_CARD;
+      const tool = SIBLING_TOOLS.find((t) => t.slug === target);
+      return tool
+        ? { name: tool.name, href: `/${tool.slug}`, note: tool.description.split(".")[0] + "." }
+        : null;
+    })
+    .filter((card): card is RelatedCard => card !== null);
+}
 
 export function findTool(slug: string): ToolSpec | undefined {
   return SIBLING_TOOLS.find((t) => t.slug === slug);

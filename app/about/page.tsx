@@ -65,11 +65,14 @@ export default function AboutPage() {
 
         <h2>How the site is funded</h2>
         <p>
-          Display ads occupy three reserved slots per page — none of them inside the calculator, and
-          there are no pop-ups. Some links to lenders are affiliate links: if you apply through one,
-          the site may earn a commission and your price does not change. Those links carry a{" "}
-          <code className="rounded bg-slate-100 px-1">sponsored</code> relationship in the HTML, and
-          they are listed on the{" "}
+          Advertising: Google serves ads on these pages. No ad code sits inside the calculator
+          components, and there are no pop-ups or interstitial pages in front of a result.
+        </p>
+        <p>
+          Outbound links: some pages link to lenders and comparison sites so you can check a quoted
+          rate against the calculation. The site does not currently receive a commission for those
+          links, and no partner pays for a placement or a ranking — if that ever changes, the link
+          itself will be marked and named on the{" "}
           <Link href="/affiliate-disclosure">affiliate disclosure</Link> page.
         </p>
 

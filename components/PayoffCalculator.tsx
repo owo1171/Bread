@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import EmailCapture from "@/components/EmailCapture";
 import { computePayoff, duration, payoffLabel, usd, type Frequency } from "@/lib/payoff";
 
 type Form = { balance: string; rate: string; years: string; extra: string };
 
 const DEFAULTS: Form = { balance: "320000", rate: "6.5", years: "25", extra: "200" };
-const STORAGE_KEY = "***";
+const STORAGE_KEY = "tool-site:payoff-inputs";
 const SCENARIOS = [0, 100, 200, 500];
 
 const num = (v: string): number => {
@@ -66,16 +65,13 @@ export default function PayoffCalculator() {
     [input],
   );
 
-  // Keep a shareable URL without triggering a navigation (no SSR impact), and
-  // carry the user's numbers into the affiliate links for attribution.
+  // Keep a shareable URL without triggering a navigation (no SSR impact). The
+  // figures stay in this tab's address bar and are deliberately NOT appended to
+  // the outbound lender links: handing a balance and a rate to a third party is
+  // a privacy leak, and it bought no attribution the site actually used.
   useEffect(() => {
     const qs = `?bal=${input.balance}&rate=${input.ratePct}&yrs=${input.years}&extra=${input.extraMonthly}&freq=${frequency}`;
     window.history.replaceState(null, "", qs);
-
-    document.querySelectorAll<HTMLAnchorElement>("a[data-affiliate]").forEach((a) => {
-      const base = (a.dataset.base ?? a.getAttribute("href") ?? "").replace(/\/$/, "");
-      a.href = `${base}?bal=${input.balance}&rate=${input.ratePct}&extra=${input.extraMonthly}`;
-    });
   }, [input, frequency]);
 
   const set =
@@ -280,8 +276,6 @@ export default function PayoffCalculator() {
               </tbody>
             </table>
           </div>
-
-          <EmailCapture label="Get the PDF payoff plan — your numbers plus the $50/$100/$200/$500 savings cheat sheet" />
         </div>
       )}
 

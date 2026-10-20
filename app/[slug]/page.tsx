@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import SpecCalculator from "@/components/SpecCalculator";
 import { ContentMeta, ExampleBlock, Guide, HowItWorks } from "@/components/ToolSections";
-import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL, SLUG } from "@/lib/content";
-import { SIBLING_TOOLS, findTool } from "@/lib/tools";
+import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL } from "@/lib/content";
+import { SIBLING_TOOLS, findTool, relatedCards } from "@/lib/tools";
 
 export function generateStaticParams(): { slug: string }[] {
   return SIBLING_TOOLS.map((t) => ({ slug: t.slug }));
@@ -49,14 +49,7 @@ export default function SiblingToolPage({ params }: { params: { slug: string } }
   if (!tool) notFound();
 
   const url = `${SITE_URL}/${tool.slug}`;
-  const related = [
-    { name: "Mortgage Payoff Calculator", href: `/${SLUG}`, note: "Find your payoff date and interest saved." },
-    ...SIBLING_TOOLS.filter((t) => t.slug !== tool.slug).map((t) => ({
-      name: t.name,
-      href: `/${t.slug}`,
-      note: t.description.split(".")[0] + ".",
-    })),
-  ];
+  const related = relatedCards(tool.slug);
 
   const schema = {
     "@context": "https://schema.org",
