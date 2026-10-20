@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { pageOpenGraph, SITE_URL } from "@/lib/content";
 
@@ -124,6 +125,26 @@ export default function MethodologyPage() {
           before or after the exact one. Where an input cannot produce a result — a payment that does
           not cover the interest, a zero term, a lump sum larger than the balance — the calculator
           flags it instead of printing a number.
+        </p>
+
+        <h2>How these figures are checked</h2>
+        <p>
+          Worked examples are checked against the calculator using the inputs stated with them: enter
+          those inputs and the same figures should come back. They are written out by hand rather than
+          generated from the code, which is precisely why a formula change has to include them.
+        </p>
+        <p>
+          When a formula changes, the same update reviews the calculator, the entry on this page and
+          every example that quotes the old figure, and then re-runs the checks. The calculator test
+          drives all ten tools through their defaults and through zero, negative, oversized and
+          non-numeric inputs, and checks a documented result for each; the site audit then checks routes,
+          canonicals, FAQ markup and internal links. These checks are run during development and
+          maintenance — they are not an automatic gate on every deployment.
+        </p>
+        <p>
+          If a figure does not match, report it with the inputs you used through the contact address on
+          the <Link href="/about">About &amp; contact</Link> page, which also explains how corrections
+          are handled.
         </p>
 
         <h2>Not a quote</h2>

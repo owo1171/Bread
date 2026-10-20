@@ -29,11 +29,26 @@ const TOOLS = [
 ];
 
 export default function Home() {
+  const orgId = `${SITE_URL}/#organization`;
+  // Only facts that exist: no address, phone, logo file or social profile is
+  // published anywhere on the site, so none is claimed here.
   const schema = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "KiteCalc",
-    url: SITE_URL,
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": orgId,
+        name: "KiteCalc",
+        url: SITE_URL,
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        name: "KiteCalc",
+        url: SITE_URL,
+        publisher: { "@id": orgId },
+      },
+    ],
   };
 
   return (

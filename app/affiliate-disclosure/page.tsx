@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { pageOpenGraph, SITE_URL } from "@/lib/content";
 
@@ -16,9 +17,9 @@ export default function AffiliateDisclosurePage() {
       <h2>Outbound links today</h2>
       <p>
         Some pages link out to lenders and comparison sites so you can check a rate against the
-        calculation you just ran. At the time of writing those links are plain outbound links: this
-        site does not currently receive a commission from them, and no partner pays for a placement,
-        a ranking or a mention.
+        calculation you just ran. At the time of writing those links are plain outbound links: KiteCalc
+        does not currently receive commissions from them. If that changes, this disclosure will be
+        updated.
       </p>
 
       <h2>If that changes</h2>
@@ -40,6 +41,11 @@ export default function AffiliateDisclosurePage() {
         A link is not advice. Compare the annual percentage rate, closing costs and prepayment terms
         against your own plans before you apply, and treat any offer from a lender as the offer that
         counts.
+      </p>
+      <h2>Questions about a link</h2>
+      <p>
+        To ask about a particular outbound link, or to ask for one to be removed, use the contact
+        address on the <Link href="/about">About &amp; contact</Link> page.
       </p>
     </LegalPage>
   );

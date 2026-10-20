@@ -70,25 +70,55 @@ export default function AboutPage() {
         </p>
         <p>
           Outbound links: some pages link to lenders and comparison sites so you can check a quoted
-          rate against the calculation. The site does not currently receive a commission for those
-          links, and no partner pays for a placement or a ranking — if that ever changes, the link
-          itself will be marked and named on the{" "}
+          rate against the calculation. KiteCalc does not currently receive a commission for those
+          links. If that ever changes, the affected link will be marked and named on the{" "}
           <Link href="/affiliate-disclosure">affiliate disclosure</Link> page.
         </p>
 
         <h2>Who maintains it</h2>
         <p>
-          One person, who got tired of calculators that demanded an email address before showing a
-          number. Corrections and missing cases are welcome — if a result looks wrong to you, it is
-          worth asking.
+          KiteCalc is maintained by one person, working under the site name rather than publishing a
+          personal profile. There is no editorial board, no independent audit and no named outside
+          expert reviewing these pages. What can be checked instead is the arithmetic: the site
+          documents its formulas, default inputs and key limitations on the calculator and methodology
+          pages, and each worked example can be reproduced with the inputs printed beside it.
         </p>
 
-        <h2>Contact</h2>
+        <h2>How a page is checked</h2>
         <p>
-          Write to{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Include which calculator you used
-          and the figures you entered, and you will get a reply from whoever maintains the tool rather
-          than a ticket number.
+          Formulas live in one place and are documented on the{" "}
+          <Link href="/methodology">methodology page</Link>. The worked example on each calculator page
+          is written out by hand using the same closed-form formula, with the inputs the page loads with,
+          so its figures can be reproduced by entering them. Because that text is maintained separately
+          from the code, it has to be re-checked whenever a formula changes.
+        </p>
+        <p>
+          The repository also holds automated checks. An audit loads the published routes and tests
+          status codes, canonical URLs, FAQ markup against the visible questions, internal links and
+          image alt text. A calculator test drives all ten tools through their defaults and through zero,
+          negative, oversized and non-numeric values, and asserts a documented result for each. A phone
+          pass loads the routes at 390 pixels wide and flags horizontal overflow or an uncaught script
+          error. These checks are run during development and maintenance; they are not a deployment gate,
+          and they do not replace a review of every possible input or browser.
+        </p>
+        <p>
+          When a figure is wrong, the repair follows the cause. A stale or mistyped example is corrected
+          on the page and the review date moves with it. A wrong formula belongs in three places at the
+          same time — the calculator, the methodology entry and every example that quotes it — because
+          fixing only one leaves the site half-corrected.
+        </p>
+
+        <h2>Reporting a mistake</h2>
+        <p>
+          Email{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the calculator you used and the
+          figures you entered. A number is far quicker to reproduce when the inputs are in the message.
+          Broken links, stale policy text and unclear explanations are equally welcome.
+        </p>
+        <p>
+          Reports are read and investigated. This is not a support desk: there is no ticket system and
+          no promised response time, and any reply is about the calculation, not personal mortgage, tax
+          or legal advice.
         </p>
 
         <h2>Read next</h2>

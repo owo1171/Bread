@@ -106,9 +106,9 @@ export default function MortgagePayoffCalculatorPage() {
         inputs="$320,000 balance · 6.5% rate · 25 years left · $200 extra a month"
         results={[
           "Scheduled payment: $2,161 a month — $1,733 of the first one is interest, $427 principal.",
-          "Payoff date: February 2047, which is 4 yr 7 mo sooner than staying on schedule (dates count from the current month).",
+          "Payoff date: about 20 years and 5 months from today, which is 4 yr 7 mo sooner than staying on schedule.",
           "Total interest: $259,116 instead of $328,199 — a saving of $69,083.",
-          "Switch the same loan to biweekly with the same extra money and it ends February 2044, saving $112,837.",
+          "Switch the same loan to biweekly with the same extra money and it ends about 17 years and 5 months from today, saving $112,837.",
         ]}
       />
 

@@ -702,7 +702,7 @@ export const SIBLING_TOOLS: ToolSpec[] = [
       results: [
         "Payment used: $2,217 a month.",
         "Approximate home price: $410,368, with an $82,074 down payment.",
-        "Raise the cap to 36% of gross and the same income points at about $527,000 — which is roughly how lenders reach their approved maximum.",
+        "Raise the cap to 36% of gross and the same income points at about $527,600 — which is roughly how lenders reach their approved maximum.",
         "Add roughly $300 a month of tax and insurance and the realistic price drops by over $50,000.",
       ],
     },
@@ -818,8 +818,8 @@ export const SIBLING_TOOLS: ToolSpec[] = [
     guide: {
       heading: "Using this rent vs buy calculator",
       intro: [
-        "Renting and buying are two different cost structures, so comparing a rent cheque with a mortgage payment misleads. This page prices both sides from your numbers: what each costs in the first month, and what each costs across the years you expect to stay.",
-        "Only money you cannot get back is counted. The principal half of your payment and the down payment itself build equity rather than being spent, so they stay out. Interest, upkeep, property tax and the return your cash could earn elsewhere stay in, and price appreciation is netted off the buy side.",
+        "The two results on this page answer different questions, which is why they can disagree. The month-one figure is a snapshot: one month of interest on the balance, one month of upkeep and property tax, one month of return given up on the down payment, and one month of assumed appreciation. The across-your-stay figure is the same arithmetic run month by month, where each line behaves differently.",
+        "Read the two as a break-even test rather than a verdict. If appreciation is modest or the stay is short, the owner keeps paying interest, upkeep and tax while the appreciation credit has little time to build, and buying can lose. Over a longer stay the interest line shrinks as the balance falls and the compounding has room to work the other way. The horizon and the appreciation assumption decide it; nothing else on the page moves the answer as far.",
       ],
       steps: [
         "Home price, down payment and interest rate are the buy side. The loan and the scheduled payment are worked out from them, so enter the price you are actually shopping and the rate you were quoted, not an optimistic pair.",
