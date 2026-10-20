@@ -123,7 +123,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The failures are rarely the big decision. They are five small ones with no number attached, so each one is priced here against a calculator you can run.",
     published: "2026-10-06",
-    updated: "2026-10-09",
+    updated: "2026-10-20",
     readingMinutes: 4,
     wordCount: 738,
     links: [
@@ -143,7 +143,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         q: "How much house can I afford on a $95,000 salary?",
-        a: "At the old 28% housing rule the ceiling is a $2,217 monthly payment, which supports roughly a $410,000 home at 6.5% over 25 years with 20% down — before tax and insurance. Loosen the cap to 36% of gross and the same income points at about $527,000, which is nearer the maximum a lender will approve than the number you should spend to.",
+        a: "At the old 28% housing rule the ceiling is a $2,217 monthly payment, which supports roughly a $410,000 home at 6.5% over 25 years with 20% down — before tax and insurance. Loosen the cap to 36% of gross and the same income points at about $527,600, which is nearer the maximum a lender will approve than the number you should spend to.",
       },
       {
         q: "What is the difference between pre-qualification and pre-approval?",
