@@ -123,7 +123,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The failures are rarely the big decision. They are five small ones with no number attached, so each one is priced here against a calculator you can run.",
     published: "2026-10-06",
-    updated: "2026-10-20",
+    updated: "2026-10-22",
     readingMinutes: 4,
     wordCount: 738,
     links: [
@@ -146,8 +146,8 @@ export const BLOG_POSTS: BlogPost[] = [
         a: "At the old 28% housing rule the ceiling is a $2,217 monthly payment, which supports roughly a $410,000 home at 6.5% over 25 years with 20% down — before tax and insurance. Loosen the cap to 36% of gross and the same income points at about $527,600, which is nearer the maximum a lender will approve than the number you should spend to.",
       },
       {
-        q: "What is the difference between pre-qualification and pre-approval?",
-        a: "Pre-qualification is an estimate built on figures you state. Pre-approval verifies income, assets and credit and commits the lender to a number, which is why sellers take it seriously and mostly ignore the first. Getting it before you shop stops you offering on a house the arithmetic cannot carry.",
+        q: "Do I need a pre-approval before I start viewing homes?",
+        a: "For a first-time buyer the difference shows up at the first viewing, not at closing. Pre-qualification is arithmetic on numbers you supply, and there is no cost to being optimistic inside it. Pre-approval means a lender has read pay stubs, bank statements and a credit report and put a number in writing, so the number behind an offer has been checked rather than supplied by the buyer — still conditional on the appraisal and on the file not changing, but far more than a guess. Touring homes on a guess and meeting the ceiling afterwards is the mistake this article opens with; the document-by-document version is covered in the pre-approval guide.",
       },
       {
         q: "What costs do first-time buyers forget?",
