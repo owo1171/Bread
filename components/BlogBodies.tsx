@@ -749,6 +749,110 @@ export function PreApprovalGuide() {
   );
 }
 
+/** /blog/pay-off-mortgage-faster */
+export function PayOffFasterGuide() {
+  return (
+    <>
+      <p className="measure mt-4 text-slate-700">
+        A 30-year mortgage fixes a ceiling on the payment, not the length of the loan. Every dollar
+        above the required amount retires principal that would otherwise collect interest for
+        decades. On a <strong className="text-slate-900">$320,000</strong> balance at 6.5% the
+        required payment is <strong className="text-slate-900">$2,023</strong> a month and the full
+        term costs $408,142 in interest. The five methods below shorten that term at different costs
+        and risks; one shortens nothing on its own. Every figure uses the same loan: $320,000 at
+        6.5%, 30 years left.
+      </p>
+
+      <H2 id="baseline">Start with the number you are beating</H2>
+      <P>
+        That $2,023 is principal and interest only; taxes, insurance and mortgage insurance sit
+        outside it. The first payment is $1,733 of interest against $289 of principal, which is why
+        progress feels invisible for years. The{" "}
+        <A href="/amortization-calculator">Amortization Calculator</A> draws the curve, and{" "}
+        <A href="/blog/amortization-schedule-explained">reading the schedule</A> explains why the
+        productive months arrive late. Get your own split from the{" "}
+        <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A> before sending anyone
+        extra money.
+      </P>
+
+      <H2 id="monthly">1. Add the same amount to every payment</H2>
+      <P>
+        Two hundred dollars a month turns the payment into $2,223 and ends the loan at month 280,
+        six years and eight months early, with $302,713 of interest instead of $408,142 — saving{" "}
+        <strong className="text-slate-900">$105,430</strong>. Start here because the exit is free:
+        an extra payment can be stopped in any month without a fee, a closing or a conversation. The{" "}
+        <A href="/mortgage-payoff-calculator">Mortgage Payoff Calculator</A> prices any extra amount
+        against your own balance.
+      </P>
+
+      <H2 id="biweekly">2. Pay half of it every two weeks</H2>
+      <P>
+        Twenty-six half-payments a year add up to one extra payment annually and end this loan at 24
+        years and 1 month, saving roughly <strong className="text-slate-900">$94,000</strong>; the
+        payoff calculator has a biweekly switch. What you do not need is a company charging a setup
+        fee to move the money. A scheduled transfer to your servicer does
+        the same work, as long as the extra is applied to principal rather than held as a partial
+        payment. Confirm that in writing.
+      </P>
+
+      <H2 id="lump">3. Put one-off money on the principal</H2>
+      <P>
+        A $25,000 lump sum in month 13 ends the loan at 24 years and 5 months and saves{" "}
+        <strong className="text-slate-900">$110,582</strong>, while the required payment never
+        changes. That is both the appeal and the risk: equity is not a savings account, so this is
+        for money you will not need back. Read the note first. Federal rules bar these penalties
+        outright on high-cost mortgages; on any other loan it depends on the documents you signed.
+      </P>
+
+      <H2 id="refi">4. Refinance to a shorter term for the rate, not the term</H2>
+      <P>
+        A 15-year refinance at 6.0% costs $2,700 a month and finishes with{" "}
+        <strong className="text-slate-900">$166,062</strong> of interest, $242,081 less than the loan
+        you have. The term is not the source. Paying $2,788 — the 15-year payment at your
+        existing 6.5% — on the current loan also retires it in exactly 180 months, with $181,758 of
+        interest and no closing costs. The refinance earns its keep through the lower rate: at $2,700
+        a month the 6.5% loan needs 190 months and $193,334 of interest, so the 6.0% version saves
+        about ten months and $27,300, which must clear roughly $6,400 of closing costs. Put
+        your own quote through the{" "}
+        <A href="/refinance-break-even-calculator">Refinance Break-Even Calculator</A>, and compare
+        loan terms in the{" "}
+        <A href="/blog/15-year-vs-30-year-mortgage">15-year versus 30-year guide</A> first.
+      </P>
+
+      <H2 id="recast">5. Recast for a floor, not for speed</H2>
+      <P>
+        A recast applies a lump sum, re-amortizes the remaining balance to the original end date and
+        lowers the required payment: $25,000 here moves it from $2,023 to{" "}
+        <strong className="text-slate-900">$1,863</strong> and leaves the loan ending in 30 years.
+        That makes it a safety valve. Some owners keep the lower payment available and keep sending
+        the old figure, which is method three with a cushion underneath it. On its own it pays nothing
+        off faster; the <A href="/mortgage-recast-calculator">Mortgage Recast Calculator</A> shows
+        both numbers side by side.
+      </P>
+
+      <H2 id="cost">What paying early really costs</H2>
+      <P>
+        Three checks first. An emergency fund of three to six months of the full payment, not the
+        principal-and-interest line. Any debt priced above the mortgage rate, since a credit card at
+        22% is the better target every month. And the opportunity cost: 6.5% with no market risk is
+        difficult to beat, while a 3% mortgage is cheap money that
+        may deserve to be left alone. Interest may also be deductible when you itemize, which lowers
+        the effective return of prepaying; limits are in IRS Publication 936. None of that argues
+        against a faster payoff — it argues for using money you can spare.
+      </P>
+
+      <P>
+        One method, automated, reviewed yearly. Two hundred dollars a month is $2,400 a year and six
+        years and eight months off this loan, and stopping is always allowed. Start with your
+        split in the{" "}
+        <A href="/mortgage-payment-calculator">Mortgage Payment Calculator</A>, then price the extra
+        in the <A href="/mortgage-payoff-calculator">Mortgage Payoff Calculator</A>; both cover
+        principal and interest only.
+      </P>
+    </>
+  );
+}
+
 /** slug → article body; a post with no entry here is treated as unfinished. */
 export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "how-to-lower-your-mortgage-payment": LowerPaymentGuide,
@@ -759,4 +863,5 @@ export const BLOG_BODIES: Record<string, () => React.ReactElement> = {
   "amortization-schedule-explained": AmortizationScheduleGuide,
   "pros-cons-larger-down-payment": LargerDownPaymentGuide,
   "how-to-get-pre-approved": PreApprovalGuide,
+  "pay-off-mortgage-faster": PayOffFasterGuide,
 };

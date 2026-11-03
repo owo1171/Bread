@@ -373,6 +373,48 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "pay-off-mortgage-faster",
+    title: "5 Smart Ways to Pay Off Your Mortgage Faster (With the Numbers)",
+    h1: "5 Smart Ways to Pay Off Your Mortgage Faster",
+    description:
+      "Five ways to pay a mortgage off early — extra principal, biweekly payments, a lump sum, a shorter refinance and a recast — priced on a $320,000 loan.",
+    excerpt:
+      "The 30-year schedule is a ceiling, not a rule. Five methods that do shorten the loan, what each one saves on a $320,000 balance, and the one that shortens nothing.",
+    published: "2026-11-03",
+    updated: "2026-11-03",
+    readingMinutes: 4,
+    wordCount: 788,
+    links: [
+      { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
+      { href: "/mortgage-payoff-calculator", label: "Mortgage Payoff Calculator" },
+      { href: "/amortization-calculator", label: "Amortization Calculator" },
+      { href: "/refinance-break-even-calculator", label: "Refinance Break-Even Calculator" },
+      { href: "/mortgage-recast-calculator", label: "Mortgage Recast Calculator" },
+    ],
+    faqs: [
+      {
+        q: "Does paying extra lower my monthly payment?",
+        a: "No. Extra money goes to principal, so the loan ends sooner and total interest falls, but the required payment stays at $2,023 on this example. Only a recast re-amortizes the remaining balance into a smaller payment — $1,863 with a $25,000 lump sum here.",
+      },
+      {
+        q: "Are paid biweekly payment services worth the fee?",
+        a: "The arithmetic they sell is real: 26 half-payments a year amount to one extra payment, about $94,000 of interest on this loan. The fee usually is not. A scheduled transfer achieves the same result, and the thing to check is that your servicer applies extra money to principal rather than holding it as a partial payment.",
+      },
+      {
+        q: "Can my lender charge a penalty for paying off early?",
+        a: "Federal rules prohibit prepayment penalties on high-cost mortgages; on any other loan it depends on the note and the Closing Disclosure. Read both before sending a large lump sum. Where a penalty applies, waiting it out can cost less than paying it.",
+      },
+      {
+        q: "Should I pay extra on the mortgage or invest the money?",
+        a: "Every dollar of principal repaid earns your note rate, guaranteed and untaxed — 6.5% on this example. Investing wins only if it clears that return after tax and the money can stay invested. Emergency savings and any debt priced above the mortgage rate come first either way.",
+      },
+      {
+        q: "Does a small extra payment really change anything?",
+        a: "Yes. $100 a month on this loan ends it about 46 months early and saves $61,699 of interest, because the first dollars retire principal at the most expensive point in the schedule. Bigger extras save more, but starting matters more than the amount.",
+      },
+    ],
+  },
 ];
 
 export function findPost(slug: string): BlogPost | undefined {

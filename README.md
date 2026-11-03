@@ -1,6 +1,6 @@
 # KiteCalc — Mortgage calculators (Next.js 14 + Tailwind + TS)
 
-1 个主工具页 + 5 个兄弟工具页 + 1 个 hub + 3 个法务页，全部静态输出（SSG），只有一个客户端计算组件家族。
+10 个工具页 + 1 个 hub + 9 篇博客 + 5 个政策页，全部静态输出（SSG），只有 2 个客户端计算组件。
 
 ## File structure
 
@@ -9,8 +9,8 @@ app/
 ├─ app/
 │  ├─ globals.css                      # Tailwind + tap-target / focus-visible / measure / tnum
 │  ├─ layout.tsx                       # metadataBase、OG 默认值（含 OG 图）、header/footer
-│  ├─ page.tsx                         # 首页 = 6 个工具卡片 + WebSite Schema
-│  ├─ sitemap.ts                       # → /sitemap.xml：主工具 + 5 兄弟页 + hub + 首页 + 3 法务页
+│  ├─ page.tsx                         # 首页 = 10 个工具卡片 + 计算器 + WebSite Schema
+│  ├─ sitemap.ts                       # → /sitemap.xml：10 个工具 + hub + 首页 + 9 篇博客 + 5 个政策页
 │  ├─ robots.ts                        # → /robots.txt：Sitemap 行由 SITE_URL 生成，与 sitemap 同源
 │  ├─ icon.svg                         # 站点图标（Next 14 app/icon.svg）
 │  ├─ mortgage-payoff-calculator/
@@ -25,10 +25,9 @@ app/
 │  ├─ affiliate-disclosure/page.tsx
 │  └─ not-found.tsx                     # 自定义 404（HTTP 404 + 六个工具入口）
 ├─ components/
-│  ├─ AdSlot.tsx                       # 广告位占位 div（固定 id + min-height 保 CLS）
+│  ├─ AdSlot.tsx                       # 广告位（ADS_ENABLED = false，当前不渲染任何 DOM）
 │  ├─ PayoffCalculator.tsx             # "use client"：主计算器（URL 状态 + localStorage + 场景表）
 │  ├─ SpecCalculator.tsx               # "use client"：spec 驱动的兄弟计算器（即时出结果）
-│  ├─ EmailCapture.tsx                 # "use client"：单字段邮件捕获（localStorage 记录）
 │  ├─ LegalPage.tsx                    # 法务 / About / Methodology 共用模板（含 Last updated）
 │  └─ ToolSections.tsx                 # 6 个工具页共用：How it works / Example / Last updated
 ├─ lib/
@@ -77,6 +76,7 @@ app/
 | `/blog/amortization-schedule-explained` | 博客 6：什么是摊销表、如何看懂（正文 703 词、5 条 FAQ、主打摊销计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/blog/pros-cons-larger-down-payment` | 博客 7：多交首付的优缺点（正文 761 词、5 条 FAQ、主打首付计算器 + PMI 计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/blog/how-to-get-pre-approved` | 博客 8：如何获得房贷预批（正文 754 词、5 条 FAQ、主打"我能负担多大的房子"） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
+| `/blog/pay-off-mortgage-faster` | 博客 9：提前还清房贷的 5 个方法（正文 788 词、5 条 FAQ、主打抵押贷款还款计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/_not-found`（任意未知路径） | 自定义 404，列出 10 个工具 + 索引入口 | — |
 | `/` · `/privacy` · `/terms` · `/affiliate-disclosure` | 首页与法务页 | `WebSite`（仅首页） |
 
@@ -85,7 +85,7 @@ app/
 ```bash
 npm install
 npm run dev        # http://localhost:3000/mortgage-payoff-calculator
-npm run build      # SSG：32 个静态页（26 个内容页 + 404 + 元数据路由）
+npm run build      # SSG：33 个静态页（27 个内容页 + 404 + 元数据路由）
 npm run start
 npm run lint       # ESLint = next/core-web-vitals（.eslintrc.json）
 vercel --prod      # Framework preset = Next.js
@@ -102,7 +102,7 @@ vercel --prod      # Framework preset = Next.js
 ```bash
 node scripts/cdp-check.mjs        # 7 项：加载报错 / Calculate / Biweekly / 邮箱 / 兄弟页 / Link 跳转 / query 水合
 node scripts/edge-check.mjs       # 6 计算器 × 6 组边界输入（默认/0/空/负数/极大/小数）+ 双周
-node scripts/site-audit.mjs       # 26 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
+node scripts/site-audit.mjs       # 27 路由状态、canonical/OG 唯一性、Schema↔可见FAQ、死链、图 alt
 node scripts/mobile-check.mjs     # 390×844 无横向溢出 + closing costs = 0 → "0 mo"
 node scripts/rate-zero-check.mjs  # rate = 0 分支输出真实数字（0% 是合法输入）
 node scripts/copy-branch-check.mjs  # 主页面总结句三种写法：正常 / 额外还款=0 / 利率=0%
@@ -116,19 +116,22 @@ sitemap / robots 会一起跟上，不必改代码。
 
 ## AdSense
 
-3 个占位 div 已在每页就位（`#ad-results` / `#ad-hero` / `#ad-faq`）。AdSense 验证代码已接入：
-`app/layout.tsx` 的 `<head>` 里在**生产构建**下输出
+AdSense 验证代码已接入：`app/layout.tsx` 的 `<head>` 里在**生产构建**下输出
 `adsbygoogle.js?client=ca-pub-7506515899588468`（async + crossorigin，`next dev` 不加载），
 `public/ads.txt` 为 `google.com, pub-7506515899588468, DIRECT, f08c47fec0942fa0`。
-`<ins>` 仍未插入，所以页面上还是占位框。接入步骤、`<ins>` 代码、script 参数和验收清单见 **`docs/adsense-setup.md`**。
+
+页面代码里**没有**任何 `<ins class="adsbygoogle">`：`components/AdSlot.tsx` 由
+`ADS_ENABLED = false` 控制，当前直接 `return null`，既不渲染占位框也不打印内部备注。
+账户侧若开启 Auto Ads，Google 会自行注入广告，落位与数量由账户决定，代码无法保证。
+接入步骤与验收清单见 **`docs/adsense-setup.md`**。
 
 ## Notes
 
-- 只有 3 个客户端组件（`PayoffCalculator` / `SpecCalculator` / `EmailCapture`），其余全是 Server Component → 静态输出、LCP 快。
+- 只有 2 个客户端组件（`PayoffCalculator` / `SpecCalculator`），其余全是 Server Component → 静态输出、LCP 快。
 - 计算全在 `lib/payoff.ts` 与 `lib/tools.ts`，纯函数、零依赖，可直接加 Vitest/Jest 单测。
 - `ToolSpec` 里带函数（`compute`/`schedule`），**不能整体当 props 传给客户端组件**（RSC 序列化不了），
   所以 `SpecCalculator` 只收 `slug`，在客户端内部 `findTool(slug)`。
-- 联盟链接带 `rel="sponsored nofollow noopener"`，并把用户输入拼进 query 做转化归因。
+- 外链目前不收取佣金（`/affiliate-disclosure` 如实说明这一点）；用户输入的余额、利率不会再被拼进外链 URL。
 - 主工具页输入状态写入 query string（`history.replaceState`，不触发 Next 路由），可分享；
   `Save results` 存 localStorage（key `mpc:v1`）。
 - 兄弟工具页即时出结果（无需先点按钮）；`Calculate` 按钮保留给习惯点一下的用户。

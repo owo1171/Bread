@@ -12,6 +12,7 @@ const SLUGS = [
   "amortization-schedule-explained",
   "pros-cons-larger-down-payment",
   "how-to-get-pre-approved",
+  "pay-off-mortgage-faster",
 ];
 
 const bodyOf = (html) => {

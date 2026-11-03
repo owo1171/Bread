@@ -25,6 +25,7 @@ const ROUTES = [
   "/blog/amortization-schedule-explained",
   "/blog/pros-cons-larger-down-payment",
   "/blog/how-to-get-pre-approved",
+  "/blog/pay-off-mortgage-faster",
   "/about",
   "/methodology",
   "/privacy",
