@@ -800,15 +800,16 @@ export function PayOffFasterGuide() {
         A $25,000 lump sum in month 13 ends the loan at 24 years and 5 months and saves{" "}
         <strong className="text-slate-900">$110,582</strong>, while the required payment never
         changes. That is both the appeal and the risk: equity is not a savings account, so this is
-        for money you will not need back. Read the note first. Federal rules bar these penalties
-        outright on high-cost mortgages; on any other loan it depends on the documents you signed.
+        for money you will not need back. Read the note for a prepayment penalty: federal rules bar
+        one outright on high-cost mortgages, and on any other loan it depends on the documents you
+        signed.
       </P>
 
       <H2 id="refi">4. Refinance to a shorter term for the rate, not the term</H2>
       <P>
         A 15-year refinance at 6.0% costs $2,700 a month and finishes with{" "}
         <strong className="text-slate-900">$166,062</strong> of interest, $242,081 less than the loan
-        you have. The term is not the source. Paying $2,788 — the 15-year payment at your
+        you have. The shorter term is not the reason. Paying $2,788 — the 15-year payment at your
         existing 6.5% — on the current loan also retires it in exactly 180 months, with $181,758 of
         interest and no closing costs. The refinance earns its keep through the lower rate: at $2,700
         a month the 6.5% loan needs 190 months and $193,334 of interest, so the 6.0% version saves

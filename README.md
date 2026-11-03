@@ -76,7 +76,7 @@ app/
 | `/blog/amortization-schedule-explained` | 博客 6：什么是摊销表、如何看懂（正文 703 词、5 条 FAQ、主打摊销计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/blog/pros-cons-larger-down-payment` | 博客 7：多交首付的优缺点（正文 761 词、5 条 FAQ、主打首付计算器 + PMI 计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/blog/how-to-get-pre-approved` | 博客 8：如何获得房贷预批（正文 754 词、5 条 FAQ、主打"我能负担多大的房子"） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
-| `/blog/pay-off-mortgage-faster` | 博客 9：提前还清房贷的 5 个方法（正文 788 词、5 条 FAQ、主打抵押贷款还款计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
+| `/blog/pay-off-mortgage-faster` | 博客 9：提前还清房贷的 5 个方法（正文 792 词、5 条 FAQ、主打抵押贷款还款计算器） | `BlogPosting` + `BreadcrumbList` + `FAQPage`（5 条） |
 | `/_not-found`（任意未知路径） | 自定义 404，列出 10 个工具 + 索引入口 | — |
 | `/` · `/privacy` · `/terms` · `/affiliate-disclosure` | 首页与法务页 | `WebSite`（仅首页） |
 

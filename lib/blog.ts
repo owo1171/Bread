@@ -384,7 +384,7 @@ export const BLOG_POSTS: BlogPost[] = [
     published: "2026-11-03",
     updated: "2026-11-03",
     readingMinutes: 4,
-    wordCount: 788,
+    wordCount: 792,
     links: [
       { href: "/mortgage-payment-calculator", label: "Mortgage Payment Calculator" },
       { href: "/mortgage-payoff-calculator", label: "Mortgage Payoff Calculator" },
